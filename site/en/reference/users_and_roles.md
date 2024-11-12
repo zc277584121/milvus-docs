@@ -5,7 +5,7 @@ summary: Learn about the definition of users, roles, objects, and privileges in 
 title: Users and Roles
 ---
 
-# Users and Roles
+# Users, Privileges, and Roles
 
 This topic provides an overview of Role-Based Access Control (RBAC) in Milvus, detailing the definitions and relationships between users, roles, objects, and privileges.
 
