@@ -1368,12 +1368,6 @@
                 "id": "milvus_hybrid_search_retriever.md",
                 "order": 3,
                 "children": []
-              },
-              {
-                "label": "PrivateGPT",
-                "id": "use_milvus_in_private_gpt.md",
-                "order": 4,
-                "children": []
               }              
             ]
           },
@@ -1429,13 +1423,19 @@
           {
             "label": "DocsGPT",
             "id": "use_milvus_in_docsgpt.md",
-            "order": 8,
+            "order": 9,
             "children": []
           },
           {
             "label": "SambaNova",
             "id": "use_milvus_with_sambanova.md",
-            "order": 9,
+            "order": 10,
+            "children": [],
+          },
+          {
+            "label": "PrivateGPT",
+            "id": "use_milvus_in_private_gpt.md",
+            "order": 8,
             "children": []
           }
         ]
