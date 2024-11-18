@@ -1430,7 +1430,7 @@
             "label": "SambaNova",
             "id": "use_milvus_with_sambanova.md",
             "order": 10,
-            "children": [],
+            "children": []
           },
           {
             "label": "PrivateGPT",
