@@ -113,7 +113,7 @@ PGPT_PROFILES=ollama make run
 ```
 The UI will be available at `http://0.0.0.0:8001`.
 
-![](../../../images/private_gpt_ui.png)
+![](../../../assets/private_gpt_ui.png)
 
 You can play around with the UI and ask questions about your documents.
 
