@@ -1,10 +1,16 @@
-# Overview​
+---
+id: analyzer-overview.md
+title: Analyzer Overview​
+summary: In text processing, an **analyzer** is a crucial component that converts raw text into a structured, searchable format. Each analyzer typically consists of two core elements: **tokenizer** and **filter**. Together, they transform input text into tokens, refine these tokens, and prepare them for efficient indexing and retrieval.​
+---
+
+# Analyzer Overview​
 
 In text processing, an **analyzer** is a crucial component that converts raw text into a structured, searchable format. Each analyzer typically consists of two core elements: **tokenizer** and **filter**. Together, they transform input text into tokens, refine these tokens, and prepare them for efficient indexing and retrieval.​
 
-In Milvus, analyzers are configured during collection creation when you add `VARCHAR` fields to the collection schema. Tokens produced by an analyzer can be used to build an index for keyword matching or converted into sparse embeddings for full text search. For more information, refer to [​Keyword Match](https://zilliverse.feishu.cn/wiki/RQQKwqhZUiubFzkHo4WcR62Gnvh) or [​Full Text Search](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf).​
+In Milvus, analyzers are configured during collection creation when you add `VARCHAR` fields to the collection schema. Tokens produced by an analyzer can be used to build an index for keyword matching or converted into sparse embeddings for full text search. For more information, refer to [​Keyword Match](keyword-match.md) or [​Full Text Search](full-text-search.md).​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
 The use of analyzers may impact performance:​
 
@@ -12,9 +18,9 @@ The use of analyzers may impact performance:​
 
 - **Keyword match:** For keyword matching, index creation is also slower since tokenization needs to finish before an index can be built.​
 
-:::
+</div>
 
-## Anatomy of an analyzer​{#anatomy-of-an-analyzer​}
+## Anatomy of an analyzer​
 
 An analyzer in Milvus consists of exactly one **tokenizer** and **zero or more** filters.​
 
@@ -24,9 +30,9 @@ An analyzer in Milvus consists of exactly one **tokenizer** and **zero or more**
 
 The workflow below shows how an analyzer processes text.​
 
-![HtRmdbJ8hoPNPqxLrG3cA9f6nMf](请手动下载图片并替换)
+![Analyzer workflow](../../../../../assets/analyzer-overview.png)
 
-## Analyzer types​{#analyzer-types​}
+## Analyzer types​
 
 Milvus provides two types of analyzers to meet different text processing needs:​
 
@@ -34,13 +40,13 @@ Milvus provides two types of analyzers to meet different text processing needs:�
 
 - **Custom analyzer**: For more advanced requirements, custom analyzers allow you to define your own configuration by specifying both the tokenizer and zero or more filters. This level of customization is especially useful for specialized use cases where precise control over text processing is needed.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
-If you omit analyzer configurations during collection creation, Milvus uses the `standard` analyzer for all text processing by default. For details, refer to [​Standard](https://zilliverse.feishu.cn/wiki/WMSvwXXz4iR7mZkGmUscF3Y1nxs).​
+If you omit analyzer configurations during collection creation, Milvus uses the `standard` analyzer for all text processing by default. For details, refer to [​Standard](standard-analyzer.md).​
 
-:::
+</div>
 
-### Built-in analyzer​{#built-in-analyzer​}
+### Built-in analyzer​
 
 Built-in analyzers in Milvus are pre-configured with specific tokenizers and filters, allowing you to use them immediately without needing to define these components yourself. Each built-in analyzer serves as a template that includes a preset tokenizer and filters, with optional parameters for customization.​
 
@@ -54,7 +60,7 @@ analyzer_params = {​
 
 ```
 
-The configuration of the `standard` built-in analyzer above is equivalent to setting up a [custom analyzer](https://zilliverse.feishu.cn/wiki/H8MVwnjdgihp0hkRHHKcjBe9n5e#share-N6FndaYZFoIPxExGXTDcEyHgnDc) with the following parameters, where `tokenizer` and `filter` options are explicitly defined to achieve similar functionality:​
+The configuration of the `standard` built-in analyzer above is equivalent to setting up a custom analyzer with the following parameters, where `tokenizer` and `filter` options are explicitly defined to achieve similar functionality:​
 
 ```Python
 analyzer_params = {​
@@ -78,13 +84,11 @@ Milvus offers the following built-in analyzers, each designed for specific text 
 
 - `chinese`: Specialized for processing Chinese text, including tokenization adapted for Chinese language structures.​
 
-For a list of built-in analyzers and their customizable settings, refer to [​Built-in Analyzer Reference](https://zilliverse.feishu.cn/wiki/VvJowcWXeiFPlDkYU7ScezGznIb).​
-
-### Custom analyzer​{#custom-analyzer​}
+### Custom analyzer​
 
 For more advanced text processing, custom analyzers in Milvus allow you to build a tailored text-handling pipeline by specifying both a **tokenizer** and filters. This setup is ideal for specialized use cases where precise control is required.​
 
-#### Tokenizer​{#tokenizer​}
+#### Tokenizer​
 
 The **tokenizer** is a **mandatory** component for a custom analyzer, which initiates the analyzer pipeline by breaking down input text into discrete units or **tokens**. Tokenization follows specific rules, such as splitting by whitespace or punctuation, depending on the tokenizer type. This process allows for more precise and independent handling of each word or phrase.​
 
@@ -92,7 +96,6 @@ For example, a tokenizer would convert text `"Vector Database Built for Scale"` 
 
 ```Plain Text
 ["Vector", "Database", "Built", "for", "Scale"]​
-
 ```
 
 **Example of specifying a tokenizer**:​
@@ -101,33 +104,29 @@ For example, a tokenizer would convert text `"Vector Database Built for Scale"` 
 analyzer_params = {​
     "tokenizer": "whitespace",​
 }​
-
 ```
 
-For a list of tokenizers available to choose from, refer to [​Tokenizer Reference](https://zilliverse.feishu.cn/wiki/Zu6vw6Aifi1gvNkqqO5cDjmtngh).​
-
-#### Filter​{#filter​}
+#### Filter​
 
 **Filters** are **optional** components working on the tokens produced by the tokenizer, transforming or refining them as needed. For example, after applying a `lowercase` filter to the tokenized terms `["Vector", "Database", "Built", "for", "Scale"]`, the result might be:​
 
 ```SQL
 ["vector", "database", "built", "for", "scale"]​
-
 ```
 
 Filters in a custom analyzer can be either **built-in** or **custom**, depending on configuration needs.​
 
 - **Built-in filters**: Pre-configured by Milvus, requiring minimal setup. You can use these filters out-of-the-box by specifying their names. The filters below are built-in for direct use:​
 
-    - `lowercase`: Converts text to lowercase, ensuring case-insensitive matching. For details, refer to [​Lowercase](https://zilliverse.feishu.cn/wiki/AhAhw08MFiB9OpkDjbPcVUTVnlg).​
+    - `lowercase`: Converts text to lowercase, ensuring case-insensitive matching. For details, refer to [​Lowercase](lowercase-filter.md).​
 
-    - `asciifolding`: Converts non-ASCII characters to ASCII equivalents, simplifying multilingual text handling. For details, refer to [​ASCII folding](https://zilliverse.feishu.cn/wiki/SFLCweOuaiChuVkjazqcqyE7neb).​
+    - `asciifolding`: Converts non-ASCII characters to ASCII equivalents, simplifying multilingual text handling. For details, refer to [​ASCII folding](ascii-folding-filter.md).​
 
-    - `alphanumonly`: Retains only alphanumeric characters by removing others. For details, refer to [​Alphanumonly](https://zilliverse.feishu.cn/wiki/BZkiw99tkiDkLXktLhqcJtjKnmb).​
+    - `alphanumonly`: Retains only alphanumeric characters by removing others. For details, refer to [​Alphanumonly](alphanumonly-filter.md).​
 
-    - `cnalphanumonly`: Removes tokens that contain any characters other than Chinese characters, English letters, or digits. For details, refer to [​Cnalphanumonly](https://zilliverse.feishu.cn/wiki/R3r7wFHUbi8KxUk2t2FcUXoJnic).​
+    - `cnalphanumonly`: Removes tokens that contain any characters other than Chinese characters, English letters, or digits. For details, refer to [​Cnalphanumonly](cnalphanumonly-filter.md).​
 
-    - `cncharonly`: Removes tokens that contain any non-Chinese characters. For details, refer to [​Cncharonly](https://zilliverse.feishu.cn/wiki/X16rw3C4giUT6bkPLXAcsBapnpe).​
+    - `cncharonly`: Removes tokens that contain any non-Chinese characters. For details, refer to [​Cncharonly](cncharonly-filter.md).​
 
     **Example of using a built-in filter:**​
 
@@ -136,10 +135,9 @@ Filters in a custom analyzer can be either **built-in** or **custom**, depending
         "tokenizer": "standard", # Mandatory: Specifies tokenizer​
         "filter": ["lowercase"], # Optional: Built-in filter that converts text to lowercase​
     }​
-
     ```
 
-- **Custom **filters: Custom filters allow for specialized configurations. You can define a custom filter by choosing a valid filter type (`filter.type`) and adding specific settings for each filter type. Examples of filter types that support customization:​
+- **Custom filters**: Custom filters allow for specialized configurations. You can define a custom filter by choosing a valid filter type (`filter.type`) and adding specific settings for each filter type. Examples of filter types that support customization:​
 
     - `stop`: Removes specified common words by setting a list of stop words (e.g., `"stop_words": ["of", "to"]`). For details, refer to [​Stop](https://zilliverse.feishu.cn/wiki/ScncwBnDBiVoLjksXAwcUgrgnod).​
 
@@ -162,9 +160,7 @@ Filters in a custom analyzer can be either **built-in** or **custom**, depending
 
     ```
 
-    For a list of available filter types and their specific parameters, refer to [​Filter Reference](https://zilliverse.feishu.cn/wiki/ZIakwn5V8i1msRk7EDscPNqsnUf).​
-
-## Example use​{#example-use​}
+## Example use​
 
 In this example, we define a collection schema with a vector field for embeddings and two `VARCHAR` fields for text processing capabilities. Each `VARCHAR` field is configured with its own analyzer settings to handle different processing needs.​
 
@@ -237,7 +233,6 @@ client.create_collection(​
     schema=schema,​
     index_params=index_params​
 )​
-
 ```
 
 ​
