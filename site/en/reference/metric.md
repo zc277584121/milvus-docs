@@ -66,7 +66,7 @@ The following table shows how these widely used similarity metrics fit with vari
 </thead>
 <tbody>
   <tr>
-    <td class="tg-0pky">IP</td>
+    <td class="tg-0pky"><ul><li>IP</li><li>BM25 (used only for full text search)</li></ul></td>
     <td class="tg-0pky"><ul><li>SPARSE_INVERTED_INDEX</li><li>SPARSE_WAND</li></ul></td>
   </tr>
 </tbody>
@@ -170,6 +170,42 @@ Where:
 - B is the binary representation of a chemical formula in the database
 
 Once it returns `0`, **A** is not a substructure of **B**. Otherwise, the result is the other way around.
+
+## BM25 similarity​
+
+BM25 is a widely used text relevance measurement method, specifically designed for [full text search](full-text-search.md). It combines the following three key factors:​
+
+- **Term Frequency (TF):** Measures how frequently a term appears in a document. While higher frequencies often indicate greater importance, BM25 uses the saturation parameter ​k1​ to prevent overly frequent terms from dominating the relevance score.​
+
+- **Inverse Document Frequency (IDF):** Reflects the importance of a term across the entire corpus. Terms appearing in fewer documents receive a higher IDF value, indicating greater contribution to relevance.​
+
+- **Document Length **Normalization**:** Longer documents tend to score higher due to containing more terms. BM25 mitigates this bias by normalizing document lengths, with parameter ​b controlling the strength of this normalization.​
+
+The BM25 scoring is calculated as follows:​
+
+![bm25_formula](../../../assets/bm25.png "BM25 formula")
+
+Parameter description:​
+
+- **​Q**: The query text provided by the user.​
+
+- **​D**: The document being evaluated.​
+
+- **​TF(qi​,D)**: Term frequency, representing how often term ​qi​appears in document ​D.​
+
+- **​IDF(qi​)**: Inverse document frequency, calculated as:​
+
+    ![idf_formula](../../../assets/idf.png "IDF formula")
+
+    where ​N is the total number of documents in the corpus, and​n(qi​) is the number of documents containing term ​qi​.​
+
+- **​∣D∣**: Length of document ​D (total number of terms).​
+
+- **​avgdl**: Average length of all documents in the corpus.​
+
+- **​k1​**: Controls the influence of term frequency on the score. Higher values increase the importance of term frequency. The typical range is [1.2, 2.0], while Milvus allows a range of [0, 3].​
+
+- **​b**: Controls the degree of length normalization, ranging from 0 to 1. When the value is 0, no normalization is applied; when the value is 1, full normalization is applied.​
 
 ## FAQ
 

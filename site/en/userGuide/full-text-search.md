@@ -1,22 +1,29 @@
+---
+id: full-text-search.md
+title: Full Text Search
+related_key: full, text, search
+summary: Full text search is a feature that retrieves documents containing specific terms or phrases in text datasets, then ranking the results based on relevance.
+---
+
 # Full Text Search​
 
 Full text search is a feature that retrieves documents containing specific terms or phrases in text datasets, then ranking the results based on relevance. This feature overcomes semantic search limitations, which might overlook precise terms, ensuring you receive the most accurate and contextually relevant results. Additionally, it simplifies vector searches by accepting raw text input, automatically converting your text data into sparse embeddings without the need to manually generate vector embeddings.​
 
 Using the BM25 algorithm for relevance scoring, this feature is particularly valuable in retrieval-augmented generation (RAG) scenarios, where it prioritizes documents that closely match specific search terms.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
-By integrating full text search with semantic-based dense vector search, you can enhance the accuracy and relevance of search results. For more information, refer to [​Hybrid Search](https://zilliverse.feishu.cn/wiki/WTsmwWdgOiKnwpkdZdScp093njh).​
+By integrating full text search with semantic-based dense vector search, you can enhance the accuracy and relevance of search results. For more information, refer to [​Hybrid Search](multi-vector-search.md).​
 
-:::
+</div>
 
-## Overview​{#overview​}
+## Overview​
 
 Full text search simplifies the process of text-based searching by eliminating the need for manual embedding. This feature operates through the following workflow:​
 
 1. **Text input**: You insert raw text documents or provide query text without any need for manual embedding.​
 
-2. **Text analysis**: Milvus uses an [analyzer](https://zilliverse.feishu.cn/wiki/H8MVwnjdgihp0hkRHHKcjBe9n5e) to tokenize input text into individual, searchable terms.​
+2. **Text analysis**: Milvus uses an analyzer to tokenize input text into individual, searchable terms.​
 
 3. **Function processing**: The built-in function receives tokenized terms and converts them into sparse vector representations.​
 
@@ -24,17 +31,17 @@ Full text search simplifies the process of text-based searching by eliminating t
 
 5. **BM25 scoring**: During a search, Milvus applies the BM25 algorithm to calculate scores for the stored documents and ranks matched results based on relevance to the query text.​
 
-![X89MdsDSaoHMD9x5i6IcXHE8nse](请手动下载图片并替换)
+![Full text search](../../../assets/full-text-search.png)
 
 To use full text search, follow these main steps:​
 
-1. [Create a collection](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf#share-D53HdM2qIos5D5xJGVBcDlDDnyc): Set up a collection with necessary fields and define a function to convert raw text into sparse embeddings.​
+1. [Create a collection](#create-a-collection-for-full-text-search): Set up a collection with necessary fields and define a function to convert raw text into sparse embeddings.​
 
-2. [Insert data](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf#share-RQcSdp9U9oMosZxPNXhcnH6Rnac): Ingest your raw text documents to the collection.​
+2. [Insert data](#insert-text-data): Ingest your raw text documents to the collection.​
 
-3. [Perform searches](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf#share-HIpKdsm9Ro7ZmYxh1oWcwhYRn5g): Use query texts to search through your collection and retrieve relevant results.​
+3. [Perform searches](#perform-full-text-search): Use query texts to search through your collection and retrieve relevant results.​
 
-## Create a collection for full text search​{#create-a-collection-for-full-text-search​}
+## Create a collection for full text search​
 
 To enable full text search, create a collection with a specific schema. This schema must include three necessary fields:​
 
@@ -44,7 +51,7 @@ To enable full text search, create a collection with a specific schema. This sch
 
 - A `SPARSE_FLOAT_VECTOR` field reserved to store sparse embeddings that Milvus will automatically generate for the `VARCHAR` field.​
 
-### Define the collection schema​{#define-the-collection-schema​}
+### Define the collection schema
 
 First, create the schema and add the necessary fields:​
 
@@ -63,7 +70,7 @@ In this configuration,​
 
 - `id`: serves as the primary key and is automatically generated with `auto_id=True`.​
 
-- `text`: stores your raw text data for full text search operations. The data type must be `VARCHAR`, as `VARCHAR` is Milvus' string data type for text storage. Set `enable_analyzer=True` to allow Milvus to tokenize the text. By default, Milvus uses the [`standard analyzer`](https://zilliverse.feishu.cn/wiki/WMSvwXXz4iR7mZkGmUscF3Y1nxs) for text analysis. To configure a different analyzer, refer to [​Overview](https://zilliverse.feishu.cn/wiki/H8MVwnjdgihp0hkRHHKcjBe9n5e).​
+- `text`: stores your raw text data for full text search operations. The data type must be `VARCHAR`, as `VARCHAR` is Milvus' string data type for text storage. Set `enable_analyzer=True` to allow Milvus to tokenize the text. By default, Milvus uses the [standard analyzer](standard-analyzer.md) for text analysis. To configure a different analyzer, refer to [​Overview](analyzer-overview.md).​
 
 - `sparse`: a vector field reserved to store internally generated sparse embeddings for full text search operations. The data type must be `SPARSE_FLOAT_VECTOR`.​
 
@@ -85,33 +92,33 @@ schema.add_function(bm25_function)​
 
 </th><th data-block-token="SMGGduN8zo3cgXxVnwZcW0UAnbA" colspan="1" rowspan="1"><p data-block-token="LY39dA2eOoyVUUxvKwlcyyjdn3e">Description​</p>
 
-</th></tr></thead><tbody><tr><td data-block-token="Pbj3dPvuno3x6kxnCsWcTb3knag" colspan="1" rowspan="1"><p data-block-token="EeHOdxCjloFUAGxuY1CcScCTnDe"><code>`name`</code>​</p>
+</th></tr></thead><tbody><tr><td data-block-token="Pbj3dPvuno3x6kxnCsWcTb3knag" colspan="1" rowspan="1"><p data-block-token="EeHOdxCjloFUAGxuY1CcScCTnDe"><code>name</code>​</p>
 
 <p data-block-token="FzAJdVbrzozmTdxwy4fcJQkQnlh">​</p>
 
-</td><td data-block-token="VJWydnWHJoV66jx6oEPcH9lGnvh" colspan="1" rowspan="1"><p data-block-token="Clg3dWrJpo39lfxSWjVcbE7GnYm">The name of the function. This function converts your raw text from the <code>`text`</code> field into searchable vectors that will be stored in the <code>`sparse`</code> field.​</p>
+</td><td data-block-token="VJWydnWHJoV66jx6oEPcH9lGnvh" colspan="1" rowspan="1"><p data-block-token="Clg3dWrJpo39lfxSWjVcbE7GnYm">The name of the function. This function converts your raw text from the <code>text</code> field into searchable vectors that will be stored in the <code>sparse</code> field.​</p>
 
-</td></tr><tr><td data-block-token="ShPJdlvMQoXnSHxIQ1GcoyegnEb" colspan="1" rowspan="1"><p data-block-token="HFT1dYVCioUj4PxnNSVcYIBInNh"><code>`input_field_names`</code>​</p>
+</td></tr><tr><td data-block-token="ShPJdlvMQoXnSHxIQ1GcoyegnEb" colspan="1" rowspan="1"><p data-block-token="HFT1dYVCioUj4PxnNSVcYIBInNh"><code>input_field_names</code>​</p>
 
-</td><td data-block-token="YiZCdrUaaovWnrxef29cmpQFn9c" colspan="1" rowspan="1"><p data-block-token="YFVOd29cUovDpXx7L2zcJK37n1g">The name of the <code>`VARCHAR`</code> field requiring text-to-sparse-vector conversion. For <code>`FunctionType.BM25`</code>, this parameter accepts only one field name.​</p>
+</td><td data-block-token="YiZCdrUaaovWnrxef29cmpQFn9c" colspan="1" rowspan="1"><p data-block-token="YFVOd29cUovDpXx7L2zcJK37n1g">The name of the <code>VARCHAR</code> field requiring text-to-sparse-vector conversion. For <code>FunctionType.BM25</code>, this parameter accepts only one field name.​</p>
 
-</td></tr><tr><td data-block-token="QpcMdDoXfo62aNxQfoyc2E6lneg" colspan="1" rowspan="1"><p data-block-token="D1LkdH1KIojwKDx14HUcHdDJnPh"><code>`output_field_names`</code>​</p>
+</td></tr><tr><td data-block-token="QpcMdDoXfo62aNxQfoyc2E6lneg" colspan="1" rowspan="1"><p data-block-token="D1LkdH1KIojwKDx14HUcHdDJnPh"><code>output_field_names</code>​</p>
 
-</td><td data-block-token="TrvodS2xDoF6UhxeFNScRg86nuf" colspan="1" rowspan="1"><p data-block-token="CO6bdbNhQo9ZprxlGdecjs9RnEf">The name of the field where the internally generated sparse vectors will be stored. For <code>`FunctionType.BM25`</code>, this parameter accepts only one field name.​</p>
+</td><td data-block-token="TrvodS2xDoF6UhxeFNScRg86nuf" colspan="1" rowspan="1"><p data-block-token="CO6bdbNhQo9ZprxlGdecjs9RnEf">The name of the field where the internally generated sparse vectors will be stored. For <code>FunctionType.BM25</code>, this parameter accepts only one field name.​</p>
 
-</td></tr><tr><td data-block-token="UvgkdWp5RoXa0QxL3CKcoEZVnIf" colspan="1" rowspan="1"><p data-block-token="PWZSd2E48oWB2QxqVoVcMHGxn7c"><code>`function_type`</code>​</p>
+</td></tr><tr><td data-block-token="UvgkdWp5RoXa0QxL3CKcoEZVnIf" colspan="1" rowspan="1"><p data-block-token="PWZSd2E48oWB2QxqVoVcMHGxn7c"><code>function_type</code>​</p>
 
-</td><td data-block-token="VdcmdmiiWoy0nex8a29clnslnQg" colspan="1" rowspan="1"><p data-block-token="Q2eSdvOqeoNa6dxcGjcc2LKinDg">The type of the function to use. Set the value to <code>`FunctionType.BM25`</code>.​</p>
+</td><td data-block-token="VdcmdmiiWoy0nex8a29clnslnQg" colspan="1" rowspan="1"><p data-block-token="Q2eSdvOqeoNa6dxcGjcc2LKinDg">The type of the function to use. Set the value to <code>FunctionType.BM25</code>.​</p>
 
 </td></tr></tbody></table>
 
-:::info[📘 Notes​]
+<div class="alert note">
 
 For collections with multiple `VARCHAR` fields requiring text-to-sparse-vector conversion, add separate functions to the collection schema, ensuring each function has a unique name and `output_field_names` value.​
 
-:::
+</div>
 
-### Configure the index​{#configure-the-index​}
+### Configure the index
 
 After defining the schema with necessary fields and the built-in function, set up the index for your collection. To simplify this process, use `AUTOINDEX` as the `index_type`, an option that allows Milvus to choose and configure the most suitable index type based on the structure of your data.​
 
@@ -130,21 +137,21 @@ index_params.add_index(​
 
 </th><th data-block-token="VNwBdAyWKoPktSxYaBtcn5rKnNb" colspan="1" rowspan="1"><p data-block-token="Oo1PduIsxo4HcMx2NRmcxvAMnld">Description​</p>
 
-</th></tr></thead><tbody><tr><td data-block-token="UxxWdkIBPoSbjOx7MO8csiFEn5d" colspan="1" rowspan="1"><p data-block-token="NYODddTbmoYoBrxPQ8ectvGxnPe"><code>`field_name`</code>​</p>
+</th></tr></thead><tbody><tr><td data-block-token="UxxWdkIBPoSbjOx7MO8csiFEn5d" colspan="1" rowspan="1"><p data-block-token="NYODddTbmoYoBrxPQ8ectvGxnPe"><code>field_name</code>​</p>
 
-</td><td data-block-token="L2ZGdkB2voKhmsx8ezecoPxmnVf" colspan="1" rowspan="1"><p data-block-token="Y16fdZ6hPoXVlgxSTQjctsTonac">The name of the vector field to index. For full text search, this should be the field that stores the generated sparse vectors. In this example, set the value to <code>`sparse`</code>.​</p>
+</td><td data-block-token="L2ZGdkB2voKhmsx8ezecoPxmnVf" colspan="1" rowspan="1"><p data-block-token="Y16fdZ6hPoXVlgxSTQjctsTonac">The name of the vector field to index. For full text search, this should be the field that stores the generated sparse vectors. In this example, set the value to <code>sparse</code>.​</p>
 
-</td></tr><tr><td data-block-token="Wn1rdzso5o8AmqxqxiqccBpCnD4" colspan="1" rowspan="1"><p data-block-token="WLDrdOzSXoiKEOxoDREctDounRf"><code>`index_type`</code>​</p>
+</td></tr><tr><td data-block-token="Wn1rdzso5o8AmqxqxiqccBpCnD4" colspan="1" rowspan="1"><p data-block-token="WLDrdOzSXoiKEOxoDREctDounRf"><code>index_type</code>​</p>
 
-</td><td data-block-token="I9TpdLWlXozM3Hx2Z9mcWvDHnNc" colspan="1" rowspan="1"><p data-block-token="Q3cgdK7OTo3kzXxQ1Y2cSarZned">The type of the index to create. <code>`AUTOINDEX`</code> allows Milvus to automatically optimize index settings. If you need more control over your index settings, you can choose from various index types available for sparse vectors in Milvus. For more information, refer to <a href="https://milvus.io/docs/index.md#Indexes-supported-in-Milvus">[Indexes supported in Milvus](https://milvus.io/docs/index.md#Indexes-supported-in-Milvus)</a>.​</p>
+</td><td data-block-token="I9TpdLWlXozM3Hx2Z9mcWvDHnNc" colspan="1" rowspan="1"><p data-block-token="Q3cgdK7OTo3kzXxQ1Y2cSarZned">The type of the index to create. <code>AUTOINDEX</code> allows Milvus to automatically optimize index settings. If you need more control over your index settings, you can choose from various index types available for sparse vectors in Milvus. For more information, refer to <a href="https://milvus.io/docs/index.md#Indexes-supported-in-Milvus">Indexes supported in Milvus</a>.​</p>
 
-</td></tr><tr><td data-block-token="KJfgdQmD1odMgdxkG6uczBYknQh" colspan="1" rowspan="1"><p data-block-token="XVCsdz9Ulo93A2xavPtcF9Bvnec"><code>`metric_type`</code>​</p>
+</td></tr><tr><td data-block-token="KJfgdQmD1odMgdxkG6uczBYknQh" colspan="1" rowspan="1"><p data-block-token="XVCsdz9Ulo93A2xavPtcF9Bvnec"><code>metric_type</code>​</p>
 
-</td><td data-block-token="S3NHds6MTodtrsxRILIc8E1wngh" colspan="1" rowspan="1"><p data-block-token="G9i7dPczzoyJRHxyXbecrWBBn0d">The value for this parameter must be set to <code>`BM25`</code> specifically for full text search functionality.​</p>
+</td><td data-block-token="S3NHds6MTodtrsxRILIc8E1wngh" colspan="1" rowspan="1"><p data-block-token="G9i7dPczzoyJRHxyXbecrWBBn0d">The value for this parameter must be set to <code>BM25</code> specifically for full text search functionality.​</p>
 
 </td></tr></tbody></table>
 
-### Create the collection​{#create-the-collection​}
+### Create the collection​
 
 Now create the collection using the schema and index parameters defined.​
 
@@ -157,7 +164,7 @@ MilvusClient.create_collection(​
 
 ```
 
-## Insert text data​{#insert-text-data​}
+## Insert text data
 
 After setting up your collection and index, you're ready to insert text data. In this process, you need only to provide the raw text. The built-in function we defined earlier automatically generates the corresponding sparse vector for each text entry.​
 
@@ -170,7 +177,7 @@ MilvusClient.insert('demo', [​
 
 ```
 
-## Perform full text search​{#perform-full-text-search​}
+## Perform full text search
 
 Once you've inserted data into your collection, you can perform full text searches using raw text queries. Milvus automatically converts your query into a sparse vector and ranks the matched search results using the BM25 algorithm, and then returns the topK (`limit`) results.​
 
@@ -193,23 +200,23 @@ MilvusClient.search(​
 
 </th><th data-block-token="GM88dTMzTof30QxS9O2cVyrnnJd" colspan="1" rowspan="1"><p data-block-token="Nlp5dAJY8or40nxV6auc20XHnjh">Description​</p>
 
-</th></tr></thead><tbody><tr><td data-block-token="QpGIdQ2m0oogCvxColKcNWnYnUc" colspan="1" rowspan="1"><p data-block-token="TkffdBxkKo2hVvx9gGucca46nic"><code>`search_params`</code>​</p>
+</th></tr></thead><tbody><tr><td data-block-token="QpGIdQ2m0oogCvxColKcNWnYnUc" colspan="1" rowspan="1"><p data-block-token="TkffdBxkKo2hVvx9gGucca46nic"><code>search_params</code>​</p>
 
 </td><td data-block-token="HYemdqt6Dow9tvxOcYScmYdPn8e" colspan="1" rowspan="1"><p data-block-token="JiIOdJrBcoGIQ4xrqYycMdjnn7g">A dictionary containing search parameters.​</p>
 
-</td></tr><tr><td data-block-token="DJDgdH5WUoZQxkxmLzQcXqcXnQh" colspan="1" rowspan="1"><p data-block-token="LKWbdw498o9mtRxm9gDcg28FnQd"><code>`params.drop_ratio_search`</code>​</p>
+</td></tr><tr><td data-block-token="DJDgdH5WUoZQxkxmLzQcXqcXnQh" colspan="1" rowspan="1"><p data-block-token="LKWbdw498o9mtRxm9gDcg28FnQd"><code>params.drop_ratio_search</code>​</p>
 
-</td><td data-block-token="SEJ7d5y18otFTOxy7gLcvLYRnfb" colspan="1" rowspan="1"><p data-block-token="MnladDjOGoUphGxrZzXchD0anzf">Proportion of low-frequency terms to ignore during search. For details, refer to <u><ins>Sparse Vector</ins></u>.​</p>
+</td><td data-block-token="SEJ7d5y18otFTOxy7gLcvLYRnfb" colspan="1" rowspan="1"><p data-block-token="MnladDjOGoUphGxrZzXchD0anzf">Proportion of low-frequency terms to ignore during search. For details, refer to <u><a href="sparse_vector.md">Sparse Vector</a></u>.​</p>
 
-</td></tr><tr><td data-block-token="XPPYdAYUPoASg5xuIYmcyxqHnPe" colspan="1" rowspan="1"><p data-block-token="T90ndG7H0okLa4xa1wzcHQmEnEg"><code>`data`</code>​</p>
+</td></tr><tr><td data-block-token="XPPYdAYUPoASg5xuIYmcyxqHnPe" colspan="1" rowspan="1"><p data-block-token="T90ndG7H0okLa4xa1wzcHQmEnEg"><code>data</code>​</p>
 
 </td><td data-block-token="NMhsduxr1oUESPx2J8YcA8csnA1" colspan="1" rowspan="1"><p data-block-token="ZmEQdkdGtofQsAx9YXNcsnlHnYe">The raw query text.​</p>
 
-</td></tr><tr><td data-block-token="O4OVdL9BIollH1xORz3czhInnSh" colspan="1" rowspan="1"><p data-block-token="CYdGd82dRopaWrxfJ9ycWQQnnPc"><code>`anns_field`</code>​</p>
+</td></tr><tr><td data-block-token="O4OVdL9BIollH1xORz3czhInnSh" colspan="1" rowspan="1"><p data-block-token="CYdGd82dRopaWrxfJ9ycWQQnnPc"><code>anns_field</code>​</p>
 
 </td><td data-block-token="MsKIdxGj6oWeBExoFurcxWCnnGh" colspan="1" rowspan="1"><p data-block-token="RsMDdgo0roTSBuxYwm6cGw3inZd">The name of the field that contains internally generated sparse vectors.​</p>
 
-</td></tr><tr><td data-block-token="G0ewd9TQ1o1RQRxZA9ucMO9tnBK" colspan="1" rowspan="1"><p data-block-token="JOyTdUmLIo5aV0x4ChOcLiDQnLh"><code>`limit`</code>​</p>
+</td></tr><tr><td data-block-token="G0ewd9TQ1o1RQRxZA9ucMO9tnBK" colspan="1" rowspan="1"><p data-block-token="JOyTdUmLIo5aV0x4ChOcLiDQnLh"><code>limit</code>​</p>
 
 </td><td data-block-token="H21hdYGZQoQe5FxYnwCch58qn0g" colspan="1" rowspan="1"><p data-block-token="ATKidHgXoo7c7dxM7cgcE46engb">Maximum number of top matches to return.​</p>
 

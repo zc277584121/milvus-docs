@@ -1,24 +1,30 @@
+---
+id: metadata-filtering.md
+summary: A filter expression can be used to filter a specific scalar field during a search or query to obtain precisely matched results. This guide will introduce how to use filter expressions in Zilliz through an example dataset. For demonstration purposes, this guide will only provide examples of query operations.​
+title: Metadata Filtering
+---
+
 # Metadata Filtering​
 
 A filter expression can be used to filter a specific scalar field during a search or query to obtain precisely matched results. This guide will introduce how to use filter expressions in Zilliz through an example dataset. For demonstration purposes, this guide will only provide examples of query operations.​
 
-## Example Dataset​{#example-dataset​}
+## Example Dataset
 
 Suppose the example dataset is stored in a collection named "my_collection" and includes 10 entities of electronic products. The following is the example dataset.​
 
-<table data-block-token="N92advouDoOVkixCfD2cJxMKnWb"><thead><tr><th data-block-token="KHrJdy8bOoSMrExjvgWcCHWKn7c" colspan="1" rowspan="1"><p data-block-token="ADdYdCd6koyH7wx6DUbcqlAonSg"><strong>**id**</strong>​</p>
+<table data-block-token="N92advouDoOVkixCfD2cJxMKnWb"><thead><tr><th data-block-token="KHrJdy8bOoSMrExjvgWcCHWKn7c" colspan="1" rowspan="1"><p data-block-token="ADdYdCd6koyH7wx6DUbcqlAonSg"><strong>id</strong>​</p>
 
-</th><th data-block-token="I0ZJdeXHRoBSyjxxgdEcwIXln6q" colspan="1" rowspan="1"><p data-block-token="WWy3diLO9ordOfxLLNbcxVfjnsd"><strong>**color**</strong>​</p>
+</th><th data-block-token="I0ZJdeXHRoBSyjxxgdEcwIXln6q" colspan="1" rowspan="1"><p data-block-token="WWy3diLO9ordOfxLLNbcxVfjnsd"><strong>color</strong>​</p>
 
-</th><th data-block-token="F6DzdJQm1oidtvx7KUqcOkIZnYe" colspan="1" rowspan="1"><p data-block-token="Em7wd7DuRoigntxHi1lc5m9LnI3"><strong>**vector**</strong>​</p>
+</th><th data-block-token="F6DzdJQm1oidtvx7KUqcOkIZnYe" colspan="1" rowspan="1"><p data-block-token="Em7wd7DuRoigntxHi1lc5m9LnI3"><strong>vector</strong>​</p>
 
-</th><th data-block-token="II7AdYYYyoyHshxkJ5kc9jwAn8K" colspan="1" rowspan="1"><p data-block-token="FPK8dbBSkol9zOxMY1gcHnFHnye"><strong>**price**</strong>​</p>
+</th><th data-block-token="II7AdYYYyoyHshxkJ5kc9jwAn8K" colspan="1" rowspan="1"><p data-block-token="FPK8dbBSkol9zOxMY1gcHnFHnye"><strong>price</strong>​</p>
 
-</th><th data-block-token="FqP1dNbS4oZgATxzKCUcvjoUnve" colspan="1" rowspan="1"><p data-block-token="Fi9xd4MPToImaRxUNV7c8lW1nOh"><strong>**inventory**</strong>​</p>
+</th><th data-block-token="FqP1dNbS4oZgATxzKCUcvjoUnve" colspan="1" rowspan="1"><p data-block-token="Fi9xd4MPToImaRxUNV7c8lW1nOh"><strong>inventory</strong>​</p>
 
-</th><th data-block-token="OcDPd43PxoGaPexv1nQcNWSwnJf" colspan="1" rowspan="1"><p data-block-token="E64Sd8AkJoQ8nQxcpcHcUfMjnDW"><strong>**sales_volume**</strong>​</p>
+</th><th data-block-token="OcDPd43PxoGaPexv1nQcNWSwnJf" colspan="1" rowspan="1"><p data-block-token="E64Sd8AkJoQ8nQxcpcHcUfMjnDW"><strong>sales_volume</strong>​</p>
 
-</th><th data-block-token="MtPmdXPnNoarkBxR2bVcEQPlnPS" colspan="1" rowspan="1"><p data-block-token="HvxMduuTKo6cWUxUOsnc3ADEnHh"><strong>**description**</strong>​</p>
+</th><th data-block-token="MtPmdXPnNoarkBxR2bVcEQPlnPS" colspan="1" rowspan="1"><p data-block-token="HvxMduuTKo6cWUxUOsnc3ADEnHh"><strong>description</strong>​</p>
 
 </th></tr></thead><tbody><tr><td data-block-token="QRH0dSPAloZVXtxyQDAcFWxanBc" colspan="1" rowspan="1"></td><td data-block-token="S4vAdpxONo77XJxz5uRcjVVundg" colspan="1" rowspan="1"><p data-block-token="VfRDdF2zwoCC5hxK6PWciImQnVg">pink_8682​</p>
 
@@ -174,23 +180,23 @@ Suppose the example dataset is stored in a collection named "my_collection" and 
 
 - `description`: The description of the product. The data type of this field is VARCHAR. It offers a summary of the product features, functionality, and intended users.​
 
-## Single-condition filtering​{#single-condition-filtering​}
+## Single-condition filtering
 
 The following types of operators can be used in filters with single condition:​
 
-- [Comparison operators](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow#Hexed5lsyoueDOxRtc5cSgZdnwb)​
+- [Comparison operators](#comparison-operators)​
 
-- [Term operators](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow#PsgodhHRSoix6xxxMRhcBeUanrb)​
+- [Term operators](#term-operators)​
 
-- [Match operators](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow#Vg8YdPhHIolXDkxmteRcmTGxn8e)​
+- [Match operators](#match-operators)​
 
-- [Arithmetic operators](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow#D21KdIVVuoktmZxoBHNcAZLfnYb)​
+- [Arithmetic operators](#arithmetic-operators)​
 
-- [Advanced JSON operators](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow#RZLedDO2poF7ioxZD2dcAeTqn4e)​
+- [Advanced JSON operators](#advanced-json-operators)​
 
-- [Advanced Array operators](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow#Jht8d0xpgo3arnxdaYQc7TArnze)​
+- [Advanced Array operators](#advanced-array-operators)​
 
-### Comparison operators​{#comparison-operators​}
+### Comparison operators
 
 Comparison operators include:​
 
@@ -206,11 +212,16 @@ Comparison operators include:​
 
 - `!=`: Not equal​
 
-#### Example 1: Apply filter on scalar field​{#example-1--apply-filter-on-scalar-field​}
+#### Example 1: Apply filter on scalar field​
 
 The following example demonstrates how to filter products with prices ranging from 500 to 900:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -233,10 +244,6 @@ results = client.query(​
 # {'id': 9, 'color': 'white_9381', 'price': np.float32(597.0)}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -265,10 +272,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -283,10 +286,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -304,11 +303,9 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 The filtered results are as follows:​
 
-```Plain Text
+```json
 [​
     {"id": 1, "color": "pink_8682" "price":593},​
     {"id": 3, "color": "orange_6781" "price":862},​
@@ -318,13 +315,16 @@ The filtered results are as follows:​
 
 ```
 
-<table data-block-token="JvqmdJ1uFoira4xMphHcKFJinge"><thead><tr><th data-block-token="JK4CdytuPoJPLJxfG4FcAvo4nHV" colspan="1" rowspan="1"></th><th data-block-token="PdcZdQPqaoSgogxHteCccRaQnyc" colspan="1" rowspan="1"></th><th data-block-token="ED7Odz2fPoXw8OxF9LQcYlxVnCf" colspan="1" rowspan="1"></th><th data-block-token="JjJGdgpwmo0AUvxe3PzcvLhjnib" colspan="1" rowspan="1"></th><th data-block-token="XXtLdmX9uoyjy7x9n2mc6bhNn0g" colspan="1" rowspan="1"></th></tr></thead><tbody><tr><td data-block-token="GwUodnFPkon8Klx9tBucs5xRnsZ" colspan="1" rowspan="1"></td><td data-block-token="TfdPdoDDBoIHWXxVGmyczCYFngf" colspan="1" rowspan="1"></td><td data-block-token="GohcddYCCoDlldxG6QScmstEnkd" colspan="1" rowspan="1"></td><td data-block-token="H86xdFmOzoqdtZxinSpceWcJnBq" colspan="1" rowspan="1"></td><td data-block-token="PUPWd2v6Kohh0fxurpBczQDSntc" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="Xo63dGnV8ocnjTx0eR9cG8jTn7c" colspan="1" rowspan="1"></td><td data-block-token="LDf1dPVxKohvLlxoFeGcmXX0nQD" colspan="1" rowspan="1"></td><td data-block-token="KkEadOFKXodPUkxSfZ4c7jLOn4b" colspan="1" rowspan="1"></td><td data-block-token="AX7mdefu7oNuwkxkEEVc9vLdnNf" colspan="1" rowspan="1"></td><td data-block-token="HjyMdzntUoHTjBxH1fIcOgtJnWc" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="V1RhdI7rtoMLlZxZyUbcjmIXnv3" colspan="1" rowspan="1"></td><td data-block-token="JBlwdHuuzoh6wqxtrnQcnlrfn9f" colspan="1" rowspan="1"></td><td data-block-token="AXWRdcL5zozZkpxcQs6cZHRanJd" colspan="1" rowspan="1"></td><td data-block-token="M7hadUC4toVuYCxaqgMcNWhnnJf" colspan="1" rowspan="1"></td><td data-block-token="I3DFdZE3Horx9SxGan0c8brDn3d" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="VJzId2rR3oEhQbxK24lcKkoInUe" colspan="1" rowspan="1"></td><td data-block-token="Oybvd6ZPdo62WKxoX6GcdhFbnQb" colspan="1" rowspan="1"></td><td data-block-token="QxFodMWqMoZdZwx6zthc4VDUnE8" colspan="1" rowspan="1"></td><td data-block-token="O64ydX6rforQE5x22gtch4YZnYe" colspan="1" rowspan="1"></td><td data-block-token="HAn8dp8REoj9rAxFs1TcsVHbn9e" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="S3XrdanRooxGCMxaKfwccbQLn7f" colspan="1" rowspan="1"></td><td data-block-token="JhimdQ4GIocq2sxEWZfcdkuvnYl" colspan="1" rowspan="1"></td><td data-block-token="FkCXdCUbLoXP5UxTNPLcPKp3nze" colspan="1" rowspan="1"></td><td data-block-token="EqMXd6Zs7onTJqx4MfTcRO5Enud" colspan="1" rowspan="1"></td><td data-block-token="XADpdzp7oo4cnnxjgRvcpJY5nqe" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="EyVldUhfaoKxMIxKmnRc3XOlnmc" colspan="1" rowspan="1"></td><td data-block-token="Nud2dP6sCocJblxvnDlcpCxBnph" colspan="1" rowspan="1"></td><td data-block-token="Ib0jdLWNXoxc36x4FBFc96A8nBg" colspan="1" rowspan="1"></td><td data-block-token="KpdodLfS9oSJrrxOgSEc9mNVnhb" colspan="1" rowspan="1"></td><td data-block-token="RlNzdU1QsoTwrzxo4rbcoOKnn7m" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="LKFSdUXGeoEIpSxZ2lWcw75on5c" colspan="1" rowspan="1"></td><td data-block-token="MCmOdKDvho6l61xwN8sc5Q1Sncb" colspan="1" rowspan="1"></td><td data-block-token="CeELdDVy9oYfL9xfPfXczuY3nSd" colspan="1" rowspan="1"></td><td data-block-token="VZAOdRgFmoZid4x01aIcMzxqnZg" colspan="1" rowspan="1"></td><td data-block-token="WHgOd9IM4ovjXfxFp2DcMoFHnUh" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="BUbKdTH6VonK0OxyZ60cH4Xvn1c" colspan="1" rowspan="1"></td><td data-block-token="FTWVdv5phoNoMuxFGnqc0wSNnOg" colspan="1" rowspan="1"></td><td data-block-token="UoE1dsMiYoeHQ5xR8pucCbSDnQb" colspan="1" rowspan="1"></td><td data-block-token="AYdWdcaCRohxBTxLOYWcutgCnzg" colspan="1" rowspan="1"></td><td data-block-token="PQModvaOWoSlKxx0hLTcnQX7nSd" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="Dnc3doYxnoEtMFxsRAhcu9gXnrd" colspan="1" rowspan="1"></td><td data-block-token="NDeEdV4BboVVPlxBJNAc17IHnZe" colspan="1" rowspan="1"></td><td data-block-token="Tr4qddRIPoGRI6xDtSFcE0cinJg" colspan="1" rowspan="1"></td><td data-block-token="VK7RdWX54oNptxx0TJuc9lQ6nvf" colspan="1" rowspan="1"></td><td data-block-token="QYFBdKWFrooQRzxwEFIcrxann8e" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="OYfxd6E1uoZmMNxA3zwcmFJmnch" colspan="1" rowspan="1"></td><td data-block-token="CsOtduXU8oMHjfxZP0dcEOC7nu6" colspan="1" rowspan="1"></td><td data-block-token="SbA9dzjD2oKesixLbKGce7QKnBd" colspan="1" rowspan="1"></td><td data-block-token="DOCWdOHxooflPxxkPxycp7GGnnU" colspan="1" rowspan="1"></td><td data-block-token="MT5idjVvHotjYtxjaXecJnOWnQh" colspan="1" rowspan="1"></td></tr></tbody></table>
-
-#### Example 2: Apply filter on JSON field​{#example-2--apply-filter-on-json-field​}
+#### Example 2: Apply filter on JSON field
 
 The following example demonstrates how to filter products with an inventory quantity of 250 or more.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -341,10 +341,6 @@ results = client.query(​
 # {'id': 10, 'color': 'purple_4976', 'price': np.float32(450.0), 'inventory': {'brand': 'Apple', 'quantity': 268}}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -367,10 +363,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -381,10 +373,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -401,8 +389,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -486,11 +472,16 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 3: Apply filter on Array field​{#example-3--apply-filter-on-array-field​}
+#### Example 3: Apply filter on Array field​
 
 The following example demonstrates how to filter products whose sales volume in the first country is 150 or more.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -507,10 +498,6 @@ results = client.query(​
 # {'id': 10, 'color': 'purple_4976', 'price': np.float32(450.0), 'sales_volume': [190, 149, 85, 79, 80]}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -533,10 +520,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -547,10 +530,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -567,8 +546,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -632,7 +609,7 @@ The filtered results are as follows:​
 
 ```
 
-### Term operators​{#term-operators​}
+### Term operators​
 
 Term operators include:​
 
@@ -640,11 +617,16 @@ Term operators include:​
 
 - `not in`: Filter results that do not match the condition​
 
-#### Example 1: Apply filter on scalar field​{#example-1--apply-filter-on-scalar-field​}
+#### Example 1: Apply filter on scalar field​
 
 The following example demonstrates how to filter products whose color is not red.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -663,10 +645,6 @@ results = client.query(​
 # {'id': 10, 'color': 'purple_4976', 'price': np.float32(450.0)}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -691,10 +669,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -705,10 +679,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -726,11 +696,9 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 The filtered results are as follows:​
 
-```Plain Text
+```json
 [​
     {"id": 1, "color": "pink_8682", "price":593},​
     {"id": 3, "color": "orange_6781", "price":863},​
@@ -743,11 +711,16 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 2: Apply filter on JSON field​{#example-2--apply-filter-on-json-field​}
+#### Example 2: Apply filter on JSON field​
 
 The following example demonstrates how to filter products whose brand is Apple.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -763,10 +736,6 @@ results = client.query(​
 # {'id': 10, 'color': 'purple_4976', 'price': np.float32(450.0), 'inventory': {'brand': 'Apple', 'quantity': 268}}} ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -788,10 +757,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -802,10 +767,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -822,8 +783,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -869,27 +828,29 @@ The filtered results are as follows:​
 
 ```
 
-### Match operators​{#match-operators​}
+### Match operators​
 
 Match operators include:​
 
 - `like`: Match constants or prefixes (prefix%), infixes (%infix%), and suffixes (%suffix) within constants. It relies on a brute-force search mechanism using wildcards and does not involve text tokenization. While it can achieve exact matches, its query efficiency is relatively low, making it suitable for simple matching tasks or queries on smaller datasets.​
 
 - `TEXT_MATCH`: Match specific terms or keywords on VARCHAR fields, using tokenization and inverted index to enable efficient text search. Compared to `like`, `TEXT_MATCH` offers more advanced text tokenization and filtering capabilities. It is suited for large-scale datasets where higher query performance is required for complex text search scenarios.​
+    <div class="alert note">
 
-    :::info[📘     Notes​]
+    To use the `TEXT_MATCH` filter expression, you must enable text matching for the target `VARCHAR` field when creating the collection. For details, refer to [​Keyword Match](keyword-match.md).​
 
-    To use the `TEXT_MATCH` filter expression, you must enable text matching for the target `VARCHAR` field when creating the collection. For details, refer to [​Keyword Match](https://zilliverse.feishu.cn/wiki/RQQKwqhZUiubFzkHo4WcR62Gnvh).​
+    </div>
 
-    :::
-
-#### Example 1: Apply filter on scalar field​{#example-1--apply-filter-on-scalar-field​}
+#### Example 1: Apply filter on scalar field​
 
 The following example demonstrates how to filter products whose color is red. In this case, you can quickly filter all red products by matching the prefix 'red%'. Similarly, you can use the expression color in ['red_7025', 'red_4794', 'red_9392'] to filter all red products. However, when the data is more complex, we recommend using the like operator for more efficient filtering.​
 
-<table data-block-token="GSfVduB3focpEAxxcGpcNXsJnXg"><thead><tr><th data-block-token="QbZldLEaQoR1UnxRf4RcEYwLnmC" colspan="1" rowspan="1"></th><th data-block-token="Nl3edKKNOo9h1FxEmhbcsNnEnTX" colspan="1" rowspan="1"></th></tr></thead><tbody><tr><td data-block-token="U24ndcr2aoP5BMxpA24cGt3znud" colspan="1" rowspan="1"></td><td data-block-token="Ii83dfm3To4z6Txt8fMcfpSIn4U" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="YKoOdmK5gonCMOxrI0ecv1Xun24" colspan="1" rowspan="1"></td><td data-block-token="Svjyd1aRjodn6Gx4C2WcM0Jfnjg" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="NugydUZ5AoSH9Nxq5MBcTAqTnGe" colspan="1" rowspan="1"></td><td data-block-token="Cr33dQLGaoSm0NxbZJLc0vVfnY6" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="TufDdztgmovfGsx1RAXc4sGunMX" colspan="1" rowspan="1"></td><td data-block-token="HWrvdnEfLogWgDx5nOLcY1Wsntd" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="M4hYd4bNxoRUelx5LV0csSivnQh" colspan="1" rowspan="1"></td><td data-block-token="Iq3EdGX8ioiEkex3Vodcka8enue" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="EQs4dXMe0odOBJxUaincp3kxnYc" colspan="1" rowspan="1"></td><td data-block-token="LfFZdy2qyonDlpxOGrbc0wMWnod" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="FBLndf80DoKjGMxEZywcFk6tnkg" colspan="1" rowspan="1"></td><td data-block-token="TWBFdct2coozT2xxtuScKkVnncd" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="OzUjdHHmgoQQH7xWsCAcaZJjnbg" colspan="1" rowspan="1"></td><td data-block-token="Dv1RdX2qgomkb4xPZrmcVYPAnxe" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="BMiYd1MGIoZFelxjL1Kcg2qpncf" colspan="1" rowspan="1"></td><td data-block-token="FxRGdWD6jovnMqxshspcpCg9njb" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="Mg3Id0H9vo63BoxN02Ac10tlnxd" colspan="1" rowspan="1"></td><td data-block-token="Iv00dq5o9oSLrsxwIJocAKSxndf" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="D3AJdUu0wo3wORxCMQeczW4rnMg" colspan="1" rowspan="1"></td><td data-block-token="GNa0dghRPo0l5jx6SSIcS3PDnRb" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="Nakqd0LmNoZiTExViWCcqE2pn5e" colspan="1" rowspan="1"></td><td data-block-token="Lp5gdkpYMoClswxWfxvcTsANnTb" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="LAXmdAqlWovNJnxwfeLciKgYnWe" colspan="1" rowspan="1"></td><td data-block-token="RWeqdtvhsowtzbxN3fKc2qhwnnL" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="I2lydhR4potzwfxZxiXcNSyKnBd" colspan="1" rowspan="1"></td><td data-block-token="RcZ8d2Q03ogL9axub06cJrtznke" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="Z9mldtpPNoHF8UxncBVc94u1nFd" colspan="1" rowspan="1"></td><td data-block-token="AKfZdxxgdoeb8XxpSX2cHWLCnWc" colspan="1" rowspan="1"></td></tr><tr><td data-block-token="X97adwdiPovhaIxhimucpTp2nid" colspan="1" rowspan="1"></td><td data-block-token="SuYwdJUgcobkl8xXk7acYiBpnpf" colspan="1" rowspan="1"></td></tr></tbody></table>
-
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -904,10 +865,6 @@ results = client.query(​
 # {'id': 7, 'color': 'red_9392', 'price': np.float32(848.0)}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -928,10 +885,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -942,10 +895,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -963,11 +912,9 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 The filtered results are as follows:​
 
-```Plain Text
+```json
 [​
     {"id": 2, "color": "red_7025", "price":196},​
     {"id": 5, "color": "red_4794" "price":327},​
@@ -976,11 +923,9 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 2: Apply filter on JSON field​{#example-2--apply-filter-on-json-field​}
+#### Example 2: Apply filter on JSON field​
 
 The following example demonstrates how to filter products whose brand name starts with the letter 'S'.​
-
-<Tabs><TabItem value="Python" label="python" default>
 
 ```Python
 results = client.query(​
@@ -995,10 +940,6 @@ results = client.query(​
 # {'id': 3, 'color': 'orange_6781', 'price': np.float32(862.0), 'inventory': {'brand': 'Samsung', 'quantity': 103}}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -1019,10 +960,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -1033,10 +970,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -1054,11 +987,9 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 The filtered results are as follows:​
 
-```Plain Text
+```json
 [​
   {​
     "id": 1,​
@@ -1091,13 +1022,18 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 3: Keyword match on VARCHAR fields​{#example-3--keyword-match-on-varchar-fields​}
+#### Example 3: Keyword match on VARCHAR fields​
 
 The `TEXT_MATCH` expression is used for keyword match on `VARCHAR` fields. By default, it applies an **OR** logic, but you can combine it with other logical operators to create more complex query conditions. For details, refer to [​Keyword Match](https://zilliverse.feishu.cn/wiki/RQQKwqhZUiubFzkHo4WcR62Gnvh).​
 
 The following example demonstrates how to use the `TEXT_MATCH` expression to filter products where the `description` field contains either the keyword `"Apple"` or `"iPhone"`:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -1107,10 +1043,6 @@ results = client.query(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 QueryReq queryReq = QueryReq.builder()​
@@ -1123,10 +1055,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -1137,8 +1065,6 @@ const results = client.query({​
 });​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -1154,8 +1080,6 @@ The filtered results are as follows:​
 
 To filter for descriptions containing multiple keywords simultaneously, you can use the `and` operator. The following example demonstrates how to filter products where the `description` field contains both `"chip"` and `"iPhone"`:​
 
-<Tabs><TabItem value="Python" label="python" default>
-
 ```Python
 results = client.query(​
     collection_name="my_collection",​
@@ -1164,10 +1088,6 @@ results = client.query(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 QueryReq queryReq = QueryReq.builder()​
@@ -1180,10 +1100,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -1195,8 +1111,6 @@ const results = client.query({​
 
 ```
 
-</TabItem></Tabs>
-
 The filtered results are as follows:​
 
 ```Python
@@ -1206,7 +1120,7 @@ The filtered results are as follows:​
 
 ```
 
-### Arithmetic operators​{#arithmetic-operators​}
+### Arithmetic operators​
 
 Arithmetic operators include:​
 
@@ -1222,11 +1136,16 @@ Arithmetic operators include:​
 
 - `%`: Modulo​
 
-#### Example 1: Apply filter on scalar field​{#example-1--apply-filter-on-scalar-field​}
+#### Example 1: Apply filter on scalar field​
 
 The following example demonstrates how to filter products whose price, after a 50% discount, is between 200 and 300 (both inclusive).​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -1241,10 +1160,6 @@ results = client.query(​
 # {'id': 10, 'price': np.float32(450.0)}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -1265,10 +1180,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -1279,10 +1190,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -1300,11 +1207,9 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 The filtered results are as follows:​
 
-```Plain Text
+```json
 [​
     {"id": 1, "color": "pink_8682", "price":593},​
     {"id": 9, "color": "white_9381", "price":597},​
@@ -1313,11 +1218,16 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 2: Apply filter on JSON field​{#example-2--apply-filter-on-json-field​}
+#### Example 2: Apply filter on JSON field​
 
 The following example demonstrates how to filter products whose inventory, when doubled, exceeds 600 items.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -1332,10 +1242,6 @@ results = client.query(​
 # {'id': 9, 'color': 'white_9381', 'price': np.float32(597.0), 'inventory': {'brand': 'Apple', 'quantity': 351}}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -1356,10 +1262,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -1370,10 +1272,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -1390,8 +1288,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -1428,11 +1324,16 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 3: Apply filter on Array field​{#example-3--apply-filter-on-array-field​}
+#### Example 3: Apply filter on Array field​
 
 The following example demonstrates how to filter products whose combined sales in the first and second countries exceed 300.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -1448,10 +1349,6 @@ results = client.query(​
 # {'color': 'purple_4976', 'price': np.float32(450.0), 'sales_volume': [190, 149, 85, 79, 80], 'id': 10}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -1473,10 +1370,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -1487,10 +1380,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -1507,8 +1396,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -1552,7 +1439,7 @@ The filtered results are as follows:​
 
 ```
 
-### Advanced JSON operators​{#advanced-json-operators​}
+### Advanced JSON operators​
 
 JSON operators include: ​
 
@@ -1562,21 +1449,26 @@ JSON operators include: ​
 
 - `JSON_CONTAINS_ANY`: Filter all entities whose JSON field contains any one element from a specific list.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
 When using JSON opertors, the JSON field must contain at least one key whose value is a list.​
 
-:::
+</div>
 
 To demonstrate how to use advanced filtering operators on JSON fields, we make a slight adjustment to the example dataset in this section. A new key named 'previous_sales' has been added to the JSON 'inventory' field, which represents the previous sales of the product in three countries. The value of this key is a list of numbers. Below is the modified new example dataset:​
 
-#### Example 1: `JSON_CONTAINS`​{#example-1---json-contains-​}
+#### Example 1: `JSON_CONTAINS`​
 
 `JSON_CONTAINS(identifier, JsonExpr)`：`identifier` is the key name in the JSON field and `JsonExpr` is the list of filtering conditions.​
 
 The following example demonstrates how to filter products that previously had sales of 232 items in a specific country.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -1590,10 +1482,6 @@ results = client.query(​
 # {'inventory': {'brand': 'Microsoft', 'quantity': 376, 'previous_sales': [254, 275, 232]}, 'id': 6, 'color': 'yellow_4222', 'price': np.float32(996.0)}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -1613,10 +1501,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -1627,10 +1511,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -1647,8 +1527,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -1672,13 +1550,18 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 2: `JSON_CONTAINS_ALL`​{#example-2---json-contains-all-​}
+#### Example 2: `JSON_CONTAINS_ALL`​
 
 `JSON_CONTAINS_ALL(identifier, JsonExpr)`：`identifier` is the key name in the JSON field and `JsonExpr` is the list of filtering conditions.​
 
 The following example demonstrates how to filter products that had previous sales of 232, 254, and 275 items in three different countries.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -1692,10 +1575,6 @@ results = client.query(​
 # {'id': 6, 'color': 'yellow_4222', 'price': np.float32(996.0), 'inventory': {'brand': 'Microsoft', 'quantity': 376, 'previous_sales': [254, 275, 232]}}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -1715,10 +1594,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
@@ -1729,10 +1604,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -1749,8 +1620,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -1788,13 +1657,18 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 3: `JSON_CONTAINS_ANY`​{#example-3---json-contains-any-​}
+#### Example 3: `JSON_CONTAINS_ANY`​
 
 `JSON_CONTAINS_ANY(identifier, JsonExpr)`：`identifier` is the key name in the JSON field and `JsonExpr` is the list of filtering conditions.​
 
 The following example demonstrates how to filter products that had previous sales of either 232, 254, or 275 items in any one of the three countries.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -1809,10 +1683,6 @@ results = client.query(​
 # {'id': 7, 'color': 'red_9392', 'price': np.float32(848.0), 'inventory': {'brand': 'Apple', 'quantity': 61, 'previous_sales': [312, 254, 367]}}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -1833,10 +1703,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
@@ -1847,10 +1713,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -1867,8 +1729,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -1920,7 +1780,7 @@ The filtered results are as follows:​
 
 ```
 
-### Advanced Array operators​{#advanced-array-operators​}
+### Advanced Array operators​
 
 Array operators include:​
 
@@ -1932,13 +1792,18 @@ Array operators include:​
 
 - `ARRAY_LENGTH`: Check the number of elements in the list.​
 
-#### Example 1: `ARRAY_CONTAINS` ​{#example-1---array-contains--​}
+#### Example 1: `ARRAY_CONTAINS` ​
 
 `ARRAY_CONTAINS(identifier, ArrayExpr)`：`identifier` is the name of the Array field, and `ArrayExpr` is the array of filtering conditions.​
 
 The following example demonstrates how to filter products with current sales of 161 items in a specific country.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -1952,10 +1817,6 @@ results = client.query(​
 # {'id': 5, 'color': 'red_4794', 'price': np.float32(327.0), 'sales_volume': [155, 161, 106, 86, 99]}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -1975,10 +1836,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -1989,10 +1846,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -2009,8 +1862,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -2042,13 +1893,18 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 2: `ARRAY_CONTAINS_ALL`​{#example-2---array-contains-all-​}
+#### Example 2: `ARRAY_CONTAINS_ALL`​
 
 `ARRAY_CONTAINS_ALL(identifier, ArrayExpr)`：`identifier` is the name of the Array field, and`ArrayExpr` is the array of filtering conditions. ​
 
 The following example demonstrates how to filter products with current sales of 150 items in both the first and second countries.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -2061,10 +1917,6 @@ results = client.query(​
 # {'price': np.float32(597.0), 'sales_volume': [150, 150, 73], 'id': 9, 'color': 'white_9381'}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -2083,10 +1935,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -2097,10 +1945,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -2117,8 +1961,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -2138,13 +1980,18 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 3: `ARRAY_CONTAINS_ANY`​{#example-3---array-contains-any-​}
+#### Example 3: `ARRAY_CONTAINS_ANY`​
 
 `ARRAY_CONTAINS_ANY(identifier, ArrayExpr)`：`identifier` is the name of the Array field, and  `ArrayExpr` is the array of filtering conditions. ​
 
 The following example demonstrates how to filter products with current sales of either 150, 190, or 90 items in any country.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -2159,10 +2006,6 @@ results = client.query(​
 # {'id': 10, 'color': 'purple_4976', 'price': np.float32(450.0), 'sales_volume': [190, 149, 85, 79, 80]}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -2183,10 +2026,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -2197,10 +2036,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -2217,8 +2052,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -2261,11 +2094,16 @@ The filtered results are as follows:​
 
 ```
 
-#### Example 4: `ARRAY_LENGTH`​{#example-4---array-length-​}
+#### Example 4: `ARRAY_LENGTH`​
 
 The following example demonstrates how to filter products that are sold in only three countries.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -2280,10 +2118,6 @@ results = client.query(​
 # {'id': 9, 'color': 'white_9381', 'price': np.float32(597.0), 'sales_volume': [150, 150, 73]}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -2304,10 +2138,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -2318,10 +2148,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -2338,8 +2164,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -2379,7 +2203,7 @@ The filtered results are as follows:​
 
 ```
 
-## Multi-condition filtering​{#multi-condition-filtering​}
+## Multi-condition filtering​
 
 The logical operators that can be used to combine multiple filtering conditions include:​
 
@@ -2387,17 +2211,22 @@ The logical operators that can be used to combine multiple filtering conditions 
 
 - `or` or `||`:  Only one of the two conditions should be satisfied.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
 When a lower precedence operation should be processed first, it should be enclosed within parentheses. Innermost parenthetical expressions are evaluated first.​
 
-:::
+</div>
 
-#### Example​{#example​}
+#### Example​
 
 The following example demonstrates how to filter products that are red in color, priced below 500, branded as Apple, and have sales over 100 items in the first country​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 results = client.query(​
@@ -2410,10 +2239,6 @@ results = client.query(​
 # {'id': 5, 'color': 'red_4794', 'price': np.float32(327.0), 'inventory': {'brand': 'Apple', 'quantity': 193, 'previous_sales': [225, 286, 202]}, 'sales_volume': [155, 161, 106, 86, 99]}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -2432,10 +2257,6 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -2446,10 +2267,6 @@ var res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -2466,8 +2283,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The filtered results are as follows:​
 
@@ -2493,13 +2308,10 @@ The filtered results are as follows:​
 
 ```
 
-## Operator precedence​{#operator-precedence​}
+## Operator precedence​
 
 The following table lists the precedence of operators. Operators are listed top to bottom, in descending precedence.​
 
 Expressions are normally evaluated from left to right. Complex expressions are evaluated one at a time. The order in which the expressions are evaluated is determined by the precedence of the operators used.​
 
 If an expression contains two or more operators with the same precedence, the operator to the left is evaluated first. When a lower precedence operation should be processed first, it should be enclosed within parentheses.​
-
-​
-

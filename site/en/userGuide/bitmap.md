@@ -1,10 +1,17 @@
+---
+id: bitmap.md
+title: BITMAP​
+related_key: bitmap
+summary: Bitmap indexing is an efficient indexing technique designed to improve query performance on low-cardinality scalar fields.
+---
+
 # BITMAP​
 
 Bitmap indexing is an efficient indexing technique designed to improve query performance on low-cardinality scalar fields. Cardinality refers to the number of distinct values in a field. Fields with fewer distinct elements are considered low-cardinality.​
 
 This index type helps reduce the retrieval time of scalar queries by representing field values in a compact binary format and performing efficient bitwise operations on them. Compared to other types of indexes, bitmap indexes typically have higher space efficiency and faster query speeds when dealing with low-cardinality fields.​
 
-## Overview​{#overview​}
+## Overview
 
 The term Bitmap combines two words: **Bit** and **Map**. A bit represents the smallest unit of data in a computer, which can only hold a value of either **0** or **1**. A map, in this context, refers to the process of transforming and organizing data according to what value should be assigned to 0 and 1.​
 
@@ -12,7 +19,7 @@ A bitmap index consists of two main components: bitmaps and keys. Keys represent
 
 Consider a collection of documents with fields **Category** and **Public**. We want to retrieve documents that fall into the **Tech** category and are open to the **Public**. In this case, the keys for our bitmap indexes are **Tech** and **Public**.​
 
-![GUShdfHgdomFx4xCUBXcTiiwnCb](请手动下载图片并替换)
+![Bitmap indexing](../../../assets/bitmap.png)
 
 As shown in the figure, the bitmap indexes for **Category** and **Public** are:​
 
@@ -26,7 +33,7 @@ To find the documents that match both criteria, we perform a bitwise AND operati
 
 The resulting bitmap [1, 0, 0, 0, 0] indicates that only the first document (**ID** **1**) satisfies both criteria. By using bitmap indexes and efficient bitwise operations, we can quickly narrow down the search scope, eliminating the need to scan the entire dataset.​
 
-## Create a bitmap index​{#create-a-bitmap-index​}
+## Create a bitmap index
 
 To create a bitmap index in Milvus, use the `create_index()` method and set the `index_type` parameter to `"BITMAP"`.​
 
@@ -51,7 +58,7 @@ In this example, we create a bitmap index on the `category` field of the `my_col
 
 Once the bitmap index is created, you can use the `filter` parameter in query operations to perform scalar filtering based on the indexed field. This allows you to efficiently narrow down the search results using the bitmap index. For more information, refer to <ins>Filtering</ins>.​
 
-## Limits​{#limits​}
+## Limits
 
 - Bitmap indexes are supported only for scalar fields that are not primary keys.​
 
@@ -73,4 +80,4 @@ Once the bitmap index is created, you can use the `filter` parameter in query op
 
     - When the cardinality increases beyond this threshold, the performance benefits of bitmap indexes diminish, and the storage overhead becomes significant.​
 
-    - For high-cardinality fields, consider using alternative indexing techniques such as <ins>inverted indexes</ins>, depending on your specific use case and query requirements.​
+    - For high-cardinality fields, consider using alternative indexing techniques such as inverted indexes, depending on your specific use case and query requirements.​
