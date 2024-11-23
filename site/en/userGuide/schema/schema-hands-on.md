@@ -1,16 +1,22 @@
+---
+id: schema-hands-on.md
+title: Schema Design Hands-On​
+summary: Milvus supports defining the data model through a collection schema. A collection organizes unstructured data like text and images, along with their vector representations, including dense and sparse vectors in various precision used for semantic search. Additionally, Milvus supports storing and filtering non-vector data types called "Scalar". Scalar types include BOOL, INT8/16/32/64, FLOAT/DOUBLE, VARCHAR, JSON, and Array.​
+---
+
 # Schema Design Hands-On​
 
 Information Retrieval (IR) systems, also known as search, are essential for various AI applications such as Retrieval-augmented generation (RAG), image search, and product recommendation. The first step in developing an IR system is designing the data model, which involves analyzing business requirements, determining how to organize information, and indexing data to make it semantically searchable.​
 
 Milvus supports defining the data model through a collection schema. A collection organizes unstructured data like text and images, along with their vector representations, including dense and sparse vectors in various precision used for semantic search. Additionally, Milvus supports storing and filtering non-vector data types called "Scalar". Scalar types include BOOL, INT8/16/32/64, FLOAT/DOUBLE, VARCHAR, JSON, and Array.​
 
-![Example data schema designed for searching news article](blob:https://zilliverse.feishu.cn/6aaf413c-b1a9-4ac4-9fdb-9386686afece)
+![Example data schema designed for searching news article](../../../../assets/schema-hands-on.png)
 
 The data model design of a search system involves analyzing business needs and abstracting information into a schema-expressed data model. For instance, to search a piece of text, it must be "indexed" by converting the literal string into a vector through "embedding", enabling vector search. Beyond this basic requirement, it may be necessary to store other properties such as publication timestamp and author. This metadata allows for semantic searches to be refined through filtering, returning only texts published after a specific date or by a particular author. They may also need to be retrieved together with the main text, for rendering the search result in the application. To organize these text pieces, each should be assigned a unique identifier, expressed as an integer or string. These elements are essential for achieving sophisticated search logic.​
 
 A well-designed schema is important as it abstracts the data model and decides if the business objectives can be achieved through search. Furthermore, since every row of data inserted into the collection needs to follow the schema, it greatly helps to maintain data consistency and long-term quality. From a technical perspective, a well-defined schema leads to well-organized column data storage and a cleaner index structure, which can boost search performance.​
 
-# An Example: News Search​{#an-example--news-search​}
+# An Example: News Search​
 
 Let's say we want to build search for a news website and we have a corpus of news with text, thumbnail images, and other metadata. First, we need to analyze how we want to utilize the data to support the business requirement of search. Imagine the requirement is to retrieve the news based the thumbnail image and the summary of the content, and taking the metadata such as author info and publishing time as criteria to filter the search result. These requirements can be further broken down into:​
 
@@ -88,9 +94,9 @@ Let's say we want to build search for a news website and we have a corpus of new
 
 </td></tr></tbody></table>
 
-# How to Implement the Example Schema​{#how-to-implement-the-example-schema​}
+# How to Implement the Example Schema​
 
-## Create Schema​{#create-schema​}
+## Create Schema​
 
 First, we create a Milvus client instance, which can be used to connect to the Milvus server and manage collections and data. ​
 
@@ -132,7 +138,7 @@ As for the `auto_id` in `MilvusClient.create_schema`, AutoID is an attribute of 
 
 After adding all the fields to the schema object, our schema object agrees with the entries in the table above.​
 
-## Define Index​{#define-index​}
+## Define Index​
 
 After defining the schema with various fields, including metadata and vector fields for image and summary data, the next step involves preparing the index parameters. Indexing is crucial for optimizing the search and retrieval of vectors, ensuring efficient query performance. In the following section, we will define the index parameters for the specified vector and scalar fields in the collection.​
 
@@ -165,7 +171,7 @@ Once the index parameters are set up and applied, Milvus is optimized for handli
 
 There are many types of indices and metrics. For more information about them, you can refer to [Milvus index type](https://milvus.io/docs/overview.md#Index-types) and [Milvus metric type](https://milvus.io/docs/glossary.md#Metric-type).​
 
-## Create Collection​{#create-collection​}
+## Create Collection​
 
 With the schema and indexes defined, we create a "collection" with these parameters. Collection to Milvus is like a table to a relational DB.​
 
@@ -188,13 +194,13 @@ print(collection_desc)​
 
 ```
 
-# Other Considerations​{#other-considerations​}
+# Other Considerations​
 
-## Loading Index​{#loading-index​}
+## Loading Index​
 
 When creating a collection in Milvus, you can choose to load the index immediately or defer it until after bulk ingesting some data. Typically, you don't need to make an explicit choice about this, as the above examples show that the index is automatically built for any ingested data right after collection creation. This allows for immediate searchability of the ingested data. However, if you have a large bulk insert after collection creation and don't need to search for any data until a certain point, you can defer the index building by omitting index_params in the collection creation and build the index by calling load explicitly after ingesting all the data. This method is more efficient for building the index on a large collection, but no searches can be done until calling load().​
 
-## How to Define Data Model For Multi-tenancy​{#how-to-define-data-model-for-multi-tenancy​}
+## How to Define Data Model For Multi-tenancy​
 
 The concept of multiple tenants is commonly used in scenarios where a single software application or service needs to serve multiple independent users or organizations, each with their own isolated environment. This is frequently seen in cloud computing, SaaS (Software as a Service) applications, and database systems. For example, a cloud storage service may utilize multi-tenancy to allow different companies to store and manage their data separately while sharing the same underlying infrastructure. This approach maximizes resource utilization and efficiency while ensuring data security and privacy for each tenant.​
 
