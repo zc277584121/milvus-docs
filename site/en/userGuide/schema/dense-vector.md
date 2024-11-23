@@ -1,3 +1,9 @@
+---
+id: dense-vector.md
+title: Dense Vector​
+summary: Dense vectors are numerical data representations widely used in machine learning and data analysis. They consist of arrays with real numbers, where most or all elements are non-zero. Compared to sparse vectors, dense vectors contain more information at the same dimensional level, as each dimension holds meaningful values. This representation can effectively capture complex patterns and relationships, making data easier to analyze and process in high-dimensional spaces. Dense vectors typically have a fixed number of dimensions, ranging from a few dozen to several hundred or even thousands, depending on the specific application and requirements.​​
+---
+
 # Dense Vector​
 
 Dense vectors are numerical data representations widely used in machine learning and data analysis. They consist of arrays with real numbers, where most or all elements are non-zero. Compared to sparse vectors, dense vectors contain more information at the same dimensional level, as each dimension holds meaningful values. This representation can effectively capture complex patterns and relationships, making data easier to analyze and process in high-dimensional spaces. Dense vectors typically have a fixed number of dimensions, ranging from a few dozen to several hundred or even thousands, depending on the specific application and requirements.​
@@ -8,7 +14,7 @@ Dense vectors are mainly used in scenarios that require understanding the semant
 
 Dense vectors are typically represented as arrays of floating-point numbers with a fixed length, such as `[0.2, 0.7, 0.1, 0.8, 0.3, ..., 0.5]`. The dimensionality of these vectors usually ranges from hundreds to thousands, such as 128, 256, 768, or 1024. Each dimension captures specific semantic features of an object, making it applicable to various scenarios through similarity calculations.​
 
-![Kh8Fdoy7PoWitsxH1j7cguKRnmh](请手动下载图片并替换)
+![Dense vectors in 2D space](../../../../assets/dense-vector.png)
 
 The image above illustrates the representation of dense vectors in a 2D space. Although dense vectors in real-world applications often have much higher dimensions, this 2D illustration effectively conveys several key concepts:​
 
@@ -40,13 +46,13 @@ Dense vectors can be generated using various [embedding](https://en.wikipedia.or
 
 Once data is vectorized, it can be stored in Milvus for management and vector retrieval. The diagram below shows the basic process.​
 
-![R93pdmHBAoGSBCxTDEYcmNNsnlb](请手动下载图片并替换)
+![Use dense vecctors in Milvus](../../../../assets/use-dense-vector.png)
 
-:::info[📘 Notes​]
+<div class="alert note">
 
-Besides dense vectors, Milvus also supports sparse vectors and binary vectors. Sparse vectors are suitable for precise matches based on specific terms, such as keyword search and term matching, while binary vectors are commonly used for efficiently handling binarized data, such as image pattern matching and certain hashing applications. For more information, refer to [​Binary Vector](https://zilliverse.feishu.cn/wiki/NTwawtvYdiXTkukbss7ccw2RnXc) and [​Sparse Vector](https://zilliverse.feishu.cn/wiki/JbPDwHqd0iZZSuk5tYicGqKbn9c).​
+Besides dense vectors, Milvus also supports sparse vectors and binary vectors. Sparse vectors are suitable for precise matches based on specific terms, such as keyword search and term matching, while binary vectors are commonly used for efficiently handling binarized data, such as image pattern matching and certain hashing applications. For more information, refer to [​Binary Vector](binary-vector.md) and [​Sparse Vector](sparse-vector.md).​
 
-:::
+</div>>
 
 ## Use dense vectors in Milvus​{#use-dense-vectors-in-milvus​}
 
@@ -60,7 +66,13 @@ To use dense vectors in Milvus, first define a vector field for storing dense ve
 
 In the example below, we add a vector field named `dense_vector` to store dense vectors. The field's data type is `FLOAT_VECTOR`, with a dimension of `4`.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -76,10 +88,6 @@ schema.add_field(field_name="pk", datatype=DataType.VARCHAR, is_primary=True, ma
 schema.add_field(field_name="dense_vector", datatype=DataType.FLOAT_VECTOR, dim=4)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -111,10 +119,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -126,10 +130,6 @@ schema.push({​
 ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export primaryField='{​
@@ -159,11 +159,7 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
-
 **Supported data types for dense vector fields**:​
-
-<table data-block-token="JAUNdM7ZcoSgwDxy615cBt7Snme"><thead><tr><th data-block-token="Lw4Ld3RlSowJgAxAnbNc8oR5nPh" colspan="1" rowspan="1"><p data-block-token="DdlrdLU6Yo550Mx5TObcraycnyb">Data Type​</p>
 
 </th><th data-block-token="TGq6d0VpNoRoW2xg8Kac7nLZnab" colspan="1" rowspan="1"><p data-block-token="ON8LdxqpPoPktOxcEZ2cvC9Unkg">Description​</p>
 
@@ -179,13 +175,18 @@ export schema="{​
 
 </td><td data-block-token="VMfrdtFHToAHFaxS8gfcdSwunSb" colspan="1" rowspan="1"><p data-block-token="FrLVdqlrtoau2axEYevc5kDBnVr">Stores 16-bit Brain Floating Point (bfloat16) numbers, offering the same range of exponents as Float32 but with reduced precision. Suitable for scenarios that need to process large volumes of vectors quickly, such as large-scale image retrieval.​</p>
 
-</td></tr></tbody></table>
-
+</td></tr></tbody>
 ### Set index params for vector field​{#set-index-params-for-vector-field​}
 
 To accelerate semantic searches, an index must be created for the vector field. Indexing can significantly improve the retrieval efficiency of large-scale vector data.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 index_params = client.prepare_index_params()​
@@ -199,10 +200,6 @@ index_params.add_index(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.IndexParam;​
@@ -220,10 +217,6 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MetricType, IndexType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -239,10 +232,6 @@ const indexParams = {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export indexParams='[​
         {​
@@ -256,17 +245,21 @@ export indexParams='[​
 
 ```
 
-</TabItem></Tabs>
-
 In the example above, an index named `dense_vector_index` is created for the `dense_vector` field using the `IVF_FLAT` index type. The `metric_type` is set to `IP`, indicating that inner product will be used as the distance metric.​
 
-Milvus supports other index types as well. For more details, refer to [​Floating Vector Indexes](https://zilliverse.feishu.cn/wiki/ODCkw5QIlizNizkZOxfcqvvNngc). Additionally, Milvus supports other metric types. For more information, refer to [​Metric Types](https://zilliverse.feishu.cn/wiki/EOxmwUDxMiy2cpkOfIsc1dYzn4c).​
+Milvus supports other index types as well. For more details, refer to [​Floating Vector Indexes](https://milvus.io/docs/index.md?tab=floating). Additionally, Milvus supports other metric types. For more information, refer to [​Metric Types](metric.md).​
 
 ### Create collection​{#create-collection​}
 
 Once the dense vector and index param settings are complete, you can create a collection containing dense vectors. The example below uses the `create_collection` method to create a collection named `my_dense_collection`.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.create_collection(​
@@ -276,10 +269,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -298,10 +287,6 @@ client.createCollection(requestCreate);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -318,10 +303,6 @@ await client.createCollection({​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
@@ -335,13 +316,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 ### Insert data​{#insert-data​}
 
 After creating the collection, use the `insert` method to add data containing dense vectors. Ensure that the dimensionality of the dense vectors being inserted matches the `dim` value defined when adding the dense vector field.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 data = [​
@@ -355,10 +340,6 @@ client.insert(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import com.google.gson.Gson;​
@@ -378,10 +359,6 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const data = [​
   { dense_vector: [0.1, 0.2, 0.3, 0.7] },​
@@ -394,10 +371,6 @@ client.insert({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -416,13 +389,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 ### Perform similarity search​{#perform-similarity-search​}
 
 Semantic search based on dense vectors is one of the core features of Milvus, allowing you to quickly find data that is most similar to a query vector based on the distance between vectors. To perform a similarity search, prepare the query vector and search parameters, then call the `search` method.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 search_params = {​
@@ -446,10 +423,6 @@ print(res)​
 # data: ["[{'id': '453718927992172271', 'distance': 0.7599999904632568, 'entity': {'pk': '453718927992172271'}}, {'id': '453718927992172270', 'distance': 0.6299999952316284, 'entity': {'pk': '453718927992172270'}}]"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.data.FloatVec;​
@@ -476,10 +449,6 @@ System.out.println(searchR.getSearchResults());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 query_vector = [0.1, 0.2, 0.3, 0.7];​
 ​
@@ -494,10 +463,6 @@ client.search({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -521,7 +486,5 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-For more information on similarity search parameters, refer to [​Basic ANN Search](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd).​
+For more information on similarity search parameters, refer to [​Basic ANN Search](single-vector-search.md).​
 
