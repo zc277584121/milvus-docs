@@ -1,16 +1,22 @@
+---
+id: binary-vector.md
+title: Binary Vector​
+summary: Binary vectors are a special form of data representation that convert traditional high-dimensional floating-point vectors into binary vectors containing only 0s and 1s. This transformation not only compresses the size of the vector but also reduces storage and computational costs while retaining semantic information. When precision for non-critical features is not essential, binary vectors can effectively maintain most of the integrity and utility of the original floating-point vectors.​
+---
+
 # Binary Vector​
 
 Binary vectors are a special form of data representation that convert traditional high-dimensional floating-point vectors into binary vectors containing only 0s and 1s. This transformation not only compresses the size of the vector but also reduces storage and computational costs while retaining semantic information. When precision for non-critical features is not essential, binary vectors can effectively maintain most of the integrity and utility of the original floating-point vectors.​
 
 Binary vectors have a wide range of applications, particularly in situations where computational efficiency and storage optimization are crucial. In large-scale AI systems, such as search engines or recommendation systems, real-time processing of massive amounts of data is key. By reducing the size of the vectors, binary vectors help lower latency and computational costs without significantly sacrificing accuracy. Additionally, binary vectors are useful in resource-constrained environments, such as mobile devices and embedded systems, where memory and processing power are limited. Through the use of binary vectors, complex AI functions can be implemented in these restricted settings while maintaining high performance.​
 
-## Overview​{#overview​}
+## Overview​
 
 Binary vectors are a method of encoding complex objects (like images, text, or audio) into fixed-length binary values. In Milvus, binary vectors are typically represented as bit arrays or byte arrays. For example, an 8-dimensional binary vector can be represented as `[1, 0, 1, 1, 0, 0, 1, 0]`.​
 
 The diagram below shows how binary vectors represent the presence of keywords in text content. In this example, a 10-dimensional binary vector is used to represent two different texts (**Text 1** and **Text 2**), where each dimension corresponds to a word in the vocabulary: 1 indicates the presence of the word in the text, while 0 indicates its absence.​
 
-![PQlXdkDBpoRn27x700CcFOEQnrg](请手动下载图片并替换)
+![Binary vector representation of text content](../../../../assets/binary-vector.png)
 
 Binary vectors have the following characteristics:​
 
@@ -26,17 +32,17 @@ Binary vectors can be generated through various methods. In text processing, pre
 
 After binary vectorization, the data can be stored in Milvus for management and vector retrieval. The diagram below shows the basic process.​
 
-![LrvVdqoI0opvJ8xgmlFcoNENnsc](请手动下载图片并替换)
+![Use binary vectors in Milvus](../../../../assets/use-binary-vector.png)
 
-:::info[📘 Notes​]
+<div class="alert note">
 
-Although binary vectors excel in specific scenarios, they have limitations in their expressive capability, making it difficult to capture complex semantic relationships. Therefore, in real-world scenarios, binary vectors are often used alongside other vector types to balance efficiency and expressiveness. For more information, refer to [​Dense Vector](https://zilliverse.feishu.cn/wiki/ARalwpaVDiCwDZkoSHtcPNgXnRg) and [​Sparse Vector](https://zilliverse.feishu.cn/wiki/JbPDwHqd0iZZSuk5tYicGqKbn9c).​
+Although binary vectors excel in specific scenarios, they have limitations in their expressive capability, making it difficult to capture complex semantic relationships. Therefore, in real-world scenarios, binary vectors are often used alongside other vector types to balance efficiency and expressiveness. For more information, refer to [​Dense Vector](dense-vector.md) and [​Sparse Vector](sparse-vector.md).​
 
-:::
+</div>
 
-## Use binary vectors in Milvus​{#use-binary-vectors-in-milvus​}
+## Use binary vectors in Milvus​
 
-### Add vector field​{#add-vector-field​}
+### Add vector field​
 
 To use binary vectors in Milvus, first define a vector field for storing binary vectors when creating a collection. This process includes:​
 
@@ -44,7 +50,13 @@ To use binary vectors in Milvus, first define a vector field for storing binary 
 
 2. Specifying the vector's dimensions using the `dim` parameter. Note that `dim` must be a multiple of 8 as binary vectors must be converted into a byte array when inserting. Every 8 boolean values (0 or 1) will be packed into 1 byte. For example, if `dim=128`, a 16-byte array is required for insertion.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -60,10 +72,6 @@ schema.add_field(field_name="pk", datatype=DataType.VARCHAR, is_primary=True, ma
 schema.add_field(field_name="binary_vector", datatype=DataType.BINARY_VECTOR, dim=128)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -95,10 +103,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -109,10 +113,6 @@ schema.push({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export primaryField='{​
@@ -144,15 +144,19 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
-
 In this example, a vector field named `binary_vector` is added for storing binary vectors. The data type of this field is `BINARY_VECTOR`, with a dimension of 128.​
 
-### Set index params for vector field​{#set-index-params-for-vector-field​}
+### Set index params for vector field​
 
 To speed up searches, an index must be created for the binary vector field. Indexing can significantly enhance the retrieval efficiency of large-scale vector data.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 index_params = client.prepare_index_params()​
@@ -166,10 +170,6 @@ index_params.add_index(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.IndexParam;​
@@ -187,10 +187,6 @@ indexParams.add(IndexParam.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MetricType, IndexType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -206,10 +202,6 @@ const indexParams = {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export indexParams='[​
         {​
@@ -223,17 +215,21 @@ export indexParams='[​
 
 ```
 
-</TabItem></Tabs>
-
 In the example above, an index named `binary_vector_index` is created for the `binary_vector` field, using the `BIN_IVF_FLAT` index type. The `metric_type` is set to `HAMMING`, indicating that Hamming distance is used for similarity measurement.​
 
-Besides `BIN_IVF_FLAT`, Milvus supports other index types for binary vectors. For more details, refer to [​Binary Vector Indexes](https://zilliverse.feishu.cn/wiki/FqFNw9gKdiLpEkkoW16cYMWgnIc). Additionally, Milvus supports other similarity metrics for binary vectors. For more information, refer to [​Metric Types](https://zilliverse.feishu.cn/wiki/EOxmwUDxMiy2cpkOfIsc1dYzn4c).​
+Besides `BIN_IVF_FLAT`, Milvus supports other index types for binary vectors. For more details, refer to [​Binary Vector Indexes](https://milvus.io/docs/index.md?tab=binary). Additionally, Milvus supports other similarity metrics for binary vectors. For more information, refer to [​Metric Types](metric.md).​
 
-### Create collection​{#create-collection​}
+### Create collection​
 
 Once the binary vector and index settings are complete, create a collection that contains binary vectors. The example below uses the `create_collection` method to create a collection named `my_binary_collection`.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.create_collection(​
@@ -243,10 +239,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -265,10 +257,6 @@ client.createCollection(requestCreate);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -284,10 +272,6 @@ await client.createCollection({​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
@@ -301,15 +285,19 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-### Insert data​{#insert-data​}
+### Insert data​
 
 After creating the collection, use the `insert` method to add data containing binary vectors. Note that binary vectors should be provided in the form of a byte array, where each byte represents 8 boolean values.​
 
 For example, for a 128-dimensional binary vector, a 16-byte array is required (since 128 bits ÷ 8 bits/byte = 16 bytes). Below is an example code for inserting data:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 def convert_bool_list_to_bytes(bool_list):​
@@ -338,10 +326,6 @@ client.insert(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import com.google.gson.Gson;​
@@ -384,10 +368,6 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const data = [​
   { binary_vector: [1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1] },​
@@ -401,10 +381,6 @@ client.insert({​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
@@ -417,15 +393,19 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-### Perform similarity search​{#perform-similarity-search​}
+### Perform similarity search​
 
 Similarity search is one of the core features of Milvus, allowing you to quickly find data that is most similar to a query vector based on the distance between vectors. To perform a similarity search using binary vectors, prepare the query vector and search parameters, then call the `search` method.​
 
 During search operations, binary vectors must also be provided in the form of a byte array. Ensure that the dimensionality of the query vector matches the dimension specified when defining `dim` and that every 8 boolean values are converted into 1 byte.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 search_params = {​
@@ -450,10 +430,6 @@ print(res)​
 # data: ["[{'id': '453718927992172268', 'distance': 10.0, 'entity': {'pk': '453718927992172268'}}]"] ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq;​
@@ -483,10 +459,6 @@ SearchResp searchR = client.search(SearchReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 query_vector = [1,0,1,0,1,1,1,1,1,1,1,1];​
 ​
@@ -501,10 +473,6 @@ client.search({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export searchParams='{​
@@ -526,9 +494,7 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-For more information on similarity search parameters, refer to [​Basic ANN Search](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd).​
+For more information on similarity search parameters, refer to [​Basic ANN Search](single-vector-search.md).​
 
 ​
 
