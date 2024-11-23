@@ -1,12 +1,23 @@
+---
+id: modify-collection.md
+title: Modify Collection​
+---
+
 # Modify Collection​
 
 You can rename a collection or change its settings. This page focuses on how to modify a collection.​
 
-## Rename Collection​{#rename-collection​}
+## Rename Collection​
 
 You can rename a collection as follows.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -22,10 +33,6 @@ client.rename_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.collection.request.RenameCollectionReq;​
@@ -52,10 +59,6 @@ client.renameCollection(renameCollectionReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -69,10 +72,6 @@ const res = await client.renameCollection({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -106,10 +105,6 @@ if err != nil {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
@@ -125,24 +120,24 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Set Collection TTL​{#set-collection-ttl​}
+## Set Collection TTL​
 
 If a collection needs to be dropped for a specific period, consider setting its Time-To-Live (TTL) in seconds. Once the TTL times out, Zilliz Cloud deletes entities in the collection and drops the collection. The deletion is asynchronous, indicating that searches and queries are still possible before the deletion is complete.​
 
 The following code snippet demonstrates how to change the TTL of a collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # Python 暂无此功能​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.collection.request.AlterCollectionReq;​
@@ -161,10 +156,6 @@ client.alterCollection(alterCollectionReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 res = await client.alterCollection({​
     collection_name: "my_collection",​
@@ -174,10 +165,6 @@ res = await client.alterCollection({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -213,13 +200,7 @@ if err != nil {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 # REST 暂无此功能​
 
 ```
-
-</TabItem></Tabs>

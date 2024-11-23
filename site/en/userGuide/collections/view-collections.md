@@ -1,12 +1,23 @@
+---
+id: view-collections.md
+title: View Collections​
+---
+
 # View Collections​
 
 You can obtain the name list of all the collections in the currently connected database, and check the details of a specific collection.​
 
-## List Collections​{#list-collections​}
+## List Collections​
 
 The following example demonstrates how to obtain the name list of all collections in the currently connected database.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -21,10 +32,6 @@ res = client.list_collections()​
 print(res)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -43,10 +50,6 @@ System.out.println(resp.getCollectionNames());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient } from '@zilliz/milvus2-sdk-node';​
 ​
@@ -60,10 +63,6 @@ const collections = await client.listCollections();​
 console.log(collections);​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -98,10 +97,6 @@ fmt.Println(collectionNames)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/list" \​
@@ -112,8 +107,6 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 If you have already created a collection named `quick_setup`, the result of the above example should be similar to the following.​
 
 ```JSON
@@ -121,11 +114,17 @@ If you have already created a collection named `quick_setup`, the result of the 
 
 ```
 
-## Describe Collection​{#describe-collection​}
+## Describe Collection​
 
 You can also obtain the details of a specific collection. The following example assumes that you have already created a collection named quick_setup.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 res = client.describe_collection(​
@@ -135,10 +134,6 @@ res = client.describe_collection(​
 print(res)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.collection.request.DescribeCollectionReq;​
@@ -152,10 +147,6 @@ System.out.println(resp);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const res = await client.describeCollection({​
     collection_name: "quick_setup"​
@@ -164,10 +155,6 @@ const res = await client.describeCollection({​
 console.log(res);​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -202,10 +189,6 @@ fmt.Println(collection)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/describe" \​
@@ -216,8 +199,6 @@ curl --request POST \​
 }'​
 
 ```
-
-</TabItem></Tabs>
 
 The result of the above example should be similar to the following.​
 

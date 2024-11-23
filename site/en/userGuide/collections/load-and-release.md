@@ -1,14 +1,25 @@
+---
+id: load-and-release.md
+title: Load & Release
+---
+
 # Load & Release​
 
 Loading a collection is the prerequisite to conducting similarity searches and queries in collections. This page focuses on the procedures for loading and releasing a collection.​
 
-## Load Collection​{#load-collection​}
+## Load Collection​
 
 When you load a collection, Zilliz Cloud loads the index files and the raw data of all fields into memory for rapid response to searches and queries. Entities inserted after a collection load are automatically indexed and loaded.​
 
 The following code snippets demonstrate how to load a collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -36,10 +47,6 @@ print(res)​
 # }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.collection.request.LoadCollectionReq;​
@@ -78,10 +85,6 @@ System.out.println(res);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -114,10 +117,6 @@ console.log(res.state)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 import (​
     "context"​
@@ -141,10 +140,6 @@ if err != nil {​
 }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -182,15 +177,19 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Load Specific Fields​{#load-specific-fields​}
+## Load Specific Fields​
 
 Zilliz Cloud can load only the fields involved in searches and queries, reducing memory usage and improving search performance.​
 
 The following code snippet assumes that you have created a collection named **customized_setup_2**, and there are two fields named **my_id** and **my_vector** in the collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.load_collection(​
@@ -214,10 +213,6 @@ print(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 // 6. Load the collection​
 LoadCollectionReq loadCollectionReq = LoadCollectionReq.builder()​
@@ -237,10 +232,6 @@ System.out.println(res);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 await client.load_collection({​
   collection_name: "customized_setup_1",​
@@ -255,10 +246,6 @@ const loadState = client.getCollectionLoadState({​
 console.log(loadState);​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -286,16 +273,10 @@ if err != nil {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 # REST 缺失​
 
 ```
-
-</TabItem></Tabs>
 
 If you choose to load specific fields, it is worth noting that only the fields included in `load_fields` can be used as filters and output fields in searches and queries. You should always include the names of the primary field and at least one vector field in `load_fields`.​
 
@@ -303,13 +284,19 @@ You can also use `skip_load_dynamic_field` to determine whether to load the dyna
 
 To load more fields after the collection load, you need to release the collection first to avoid possible errors prompted because of index changes.​
 
-## Release Collection​{#release-collection​}
+## Release Collection​
 
 Searches and queries are memory-intensive operations. To save the cost, you are advised to release the collections that are currently not in use.​
 
 The following code snippet demonstrates how to release a collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 8. Release the collection​
@@ -330,10 +317,6 @@ print(res)​
 # }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.collection.request.ReleaseCollectionReq;​
@@ -356,10 +339,6 @@ System.out.println(res);​
 // false​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 // 8. Release the collection​
@@ -387,10 +366,6 @@ console.log(res.state)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 import (​
     "context"​
@@ -404,10 +379,6 @@ if err != nil {​
 }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -444,5 +415,3 @@ curl --request POST \​
 # }​
 
 ```
-
-</TabItem></Tabs>

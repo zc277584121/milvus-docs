@@ -1,12 +1,17 @@
+---
+id: create-collection-instantly.md
+title: Create Collection​ Instantly​
+---
+
 # Create Collection Instantly​
 
-You can create a collection instantly by setting its name and the vector field dimensionality. Zilliz Cloud automatically indexes the vector field and loads the collection upon creation. This page demonstrates how to create a collection instantly with default settings.​
+You can create a collection instantly by setting its name and the vector field dimensionality. Milvus automatically indexes the vector field and loads the collection upon creation. This page demonstrates how to create a collection instantly with default settings.​
 
-## Overview​{#overview​}
+## Overview​
 
 A collection is a two-dimensional table with fixed columns and variant rows. Each column represents a field, and each row represents an entity. A schema is required to implement such structural data management. Every entity to insert has to meet the constraints defined in the schema.​
 
-AIGC applications usually use vector databases as a knowledge base to manage the data generated during the interaction between users and Large Language Models (LLMs). Such knowledge bases are almost similar. To accelerate the use of Zilliz Cloud clusters in such scenarios, an instant method is available for you to create a collection with only two parameters, namely the collection name and the vector field dimensionality.​
+AIGC applications usually use vector databases as a knowledge base to manage the data generated during the interaction between users and Large Language Models (LLMs). Such knowledge bases are almost similar. To accelerate the use of Milvus clusters in such scenarios, an instant method is available for you to create a collection with only two parameters, namely the collection name and the vector field dimensionality.​
 
 When you create a collection instantly with default settings, the following settings apply:​
 
@@ -24,15 +29,21 @@ When you create a collection instantly with default settings, the following sett
 
 - The collection is automatically loaded upon creation.​
 
-For details on the terminologies above, refer to [​Collection Explained](https://zilliverse.feishu.cn/wiki/Z9AMwNkVLiog0jkXxNscuMpJnjL). ​
+For details on the terminologies above, refer to [​Collection Explained](manage-collections.md). ​
 
-It is worth noting that creating a collection instantly with default settings does not fit all scenarios. You are advised to familiarize yourself with the [common collection creation procedure](https://zilliverse.feishu.cn/wiki/EmcowmwYpiFbWgkmnqfcMf3knVc) so that you can gain a better understanding of Zilliz Cloud's capabilities.​
+It is worth noting that creating a collection instantly with default settings does not fit all scenarios. You are advised to familiarize yourself with the [common collection creation procedure](create-collection.md) so that you can gain a better understanding of Milvus's capabilities.​
 
-## Quick Setup​{#quick-setup​}
+## Quick Setup​
 
 In this manner, you can create a collection instantly with only the collection name and the vector field dimensionality.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -65,10 +76,6 @@ print(res)​
 # }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -107,10 +114,6 @@ System.out.println(res);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 // 1. Set up a Milvus Client​
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
@@ -145,18 +148,10 @@ console.log(res.state)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -178,13 +173,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Quick Setup with Custom Fields​{#quick-setup-with-custom-fields​}
+## Quick Setup with Custom Fields​
 
 If the default metric type, field names, and data types does not meet your need, you can tune these settings as follows.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -223,10 +222,6 @@ print(res)​
 # }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -271,10 +266,6 @@ System.out.println(res);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 // 1. Set up a Milvus Client​
 const address = "http://localhost:19530";​
@@ -313,18 +304,10 @@ console.log(res.state)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -349,6 +332,4 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-If the collections created using the above two manners still cannot meet your needs, consider following the procedure in [​Create Collection](https://zilliverse.feishu.cn/wiki/EmcowmwYpiFbWgkmnqfcMf3knVc).​
+If the collections created using the above two manners still cannot meet your needs, consider following the procedure in [​Create Collection](create-collection.md).​

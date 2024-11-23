@@ -7,7 +7,7 @@ title: Manage Partitions
 
 A partition is a subset of a collection. Each partition shares the same data structure with its parent collection but contains only a subset of the data in the collection. This page helps you understand how to manage partitions.​
 
-## Overview​{#overview​}
+## Overview​
 
 When creating a collection, Zilliz Cloud also creates a partition named **_default** in the collection. If you are not going to add any other partitions, all entities inserted into the collection go into the default partition, and all searches and queries are also carried out within the default partition.​
 
@@ -15,19 +15,25 @@ You can add more partitions and insert entities into them based on certain crite
 
 A collection can have a maximum of 1,024 partitions.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
 The **Partition Key** feature is a search optimization based on partitions and allows Zilliz Cloud to distribute entities into different partitions based on the values in a specific scalar field. This feature helps implement partition-oriented multi-tenancy and improves search performance.​
 
-This feature will not be discussed on this page. To find more, refer to [​Use Partition Key](https://zilliverse.feishu.cn/wiki/QWqiwrgJViA5AJkv64VcgQX2nKd).​
+This feature will not be discussed on this page. To find more, refer to [​Use Partition Key](use-partition-key.md).​
 
-:::
+</div>
 
-## List Partitions​{#list-partitions​}
+## List Partitions​
 
 When creating a collection, Zilliz Cloud also creates a partition named **_default** in the collection. You can list the partitions in a collection as follows.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -48,10 +54,6 @@ print(res)​
 # ["_default"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.partition.request.ListPartitionsReq;​
@@ -83,10 +85,6 @@ System.out.println(partitionNames);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -104,10 +102,6 @@ console.log(res);​
 // ["_default"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -141,10 +135,6 @@ fmt.Println(partitionNames)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
@@ -166,13 +156,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Create Partition​{#create-partition​}
+## Create Partition​
 
 You can add more partitions to the collection and insert entities into these partitions based on certain criteria.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.create_partition(​
@@ -191,10 +185,6 @@ print(res)​
 # ["_default", "partitionA"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.partition.request.CreatePartitionReq;​
@@ -218,10 +208,6 @@ System.out.println(partitionNames);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 await client.createPartition({​
     collection_name: "quick_setup",​
@@ -238,10 +224,6 @@ console.log(res)​
 // ["_default", "partitionA"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -265,10 +247,6 @@ fmt.Println(partitionNames)​
 // ["_default", "partitionA"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -306,13 +284,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Check for a Specific Partition​{#check-for-a-specific-partition​}
+## Check for a Specific Partition​
 
 The following code snippets demonstrate how to check whether a partition exists in a specific collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 res = client.has_partition(​
@@ -327,10 +309,6 @@ print(res)​
 # True​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.partition.request.HasPartitionReq;​
@@ -348,10 +326,6 @@ System.out.println(hasPartitionRes);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 res = await client.hasPartition({​
     collection_name: "quick_setup",​
@@ -364,10 +338,6 @@ console.log(res.value)​
 // true​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -387,10 +357,6 @@ fmt.Println(result)​
 // true​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -414,17 +380,21 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Load and Release Partitions​{#load-and-release-partitions​}
+## Load and Release Partitions​
 
 You can separately load or release one or certain partitions.​
 
-### Load Partitions​{#load-partitions​}
+### Load Partitions​
 
 You can separately load specific partitions in a collection. It is worth noting that the load status of a collection stays unloaded if there is an unloaded partition in the collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.load_partitions(​
@@ -445,10 +415,6 @@ print(res)​
 # }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.partition.request.LoadPartitionsReq;​
@@ -474,10 +440,6 @@ System.out.println(getLoadStateRes);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 await client.loadPartitions({​
     collection_name: "quick_setup",​
@@ -498,18 +460,10 @@ console.log(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -549,13 +503,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-### Release Partitions​{#release-partitions​}
+### Release Partitions​
 
 You can also release specific partitions.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.release_partitions(​
@@ -577,10 +535,6 @@ print(res)​
 # }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.partition.request.ReleasePartitionsReq;​
@@ -604,10 +558,6 @@ System.out.println(getLoadStateRes);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 await client.releasePartitions({​
     collection_name: "quick_setup",​
@@ -628,18 +578,10 @@ console.log(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -679,11 +621,9 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
+## Data Operations Within Partitions​
 
-## Data Operations Within Partitions​{#data-operations-within-partitions​}
-
-### Insert and Delete Entities​{#insert-and-delete-entities​}
+### Insert and Delete Entities​
 
 You can perform insert, upsert, and delete operations in specific operations. For details, refer to​
 
@@ -693,7 +633,7 @@ You can perform insert, upsert, and delete operations in specific operations. Fo
 
 - Delete Entities from Partition​
 
-### Search and Query​{#search-and-query​}
+### Search and Query​
 
 You can conduct searches and queries within specific partitions. For details, refer to ​
 
@@ -701,11 +641,17 @@ You can conduct searches and queries within specific partitions. For details, re
 
 - Conduct Metadata Filtering within Partitions​
 
-## Drop Partition​{#drop-partition​}
+## Drop Partition​
 
 You can drop partitions that are no longer needed. Before dropping a partition, ensure that the partition has been released.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.release_partitions(​
@@ -727,10 +673,6 @@ print(res)​
 # ["_default"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.partition.request.DropPartitionReq;​
@@ -763,10 +705,6 @@ System.out.println(partitionNames);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 await client.releasePartitions({​
     collection_name: "quick_setup",​
@@ -789,18 +727,10 @@ console.log(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -850,7 +780,3 @@ curl --request POST \​
 # }​
 
 ```
-
-</TabItem></Tabs>
-
-

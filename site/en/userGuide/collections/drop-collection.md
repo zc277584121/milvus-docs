@@ -1,12 +1,23 @@
+---
+id: drop-collection.md
+title: Drop Collection​
+---
+
 # Drop Collection​
 
 You can drop a collection if it is no longer needed.​
 
-## Examples​{#examples​}
+## Examples
 
 The following code snippets assume that you have a collection named **customized_setup_2**.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -21,10 +32,6 @@ client.drop_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.collection.request.DropCollectionReq;​
@@ -50,10 +57,6 @@ client.dropCollection(dropQuickSetupParam);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -74,10 +77,6 @@ console.log(res.error_code)​
 // ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -111,10 +110,6 @@ if err != nil {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
@@ -133,5 +128,3 @@ curl --request POST \​
 # }​
 
 ```
-
-</TabItem></Tabs>

@@ -1,8 +1,13 @@
+---
+id: create-collection.md
+title: Create Collection​
+---
+
 # Create Collection​
 
 You can create a collection by defining its schema, index parameters, metric type, and whether to load it upon creation. This page introduces how to create a collection from scratch.​
 
-## Overview​{#overview​}
+## Overview​
 
 A collection is a two-dimensional table with fixed columns and variant rows. Each column represents a field, and each row represents an entity. A schema is required to implement such structural data management. Every entity to insert has to meet the constraints defined in the schema.​
 
@@ -10,25 +15,31 @@ You can determine every aspect of a collection, including its schema, index para
 
 To create a collection, you need to​
 
-- [Create schema](https://zilliverse.feishu.cn/wiki/EmcowmwYpiFbWgkmnqfcMf3knVc#Gf3wdrWLKoAZkIxtN38cagsmn3g)​
+- [Create schema](#create-schema)​
 
-- [Set index parameters](https://zilliverse.feishu.cn/wiki/EmcowmwYpiFbWgkmnqfcMf3knVc#QVtAdf12roqTWxxEa5jcv6ctnag) (Optional)​
+- [Set index parameters](#optional-set-index-parameters) (Optional)​
 
-- [Create collection](https://zilliverse.feishu.cn/wiki/EmcowmwYpiFbWgkmnqfcMf3knVc#PLEDdr4MdouyYixXru2cv4fPnlb)​
+- [Create collection](#create-collection)​
 
-## Create Schema​{#create-schema​}
+## Create Schema​
 
-A schema defines the data structure of a collection. When creating a collection, you need to design the schema based on your requirements. For details, refer to [​Schema Explained](https://zilliverse.feishu.cn/wiki/Vs4YwNnvzitoQ8kunlGcWMJInbf).​
+A schema defines the data structure of a collection. When creating a collection, you need to design the schema based on your requirements. For details, refer to [​Schema Explained](manage-collections.md).​
 
 The following code snippets create a schema with the enabled dynamic field and three mandatory fields named `my_id`, `my_vector`, and `my_varchar`.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
-You can set default values for any scalar field and make it nullable. For details, refer to  [​Nullable & Default](https://zilliverse.feishu.cn/wiki/DjROwgK6ziCf7Rkoji6ccyEUnsg).​
+You can set default values for any scalar field and make it nullable. For details, refer to  [​Nullable & Default](nullable-and-default.md).​
 
-:::
+</div>
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 3. Create a collection in customized setup mode​
@@ -51,10 +62,6 @@ schema.add_field(field_name="my_vector", datatype=DataType.FLOAT_VECTOR, dim=5)�
 schema.add_field(field_name="my_varchar", datatype=DataType.VARCHAR, max_length=512)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.DataType;​
@@ -101,10 +108,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -135,10 +138,6 @@ const fields = [​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 import "github.com/milvus-io/milvus/client/v2/entity"​
 ​
@@ -148,10 +147,6 @@ schema := entity.NewSchema().WithDynamicFieldEnabled(true).​
         WithField(entity.NewField().WithName("my_varchar").WithDataType(entity.FieldTypeVarChar).WithMaxLength(512))thDim(5))​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export schema='{​
@@ -182,19 +177,23 @@ export schema='{​
 
 ```
 
-</TabItem></Tabs>
+## (Optional) Set Index Parameters​
 
-## (Optional) Set Index Parameters​{#-optional--set-index-parameters​}
+Creating an index on a specific field accelerates the search against this field. An index records the order of entities within a collection. As shown in the following code snippets, you can use `metric_type` and `index_type` to select appropriate ways for Milvus to index a field and measure similarities between vector embeddings.​
 
-Creating an index on a specific field accelerates the search against this field. An index records the order of entities within a collection. As shown in the following code snippets, you can use `metric_type` and `index_type` to select appropriate ways for Zilliz Cloud to index a field and measure similarities between vector embeddings.​
-
-On Zilliz Cloud, you can use `AUTOINDEX` as the index type for all vector fields, and one of `COSINE`, `L2`, and `IP` as the metric type based on your needs.​
+In Milvus, you can use `AUTOINDEX` as the index type for all vector fields, and one of `COSINE`, `L2`, and `IP` as the metric type based on your needs.​
 
 As demonstrated in the above code snippet, you need to set both the index type and metric type for vector fields and only the index type for the scalar fields. Indexes are mandatory for vector fields, and you are advised to create indexes on scalar fields frequently used in filtering conditions.​
 
-For details, refer to [​Indexes](https://zilliverse.feishu.cn/wiki/MTxlwjd0di8ZsxkwSnxcAruPnKh).​
+For details, refer to [​Indexes](index-vector-fields.md).​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 3.3. Prepare index parameters​
@@ -213,10 +212,6 @@ index_params.add_index(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.IndexParam;​
@@ -240,10 +235,6 @@ indexParams.add(indexParamForVectorField);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 // 3.2 Prepare index parameters​
 const index_params = [{​
@@ -256,10 +247,6 @@ const index_params = [{​
 }]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -274,10 +261,6 @@ indexOptions := []client.CreateIndexOption{​
 }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export indexParams='[​
@@ -296,15 +279,19 @@ export indexParams='[​
 
 ```
 
-</TabItem></Tabs>
+## Create Collection​
 
-## Create Collection​{#create-collection​}
-
-If you have created a collection with index parameters, Zilliz Cloud automatically loads the collection upon its creation. In this case, all fields mentioned in the index parameters are indexed.​
+If you have created a collection with index parameters, Milvus automatically loads the collection upon its creation. In this case, all fields mentioned in the index parameters are indexed.​
 
 The following code snippets demonstrate how to create the collection with index parameters and check its load status.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 3.5. Create a collection with the index loaded simultaneously​
@@ -327,10 +314,6 @@ print(res)​
 # }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.collection.request.CreateCollectionReq;​
@@ -357,10 +340,6 @@ System.out.println(loaded);​
 // true​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 // 3.3 Create a collection with fields and index parameters​
@@ -390,10 +369,6 @@ console.log(res.state)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 import "github.com/milvus-io/milvus/client/v2"​
 ​
@@ -406,10 +381,6 @@ if err != nil {​
 fmt.Println("collection created")​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -427,13 +398,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-You can also create a collection without any index parameters and add them afterward. In this case, Zilliz Cloud does not load the collection upon its creation. For details on how to create indexes for an existing collection, refer to [​Index Explained](https://zilliverse.feishu.cn/wiki/JGHqwChJxicxp9kJJf9cgeB2nvg).​
+You can also create a collection without any index parameters and add them afterward. In this case, Milvus does not load the collection upon its creation. For details on how to create indexes for an existing collection, refer to [​Index Explained](index-vector-fields.md).​
 
 The following code snippet demonstrates how to create a collection without a collection, and the load status of the collection remains unloaded upon creation.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 3.6. Create a collection and index it separately​
@@ -456,10 +431,6 @@ print(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 // 3.6 Create a collection and index it separately​
 CreateCollectionReq customizedSetupReq2 = CreateCollectionReq.builder()​
@@ -480,10 +451,6 @@ System.out.println(loaded);​
 // false​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 // 3.4 Create a collection and index it seperately​
@@ -512,10 +479,6 @@ console.log(res.state)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 import "github.com/milvus-io/milvus/client/v2"​
 ​
@@ -526,10 +489,6 @@ if err != nil {​
 fmt.Println("collection created")​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -554,15 +513,13 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
+Milvus also provides a way for you to create a collection instantly. For details, refer to [​Create Collection Instantly](create-collection-instantly.md).​
 
-Zilliz Cloud also provides a way for you to create a collection instantly. For details, refer to [​Create Collection Instantly](https://zilliverse.feishu.cn/wiki/BkpkwR8Y1iwxPokhqy0cKY3xn8b).​
-
-## Set Collection Properties​{#set-collection-properties​}
+## Set Collection Properties​
 
 You can set properties for the collection to create to make it fit into your service. The applicable properties are as follows.​
 
-### Set Shard Number​{#set-shard-number​}
+### Set Shard Number​
 
 Shards are horizontal slices of a collection. Each shard corresponds to a data input channel. Every collection has a shard by default. You can set the appropriate number of shards when creating a collection based on the expected throughput and the volume of the data to insert into the collection.​
 
@@ -570,7 +527,13 @@ In common cases, consider increasing the shard number by one every time the expe
 
 The following code snippet demonstrates how to set the shard number when you create a collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # With shard number​
@@ -582,10 +545,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 // With shard number​
@@ -599,10 +558,6 @@ client.createCollection(customizedSetupReq3);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const createCollectionReq = {​
     collection_name: "customized_setup_3",​
@@ -612,10 +567,6 @@ const createCollectionReq = {​
 }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import "github.com/milvus-io/milvus/client/v2"​
@@ -627,10 +578,6 @@ if err != nil {​
 fmt.Println("collection created")​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export params='{​
@@ -652,13 +599,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
+### Enable mmap​
 
-### Enable mmap​{#enable-mmap​}
+Milvus enables mmap on all collections by default, allowing Milvus to map raw field data into memory instead of fully loading them. This reduces memory footprints and increases collection capacity. For details on mmap, refer to [​Use mmap](https://zilliverse.feishu.cn/wiki/AxWmwp8TFiR8tMkUWcZcEJlrnab).​
 
-Zilliz Cloud enables mmap on all collections by default, allowing Zilliz Cloud to map raw field data into memory instead of fully loading them. This reduces memory footprints and increases collection capacity. For details on mmap, refer to [​Use mmap](https://zilliverse.feishu.cn/wiki/AxWmwp8TFiR8tMkUWcZcEJlrnab).​
-
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # With mmap​
@@ -670,10 +621,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.param.Constant;​
@@ -689,10 +636,6 @@ client.createCollection(customizedSetupReq4);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 client.create_collection({​
     collection_name: "customized_setup_4",​
@@ -703,10 +646,6 @@ client.create_collection({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -722,24 +661,24 @@ fmt.Println("collection created")​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 # REST 暂无此功能。​
 
 ```
 
-</TabItem></Tabs>
+### Set Collection TTL​
 
-### Set Collection TTL​{#set-collection-ttl​}
-
-If a collection needs to be dropped for a specific period, consider setting its Time-To-Live (TTL) in seconds. Once the TTL times out, Zilliz Cloud deletes entities in the collection and drops the collection. The deletion is asynchronous, indicating that searches and queries are still possible before the deletion is complete.​
+If a collection needs to be dropped for a specific period, consider setting its Time-To-Live (TTL) in seconds. Once the TTL times out, Milvus deletes entities in the collection and drops the collection. The deletion is asynchronous, indicating that searches and queries are still possible before the deletion is complete.​
 
 The following code snippet sets the TTL to one day (86400 seconds). You are advised to set the TTL to a couple of days at minimum.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # With TTL​
@@ -755,10 +694,6 @@ client.create_collection(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.param.Constant;​
 ​
@@ -773,10 +708,6 @@ client.createCollection(customizedSetupReq5);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const createCollectionReq = {​
     collection_name: "customized_setup_5",​
@@ -789,10 +720,6 @@ const createCollectionReq = {​
 }​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -808,10 +735,6 @@ if err != nil {​
 fmt.Println("collection created")​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export params='{​
@@ -833,13 +756,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-### Set Consistency Level​{#set-consistency-level​}
+### Set Consistency Level​
 
 When creating a collection, you can set the consistency level for searches and queries in the collection. You can also change the consistency level of the collection during a specific search or query.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # With consistency level​
@@ -851,10 +778,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.ConsistencyLevel;​
@@ -870,10 +793,6 @@ client.createCollection(customizedSetupReq6);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const createCollectionReq = {​
     collection_name: "customized_setup_6",​
@@ -886,10 +805,6 @@ const createCollectionReq = {​
 client.createCollection(createCollectionReq);​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -905,10 +820,6 @@ if err != nil {​
 fmt.Println("collection created")​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export params='{​
@@ -930,13 +841,10 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 For more on consistency levels, see [​Consistency Level](https://zilliverse.feishu.cn/wiki/Xx9EwWtekinLZfkWKqic37dDnFb).​
 
-### Enable Dynamic Field​{#enable-dynamic-field​}
+### Enable Dynamic Field​
 
-The dynamic field in a collection is a reserved JavaScript Object Notation (JSON) field named **$meta**. Once you have enabled this field, Zilliz Cloud saves all non-schema-defined fields carried in each entity and their values as key-value pairs in the reserved field.​
+The dynamic field in a collection is a reserved JavaScript Object Notation (JSON) field named **$meta**. Once you have enabled this field, Milvus saves all non-schema-defined fields carried in each entity and their values as key-value pairs in the reserved field.​
 
-For details on how to use the dynamic field, refer to [​Dynamic Field](https://zilliverse.feishu.cn/wiki/OVxRwZWxNi4pYrkdKxCcOuY2nf1).​
-
+For details on how to use the dynamic field, refer to [​Dynamic Field](enable-dynamic-field.md).​

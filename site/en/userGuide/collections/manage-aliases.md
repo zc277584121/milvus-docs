@@ -1,18 +1,29 @@
+---
+id: manage-aliases.md
+title: Manage Aliases​
+---
+
 # Manage Aliases​
 
-Zilliz Cloud provides alias management capabilities. This page demonstrates the procedures to create, list, alter, and drop aliases.​
+Milvus provides alias management capabilities. This page demonstrates the procedures to create, list, alter, and drop aliases.​
 
-## Overview​{#overview​}
+## Overview​
 
 You can create aliases for your collections. A collection can have several aliases, but collections cannot share an alias. ​
 
-Upon receiving a request against a collection, Zilliz Cloud locates the collection based on the provided name. If the collection by the provided name does not exist, Zilliz Cloud continues locating the provided name as an alias. You can use collection aliases to adapt your code to different scenarios.​
+Upon receiving a request against a collection, Milvus locates the collection based on the provided name. If the collection by the provided name does not exist, Milvus continues locating the provided name as an alias. You can use collection aliases to adapt your code to different scenarios.​
 
-## Create Alias​{#create-alias​}
+## Create Alias​
 
 The following code snippet demonstrates how to create an alias for a collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -35,10 +46,6 @@ client.create_alias(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.utility.request.CreateAliasReq;​
@@ -75,10 +82,6 @@ client.createAlias(createAliasReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -114,18 +117,10 @@ console.log(res.error_code)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -161,13 +156,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## List Aliases​{#list-aliases​}
+## List Aliases​
 
 The following code snippet demonstrates the procedure to list the aliases allocated to a specific collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 9.2. List aliases​
@@ -190,10 +189,6 @@ print(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.service.utility.request.ListAliasesReq;​
 import io.milvus.v2.service.utility.response.ListAliasResp;​
@@ -212,10 +207,6 @@ System.out.println(listAliasRes.getAlias());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 // 9.2 List aliases​
 res = await client.listAliases({​
@@ -231,18 +222,10 @@ console.log(res.aliases)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -264,13 +247,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Describe Alias​{#describe-alias​}
+## Describe Alias​
 
 The following code snippet describes a specific alias in detail, including the name of the collection to which it has been allocated.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 9.3. Describe aliases​
@@ -290,10 +277,6 @@ print(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.service.utility.request.DescribeAliasReq;​
 import io.milvus.v2.service.utility.response.DescribeAliasResp;​
@@ -311,10 +294,6 @@ System.out.println(describeAliasRes);​
 // DescribeAliasResp(collectionName=customized_setup_2, alias=bob)​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 // 9.3 Describe aliases​
@@ -344,18 +323,10 @@ console.log(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -380,13 +351,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Alter Alias​{#alter-alias​}
+## Alter Alias​
 
 You can reallocate the alias already allocated to a specific collection to another.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 9.4 Reassign aliases to other collections​
@@ -429,10 +404,6 @@ print(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.service.utility.request.AlterAliasReq;​
 ​
@@ -464,10 +435,6 @@ System.out.println(listAliasRes.getAlias());​
 // [bob]​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 // 9.4 Reassign aliases to other collections​
@@ -508,18 +475,10 @@ console.log(res.aliases)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -574,6 +533,4 @@ curl --request POST \​
 # }​
 
 ```
-
-</TabItem></Tabs>
 
