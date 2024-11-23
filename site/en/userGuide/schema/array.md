@@ -1,3 +1,9 @@
+---
+id: array.md
+title: Array Field​​
+summary: The Array type is used to store fields containing multiple values of the same data type. It provides a flexible way to store attributes with multiple elements, making it especially useful in scenarios where a set of related data needs to be saved. In Milvus, you can store Array fields alongside vector data, enabling more complex query and filtering requirements.​
+---
+
 # Array Field​
 
 The Array type is used to store fields containing multiple values of the same data type. It provides a flexible way to store attributes with multiple elements, making it especially useful in scenarios where a set of related data needs to be saved. In Milvus, you can store Array fields alongside vector data, enabling more complex query and filtering requirements.​
@@ -14,7 +20,7 @@ For example, in a music recommendation system, an Array field can store a list o
 
 In this example, `tags` and `ratings` are both Array fields. The `tags` field is a string array representing song genres like pop, rock, and classic, while the `ratings` field is an integer array representing user ratings for the song, ranging from 1 to 5. These Array fields provide a flexible way to store multi-value data, making it easier to perform detailed analysis during queries and filtering.​
 
-## Add Array field​{#add-array-field​}
+## Add Array field​
 
 To use Array fields in Milvus, define the relevant field type when creating the collection schema. This process includes:​
 
@@ -26,7 +32,13 @@ To use Array fields in Milvus, define the relevant field type when creating the 
 
 Here’s how to define a collection schema that includes Array fields:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -50,10 +62,6 @@ schema.add_field(field_name="pk", datatype=DataType.INT64, is_primary=True)​
 schema.add_field(field_name="embedding", datatype=DataType.FLOAT_VECTOR, dim=3)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -97,10 +105,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 const schema = [​
@@ -130,10 +134,6 @@ const schema = [​
 ];​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export arrayField1='{​
@@ -181,8 +181,6 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
-
 In this example:​
 
 - `tags` is a string array with `element_type` set to `VARCHAR`, indicating that elements in the array must be strings. `max_capacity` is set to 10, meaning the array can contain up to 10 elements.​
@@ -191,19 +189,25 @@ In this example:​
 
 - We also add a primary key field `pk` and a vector field `embedding`.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
-The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](https://zilliverse.feishu.cn/wiki/D2ctwKZhNilLY0ke1vpcHL62n5G), [​Dense Vector](https://zilliverse.feishu.cn/wiki/ARalwpaVDiCwDZkoSHtcPNgXnRg), [​Binary Vector](https://zilliverse.feishu.cn/wiki/NTwawtvYdiXTkukbss7ccw2RnXc), or [​Sparse Vector](https://zilliverse.feishu.cn/wiki/JbPDwHqd0iZZSuk5tYicGqKbn9c).​
+The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse-vector.md).​
 
-:::
+</div>
 
-## Set index params​{#set-index-params​}
+## Set index params​
 
 Setting index parameters for Array fields is optional but can significantly improve retrieval efficiency.​
 
-In the following example, we create an `AUTOINDEX` for the `tags` field, which means Milvus will automatically create an appropriate scalar index based on the data type. For more information, refer to [​AUTOINDEX](https://zilliverse.feishu.cn/wiki/Sp4XwxJ6gi27Vok6B3Ycmsirnkg).​
+In the following example, we create an `AUTOINDEX` for the `tags` field, which means Milvus will automatically create an appropriate scalar index based on the data type.
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # Prepare index parameters​
@@ -216,10 +220,6 @@ index_params.add_index(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.IndexParam;​
@@ -234,10 +234,6 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const indexParams = [{​
     index_name: 'inverted_index',​
@@ -246,10 +242,6 @@ const indexParams = [{​
 )];​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export indexParams='[​
@@ -262,13 +254,17 @@ export indexParams='[​
 
 ```
 
-</TabItem></Tabs>
-
-In addition to `AUTOINDEX`, you can specify other scalar index types like `INVERTED` or `BITMAP`. For supported index types, refer to [​Scalar Indexes](https://zilliverse.feishu.cn/wiki/PdSnwO3jWiGZHAkW510c5zg0nmm).​
+In addition to `AUTOINDEX`, you can specify other scalar index types like `INVERTED` or `BITMAP`. For supported index types, refer to [​Scalar Indexes](index-scalar-fields.md).​
 
 Moreover, you must create an index for the vector field before creating the collection. In this example, we use `AUTOINDEX` to simplify vector index setup.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # Add vector index​
@@ -280,10 +276,6 @@ index_params.add_index(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 indexes.add(IndexParam.builder()​
         .fieldName("embedding")​
@@ -293,10 +285,6 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
  indexParams.push({​
     index_name: 'embedding_index',​
@@ -305,10 +293,6 @@ indexes.add(IndexParam.builder()​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export indexParams='[​
@@ -326,13 +310,17 @@ export indexParams='[​
 
 ```
 
-</TabItem></Tabs>
-
-## Create collection​{#create-collection​}
+## Create collection​
 
 Use the defined schema and index parameters to create a collection:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.create_collection(​
@@ -342,10 +330,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 CreateCollectionReq requestCreate = CreateCollectionReq.builder()​
@@ -357,10 +341,6 @@ client.createCollection(requestCreate);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 client.create_collection({​
     collection_name: "my_array_collection",​
@@ -369,10 +349,6 @@ client.create_collection({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -387,13 +363,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Insert data​{#insert-data​}
+## Insert data​
 
 After creating the collection, you can insert data that includes Array fields.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 data = [​
@@ -424,10 +404,6 @@ client.insert(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
@@ -447,10 +423,6 @@ InsertResp insertR = client.insert(InsertReq.builder()​
         .build());​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 const data = [​
@@ -480,10 +452,6 @@ client.insert({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -516,23 +484,27 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 In this example:​
 
 - Each data entry includes a primary field (`pk`), while `tags` and `ratings` are Array fields used to store tags and ratings.​
 
 - `embedding` is a 3-dimensional vector field used for vector similarity searches.​
 
-## Search and query​{#search-and-query​}
+## Search and query​
 
 Array fields enable scalar filtering during searches, enhancing Milvus's vector search capabilities. You can query based on the properties of Array fields alongside vector similarity searches.​
 
-### Filter queries​{#filter-queries​}
+### Filter queries​
 
 You can filter data based on properties of Array fields, such as accessing a specific element or checking if an array element meets a certain condition.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 filter = 'ratings[0] < 4'​
@@ -549,10 +521,6 @@ print(res)​
 # data: ["{'pk': 3, 'tags': ['electronic', 'dance'], 'ratings': [3, 3, 4], 'embedding': [np.float32(0.67), np.float32(0.45), np.float32(0.89)]}"] ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq;​
@@ -573,10 +541,6 @@ System.out.println(resp.getQueryResults());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 client.query({​
     collection_name: 'my_array_collection',​
@@ -585,10 +549,6 @@ client.query({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -604,15 +564,19 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 In this query, Milvus filters out entities where the first element of the `ratings` array is less than 4, returning entities that match the condition.​
 
-### Vector search with Array filtering​{#vector-search-with-array-filtering​}
+### Vector search with Array filtering​
 
 By combining vector similarity with Array filtering, you can ensure that the retrieved data is not only similar in semantics but also meets specific conditions, making the search results more accurate and aligned with business needs.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 filter = 'tags[0] == "pop"'​
@@ -632,10 +596,6 @@ print(res)​
 # data: ["[{'id': 1, 'distance': 1.1276001930236816, 'entity': {'ratings': [5, 4, 3], 'embedding': [0.11999999731779099, 0.3400000035762787, 0.5600000023841858], 'tags': ['pop', 'rock', 'classic']}}]"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq;​
@@ -659,10 +619,6 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 client.search({​
     collection_name: 'my_array_collection',​
@@ -673,10 +629,6 @@ client.search({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -698,13 +650,11 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 In this example, Milvus returns the top 5 entities most similar to the query vector, with the `tags` array's first element being `"pop"`.​
 
-Additionally, Milvus supports advanced Array filtering operators like `ARRAY_CONTAINS`, `ARRAY_CONTAINS_ALL`, `ARRAY_CONTAINS_ANY`, and `ARRAY_LENGTH` to further enhance query capabilities. For more details, refer to [​Metadata Filtering](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow).​
+Additionally, Milvus supports advanced Array filtering operators like `ARRAY_CONTAINS`, `ARRAY_CONTAINS_ALL`, `ARRAY_CONTAINS_ANY`, and `ARRAY_LENGTH` to further enhance query capabilities. For more details, refer to [​Metadata Filtering](metadata-filtering.md).​
 
-## Limits​{#limits​}
+## Limits​
 
 - **Data Type**: All elements in an Array field must have the same data type, as specified by the `element_type`.​
 
