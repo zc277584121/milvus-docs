@@ -1,25 +1,32 @@
 ---
 id: enable-dynamic-field.md
 title: Enable Dynamic Field
+summary: All fields defined in the schema of a collection must be included in the entities to be inserted. If you want some fields to be optional, consider enabling the dynamic field. This topic describes how to enable and use the dynamic field.​
 ---
 
 # Dynamic Field​
 
 All fields defined in the schema of a collection must be included in the entities to be inserted. If you want some fields to be optional, consider enabling the dynamic field. This topic describes how to enable and use the dynamic field.​
 
-## Overview​{#overview​}
+## Overview​
 
-In <include target="milvus">Milvus</include><include target="cloud">Zilliz Cloud</include>, you can create a collection schema by setting the names and data types for each field in the collection. When you add a field to the schema, make sure that this field is included in the entity you intend to insert. If you want some fields to be optional, enabling the dynamic field is one option.​
+In Milvus, you can create a collection schema by setting the names and data types for each field in the collection. When you add a field to the schema, make sure that this field is included in the entity you intend to insert. If you want some fields to be optional, enabling the dynamic field is one option.​
 
 The dynamic field is a reserved field named `$meta`, which is of the JavaScript Object Notation (JSON) type. Any fields in the entities that are not defined in the schema will be stored in this reserved JSON field as key-value pairs.​
 
 For a collection with the dynamic field enabled, you can use keys in the dynamic field for scalar filtering, just as you would with fields explicitly defined in the schema.​
 
-## Enable dynamic field​{#enable-dynamic-field​}
+## Enable dynamic field​
 
-Collections created using the method described in [​Create Collection Instantly](https://zilliverse.feishu.cn/wiki/BkpkwR8Y1iwxPokhqy0cKY3xn8b) have the dynamic field enabled by default. You can also enable the dynamic field manually when creating a collection with custom settings.​
+Collections created using the method described in [​Create Collection Instantly](create-collection-instantly.md) have the dynamic field enabled by default. You can also enable the dynamic field manually when creating a collection with custom settings.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -34,10 +41,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -58,10 +61,6 @@ client.createCollection(createCollectionReq);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -78,10 +77,6 @@ await client.createCollection({​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
@@ -95,9 +90,7 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Use dynamic field​{#use-dynamic-field​}
+## Use dynamic field​
 
 When the dynamic field is enabled in your collection, all fields and their values that are not defined in the schema will be stored as key-value pairs in the dynamic field.​
 
@@ -121,11 +114,17 @@ For example, suppose your collection schema defines only two fields, named `id` 
 
 The dataset above contains 10 entities, each including the fields `id`, `vector`, and `color`. Here, the `color` field is not defined in the schema. Since the collection has the dynamic field enabled, the field `color` will be stored as a key-value pair within the dynamic field.​
 
-### Insert data​{#insert-data​}
+### Insert data​
 
 The following code demonstrates how to insert this dataset into the collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 data=[​
@@ -152,10 +151,6 @@ print(res)​
 # {'insert_count': 10, 'ids': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import com.google.gson.Gson;​
@@ -192,10 +187,6 @@ System.out.println(insertResp);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const { DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
@@ -227,10 +218,6 @@ console.log(res.insert_cnt)​
 // ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -277,13 +264,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
+### Query and search with dynamic field​
 
-### Query and search with dynamic field​{#query-and-search-with-dynamic-field​}
+Milvus supports the use of filter expressions during queries and searches, allowing you to specify which fields to include in the results. The following example demonstrates how to perform queries and searches using the `color` field, which is not defined in the schema, by using the dynamic field.​
 
-<include target="milvus">Milvus</include><include target="cloud">Zilliz Cloud</include> supports the use of filter expressions during queries and searches, allowing you to specify which fields to include in the results. The following example demonstrates how to perform queries and searches using the `color` field, which is not defined in the schema, by using the dynamic field.​
-
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592]​
@@ -305,10 +296,6 @@ print(res)​
 ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq​
@@ -335,10 +322,6 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592]​
 ​
@@ -353,10 +336,6 @@ res = await client.search({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -379,8 +358,6 @@ curl --request POST \​
 # {"code":0,"cost":0,"data":[{"color":"red_7025","distance":0.6290165,"id":1},{"color":"red_4794","distance":0.5975797,"id":4},{"color":"red_9392","distance":-0.24996185,"id":6}]}​
 
 ```
-
-</TabItem></Tabs>
 
 In the filter expression used in the code example above, `color like "red%" and likes > 50`, the conditions specify that the value of the `color` field must start with **"red"**. In the sample data, only two entities meet this condition. Thus, when `limit` (topK) is set to `3` or fewer, both of these entities will be returned.​
 
@@ -409,5 +386,4 @@ In the filter expression used in the code example above, `color like "red%" and 
 ```
 
 ​
-
 
