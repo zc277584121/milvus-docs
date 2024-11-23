@@ -2,7 +2,7 @@
 id: nullable-and-default.md
 title: Nullable & Default​
 related_key: nullable, default
-summary: Milvus allows you to set the `nullable` attribute and default values for scalar fields, except the primary field. For fields marked as `nullable=True`, you can skip the field when inserting data, or set it directly to a null value, and the system will treat it as null without causing an error.
+summary: Milvus allows you to set the `nullable` attribute and default values for scalar fields, except the primary field. For fields marked as nullable=True, you can skip the field when inserting data, or set it directly to a null value, and the system will treat it as null without causing an error.
 ---
 
 # Nullable & Default​

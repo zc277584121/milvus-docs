@@ -1,14 +1,21 @@
+---
+id: number.md
+title: Number Field​
+related_key: number, integer, float, double
+summary: Number fields are used to store non-vector numerical data in Milvus. These fields are typically employed to describe additional information related to vector data, such as age, price, etc. By using this data, you can better describe vectors and improve the efficiency of data filtering and conditional queries.​
+---
+
 # Number Field​
 
 Number fields are used to store non-vector numerical data in Milvus. These fields are typically employed to describe additional information related to vector data, such as age, price, etc. By using this data, you can better describe vectors and improve the efficiency of data filtering and conditional queries.​
 
 Number fields are particularly useful in many scenarios. For example, in e-commerce recommendations, a price field can be used for filtering; in user profile analysis, age ranges can help refine the results. Combined with vector data, number fields can help the system provide similarity searches while meeting personalized user needs more precisely.​
 
-## Supported number field types​{#supported-number-field-types​}
+## Supported number field types​
 
 Milvus supports various number field types to meet different data storage and query needs:​
 
-<table data-block-token="GN2LddpOsooPNNxlx2Bcv3stnvg"><thead><tr><th data-block-token="GatwdsufBoIrb6xlaoBci8XInud" colspan="1" rowspan="1"><p data-block-token="AFFOdIzt4o0EDbxcwINcw0xenrd">Field Type​</p>
+<table><thead><th data-block-token="AGYrd69etohgaUxzUyGcXFw8npI" colspan="1" rowspan="1"><p data-block-token="Qbx1dsbirortMixjxXJcukoLnjR">Type​</p>
 
 </th><th data-block-token="AGYrd69etohgaUxzUyGcXFw8npI" colspan="1" rowspan="1"><p data-block-token="Qbx1dsbirortMixjxXJcukoLnjR">Description​</p>
 
@@ -42,13 +49,18 @@ Milvus supports various number field types to meet different data storage and qu
 
 </td></tr></tbody></table>
 
-## Add number field​{#add-number-field​}
+## Add number field​
 
-To use number fields in Milvus, define the relevant fields in the collection schema, setting the `datatype` to a supported type such as `BOOL` or `INT8`. For a complete list of supported number field types, refer to [Supported number field types](https://zilliverse.feishu.cn/wiki/EwArwXCOPip15hkSvvpciAMJnSe#share-BbV6dSb4BogF8txp3QCc0KU1n2e).​
+To use number fields in Milvus, define the relevant fields in the collection schema, setting the `datatype` to a supported type such as `BOOL` or `INT8`. For a complete list of supported number field types, refer to [Supported number field types](#Supported-number-field-types).​
 
 The following example shows how to define a schema that includes number fields `age` and `price`:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -66,10 +78,6 @@ schema.add_field(field_name="pk", datatype=DataType.INT64, is_primary=True)​
 schema.add_field(field_name="embedding", datatype=DataType.FLOAT_VECTOR, dim=3)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -111,10 +119,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 const schema = [​
@@ -140,10 +144,6 @@ const schema = [​
 ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export int64Field='{​
@@ -182,21 +182,24 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
+<div class="alert note">
 
-:::info[📘 Notes​]
+The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse-vector.md).​
 
-The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](https://zilliverse.feishu.cn/wiki/D2ctwKZhNilLY0ke1vpcHL62n5G), [​Dense Vector](https://zilliverse.feishu.cn/wiki/ARalwpaVDiCwDZkoSHtcPNgXnRg), [​Binary Vector](https://zilliverse.feishu.cn/wiki/NTwawtvYdiXTkukbss7ccw2RnXc), or [​Sparse Vector](https://zilliverse.feishu.cn/wiki/JbPDwHqd0iZZSuk5tYicGqKbn9c).​
+</div>
 
-:::
-
-## Set index params​{#set-index-params​}
+## Set index params​
 
 Setting index parameters for number fields is optional but can significantly improve retrieval efficiency.​
 
-In the following example, we create an `AUTOINDEX` for the `age` number field, allowing Milvus to automatically create an appropriate index based on the data type. For more information, refer to [​AUTOINDEX](https://zilliverse.feishu.cn/wiki/Sp4XwxJ6gi27Vok6B3Ycmsirnkg).​
+In the following example, we create an `AUTOINDEX` for the `age` number field, allowing Milvus to automatically create an appropriate index based on the data type. For more information, refer to [​AUTOINDEX](https://milvus.io/docs/glossary.md#Auto-Index).​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 index_params = client.prepare_index_params()​
@@ -208,10 +211,6 @@ index_params.add_index(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.IndexParam;​
@@ -226,10 +225,6 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const indexParams = {​
     index_name: 'inverted_index',​
@@ -238,10 +233,6 @@ const indexParams = {​
 );​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export indexParams='[​
@@ -254,13 +245,16 @@ export indexParams='[​
 
 ```
 
-</TabItem></Tabs>
-
-In addition to `AUTOINDEX`, you can specify other number field index types. For supported index types, refer to [​Scalar Indexes](https://zilliverse.feishu.cn/wiki/PdSnwO3jWiGZHAkW510c5zg0nmm).​
+In addition to `AUTOINDEX`, you can specify other number field index types. For supported index types, refer to [​Scalar Indexes](scalar_index.md).​
 
 Moreover, before creating the collection, you must create an index for the vector field. In this example, we use `AUTOINDEX` to simplify vector index settings.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # Add vector index​
@@ -272,10 +266,6 @@ index_params.add_index(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 indexes.add(IndexParam.builder()​
         .fieldName("embedding")​
@@ -284,10 +274,6 @@ indexes.add(IndexParam.builder()​
         .build());​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 import { IndexType } from "@zilliz/milvus2-sdk-node";​
@@ -307,10 +293,6 @@ const indexParams = [​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export indexParams='[​
         {​
@@ -327,13 +309,16 @@ export indexParams='[​
 
 ```
 
-</TabItem></Tabs>
-
-## Create collection​{#create-collection​}
+## Create collection​
 
 Once the schema and indexes are defined, you can create a collection that includes number fields.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # Create Collection​
@@ -345,10 +330,6 @@ client.create_collection(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 CreateCollectionReq requestCreate = CreateCollectionReq.builder()​
         .collectionName("my_scalar_collection")​
@@ -359,10 +340,6 @@ client.createCollection(requestCreate);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 client.create_collection({​
     collection_name: "my_scalar_collection",​
@@ -371,10 +348,6 @@ client.create_collection({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -389,13 +362,16 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Insert data​{#insert-data​}
+## Insert data​
 
 After creating the collection, you can insert data that includes number fields.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 data = [​
@@ -410,10 +386,6 @@ client.insert(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import com.google.gson.Gson;​
@@ -435,10 +407,6 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const data = [​
   { age: 25, price: 99.99, pk: 1, embedding: [0.1, 0.2, 0.3] },​
@@ -453,10 +421,6 @@ client.insert({​
 ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -474,21 +438,24 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 In this example, we insert data that includes `age`, `price`, `pk` (primary field), and vector representations (`embedding`). To ensure that the inserted data matches the fields defined in the schema, it's recommended to check data types in advance to avoid errors.​
 
-If you set `enable_dynamic_fields=True` when defining the schema, Milvus allows you to insert number fields that were not defined in advance. However, keep in mind that this may increase the complexity of queries and management, potentially impacting performance. For more information, refer to [​Dynamic Field](https://zilliverse.feishu.cn/wiki/OVxRwZWxNi4pYrkdKxCcOuY2nf1).​
+If you set `enable_dynamic_fields=True` when defining the schema, Milvus allows you to insert number fields that were not defined in advance. However, keep in mind that this may increase the complexity of queries and management, potentially impacting performance. For more information, refer to [​Dynamic Field](enable_dynamic_field.md).​
 
-## Search and query​{#search-and-query​}
+## Search and query​
 
 After adding number fields, you can use them for filtering in search and query operations to achieve more precise search results.​
 
-### Filter queries​{#filter-queries​}
+### Filter queries​
 
 After adding number fields, you can use them for filtering in queries. For example, you can query all entities where `age` is between 30 and 40:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 filter = "30 <= age <= 40"​
@@ -505,10 +472,6 @@ print(res)​
 # data: ["{'age': 30, 'price': np.float32(149.5), 'pk': 2}", "{'age': 35, 'price': np.float32(199.99), 'pk': 3}"] ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.QueryReq;​
@@ -529,10 +492,6 @@ System.out.println(resp.getQueryResults());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 client.query({​
     collection_name: 'my_scalar_collection',​
@@ -541,10 +500,6 @@ client.query({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -561,15 +516,18 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
+This query expression returns all matching entities and outputs their `age` and `price` fields. For more information on filter queries, refer to [​Metadata Filtering](metadata-filtering.md).​
 
-This query expression returns all matching entities and outputs their `age` and `price` fields. For more information on filter queries, refer to [​Metadata Filtering](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow).​
-
-### Vector search with number filtering​{#vector-search-with-number-filtering​}
+### Vector search with number filtering​
 
 In addition to basic number field filtering, you can combine vector similarity searches with number field filters. For example, the following code shows how to add a number field filter to a vector search:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 filter = "25 <= age <= 35"​
@@ -589,10 +547,6 @@ print(res)​
 # data: ["[{'id': 1, 'distance': -0.06000000238418579, 'entity': {'age': 25, 'price': 99.98999786376953}}, {'id': 2, 'distance': -0.12000000476837158, 'entity': {'age': 30, 'price': 149.5}}, {'id': 3, 'distance': -0.18000000715255737, 'entity': {'age': 35, 'price': 199.99000549316406}}]"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq;​
@@ -618,10 +572,6 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 client.search({​
     collection_name: 'my_scalar_collection',​
@@ -632,10 +582,6 @@ client.search({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -656,7 +602,5 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-In this example, we first define a query vector and add a filter condition `25 <= age <= 35` during the search. This ensures that the search results are not only similar to the query vector but also meet the specified age range. For more information, refer to [​Metadata Filtering](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow).​
+In this example, we first define a query vector and add a filter condition `25 <= age <= 35` during the search. This ensures that the search results are not only similar to the query vector but also meet the specified age range. For more information, refer to [​Metadata Filtering](metadata-filtering.md).​
 
