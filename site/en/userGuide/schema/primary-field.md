@@ -1,8 +1,14 @@
+---
+id: primary-field.md
+title: "Primary Field & AutoID"
+summary: The primary field uniquely identifies an entity. This page introduces how to add the primary field of two different data types and how to enable Milvus to automatically allocate primary field values.​
+---
+
 # Primary Field & AutoID​
 
 The primary field uniquely identifies an entity. This page introduces how to add the primary field of two different data types and how to enable Milvus to automatically allocate primary field values.​
 
-## Overview​{#overview​}
+## Overview​
 
 In a collection, the primary key of each entity should be globally unique. When adding the primary field, you need to explicitly set its data type to **VARCHAR** or **INT64**. Setting its data type to **INT64** indicates that the primary keys should be an integer similar to `12345`; Setting its data type to **VARCHAR** indicates that the primary keys should be a string similar to `my_entity_1234`.​
 
@@ -10,11 +16,16 @@ You can also enable **AutoID** to make Milvus automatically allocate primary key
 
 The primary field in a collection does not have a default value and cannot be null.​
 
-## Use Int64 Primary Keys​{#use-int64-primary-keys​}
+## Use Int64 Primary Keys​
 
 To use primary keys of the Int64 type, you need to set `datatype` to `DataType.INT64` and set `is_primary` to `true`. If you also need Milvus to allocate the primary keys for the incoming entities, also set `auto_id` to `true`.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -31,10 +42,6 @@ schema.add_field(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.DataType;​
@@ -55,10 +62,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -74,18 +77,10 @@ const schema = [​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export primaryField='{​
@@ -103,13 +98,16 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
-
-## Use VarChar Primary Keys​{#use-varchar-primary-keys​}
+## Use VarChar Primary Keys​
 
 To use VarChar primary keys, in addition to changing the value of the `data_type` parameter to `DataType.VARCHAR`, you also need to set the `max_length` parameter for the field. ​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 schema.add_field(​
@@ -123,10 +121,6 @@ schema.add_field(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.DataType;​
@@ -144,10 +138,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 schema.push({​
     name: "my_id",​
@@ -161,18 +151,10 @@ schema.push({​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // Go 缺失​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export primaryField='{​
@@ -193,4 +175,3 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
