@@ -272,7 +272,7 @@ public static void main(String[] args) throws Exception {
 ```bash
 export MILVUS_URI="localhost:19530"
 
-curl --request POST "http://${MILVUS_URI}/v2/vectordb/jobs/import/get_progress" \
+curl --request POST "http://${MILVUS_URI}/v2/vectordb/jobs/import/describe" \
 --header "Content-Type: application/json" \
 --data-raw '{
     "jobId": "449839014328146739"
@@ -381,3 +381,41 @@ The possible values are as follows:
     }
 }
 ```
+
+## Limitations
+
+- Each import file size should not exceed **16 GB**.
+
+- The maximum number of import requests is limited to **1024**.
+
+- The maximum number of file per import request should not exceed **1024**.
+
+- Only one partition name can be specified in an import request. If no partition name is specified, the data will be inserted into the default partition. Additionally, you cannot set a partition name in the import request if you have set the Partition Key in the target collection.
+
+## Constraints
+
+Before importing data, ensure that you have acknowledged the constaints in terms of the following Milvus behaviors:
+
+- Constraints regarding the Load behavior:
+
+    - If a collection has already been loaded before an import, you can use the `refresh_load` function to load the newly imported data after the import is complete.
+
+- Constraints regarding the query & search behaviors:
+
+    - Before the import job status is **Completed**, the newly import data is guaranteed to be invisible to queries and searches.
+
+    - Once the job status is **Completed**,
+
+        - If the collection is not loaded, you can use the `load` function to load the newly imported data.
+
+        - If the collection is already loaded, you can call `load(is_refresh=True)` to load the imported data.
+
+- Constraints regarding the delete behavior:
+
+    - Before the import job status is **Completed**, deletion is not guaranteed and may or may not succeed.
+
+    - Deletion after the job status is **Completed** is guaranted to succeed.
+
+## Recommendations
+
+We highly recommend utilizing the multi-file import feature, which allows you to upload several files in a single request. This method not only simplifies the import process but also significantly boosts import performance. Meanwhile, by consolidating your uploads, you can reduce the time spent on data management and make your workflow more efficient.
