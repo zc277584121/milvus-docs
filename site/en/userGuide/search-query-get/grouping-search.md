@@ -1,18 +1,24 @@
+---
+id: grouping-search.md
+summary: A grouping search allows Milvus to group the search results by the values in a specified field to aggregate data at a higher level. For example, you can use a basic ANN search to find books similar to the one at hand, but you can use a grouping search to find the book categories that may involve the topics discussed in that book. This topic describes how to use Grouping Search along with key considerations.​
+title: Grouping Search
+---
+
 # Grouping Search​
 
 A grouping search allows Milvus to group the search results by the values in a specified field to aggregate data at a higher level. For example, you can use a basic ANN search to find books similar to the one at hand, but you can use a grouping search to find the book categories that may involve the topics discussed in that book. This topic describes how to use Grouping Search along with key considerations.​
 
-## Overview​{#overview​}
+## Overview​
 
 When entities in the search results share the same value in a scalar field, this indicates that they are similar in a particular attribute, which may negatively impact the search results.​
 
 Assume a collection stores multiple documents (denoted by **docId**). To retain as much semantic information as possible when converting documents into vectors, each document is split into smaller, manageable paragraphs (or **chunks**) and stored as separate entities. Even though the document is divided into smaller sections, users are often still interested in identifying which documents are most relevant to their needs.​
 
-![A1yHdkIOworn6rxDp2ocVzUgnGd](请手动下载图片并替换)
+![ANN Search](../../../../assets/ann-search.png)
 
 When performing an Approximate Nearest Neighbor (ANN) search on such a collection, the search results may include several paragraphs from the same document, potentially causing other documents to be overlooked, which may not align with the intended use case.​
 
-![OVK4d69jToum2JxJlONcTLVZnXc](请手动下载图片并替换)
+![Grouping Search](../../../../assets/grouping-search.png)
 
 To improve the diversity of search results, you can add the `group_by_field` parameter in the search request to enable Grouping Search. As shown in the diagram, you can set `group_by_field` to `docId`. Upon receiving this request, Milvus will:​
 
@@ -22,17 +28,17 @@ To improve the diversity of search results, you can add the `group_by_field` par
 
 - Return the top results for each group, as defined by the `limit` parameter, with the most similar entity from each group.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
 By default, Grouping Search returns only one entity per group. If you want to increase the number of results to return per group, you can control this with the `group_size` and `strict_group_size` parameters.​
 
-:::
+</div>
 
-## Perform Grouping Search​{#perform-grouping-search​}
+## Perform Grouping Search​
 
 This section provides example code to demonstrate the use of Grouping Search. The following example assumes the collection includes fields for `id`, `vector`, `chunk`, and `docId`.​
 
-```Python
+```json
 [​
         {"id": 0, "vector": [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592], "chunk": "pink_8682", "docId": 1},​
         {"id": 1, "vector": [0.19886812562848388, 0.06023560599112088, 0.6976963061752597, 0.2614474506242501, 0.838729485096104], "chunk": "red_7025", "docId": 5},​
@@ -51,7 +57,12 @@ This section provides example code to demonstrate the use of Grouping Search. Th
 
 In the search request, set both `group_by_field` and `output_fields` to `docId`. Milvus will group the results by the specified field and return the most similar entity from each group, including the value of `docId` for each returned entity.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -77,10 +88,6 @@ res = client.search(​
 doc_ids = [result['entity']['docId'] for result in res[0]]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -120,10 +127,6 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 // SearchResp.SearchResult(entity={docId=3}, score=0.3611898, id=3)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 // nolint​
@@ -166,10 +169,6 @@ func ExampleClient_Search_grouping() {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -193,10 +192,6 @@ var docIds = res.results.map(result => result.entity.docId)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
@@ -218,15 +213,18 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 In the request above, `limit=3` indicates that the system will return search results from three groups, with each group containing the single most similar entity to the query vector.​
 
-## Configure group size​{#configure-group-size​}
+## Configure group size​
 
 By default, Grouping Search returns only one entity per group. If you want multiple results per group, adjust the `group_size` and `strict_group_size` parameters.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # Group search results​
@@ -242,10 +240,6 @@ res = client.search(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 FloatVec queryVector = new FloatVec(new float[]{0.14529211512077012f, 0.9147257273453546f, 0.7965055218724449f, 0.7009258593102812f, 0.5605206522382088f});​
@@ -280,10 +274,6 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -309,10 +299,6 @@ var docIds = res.results.map(result => result.entity.docId)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
@@ -333,17 +319,15 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 In the example above:​
 
 - `group_size`: Specifies the desired number of entities to return per group. For instance, setting `group_size=2` means each group (or each `docId`) should ideally return two of the most similar paragraphs (or **chunks**). If `group_size` is not set, the system defaults to returning one result per group.​
 
 - `strict_group_size`: This boolean parameter controls whether the system should strictly enforce the count set by `group_size`. When `strict_group_size=True`, the system will attempt to include the exact number of entities specified by `group_size` in each group (e.g., two paragraphs), unless there isn’t enough data in that group. By default (`strict_group_size=False`), the system prioritizes meeting the number of groups specified by the `limit` parameter, rather than ensuring each group contains `group_size` entities. This approach is generally more efficient in cases where data distribution is uneven.​
 
-For additional parameter details, refer to  [​search()](https://zilliverse.feishu.cn/docx/T1npdvcRMoIjezxK021cPvfpn7c?from=from_copylink).​
+For additional parameter details, refer to  [​search()](https://milvus.io/api-reference/pymilvus/v2.4.x/MilvusClient/Vector/search.md).​
 
-## Considerations​{#considerations​}
+## Considerations​
 
 - **Number of groups**: The `limit` parameter controls the number of groups from which search results are returned, rather than the specific number of entities within each group. Setting an appropriate `limit` helps control search diversity and query performance. Reducing `limit` can reduce computation costs if data is densely distributed or performance is a concern.​
 

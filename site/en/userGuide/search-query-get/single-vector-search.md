@@ -9,7 +9,7 @@ title: Ba​sic ANN Search
 
 Based on an index file recording the sorted order of vector embeddings, the Approximate Nearest Neighbor (ANN) search locates a subset of vector embeddings based on the query vector carried in a received search request, compares the query vector with those in the subgroup, and returns the most similar results. With ANN search, Zilliz Cloud provides an efficient search experience. This page helps you to learn how to conduct basic ANN searches.​
 
-## Overview​{#overview​}
+## Overview​
 
 The ANN and the k-Nearest Neighbors (kNN) search are the usual methods in vector similarity searches. In a kNN search, you must compare all vectors in a vector space with the query vector carried in the search request before figuring out the most similar ones, which is time-consuming and resource-intensive.​
 
@@ -19,29 +19,33 @@ ANN searches depend on pre-built indexes, and the search throughput, memory usag
 
 To reduce the learning curve, Zilliz Cloud provides **AUTOINDEX**. With **AUTOINDEX**, Zilliz Cloud can analyze the data distribution within your collection while building the index and sets the most optimized index parameters based on the analysis to strike a balance between search performance and correctness. ​
 
-For details on AUTOINDEX and applicable metric types, refer to [​AUTOINDEX](https://zilliverse.feishu.cn/wiki/Sp4XwxJ6gi27Vok6B3Ycmsirnkg) and [​Metric Types](https://zilliverse.feishu.cn/wiki/EOxmwUDxMiy2cpkOfIsc1dYzn4c). In this section, you will find detailed information about the following topics:​
+For details on AUTOINDEX and applicable metric types, refer to [​AUTOINDEX](https://milvus.io/docs/glossary.md#Auto-Index) and [​Metric Types](metric.md). In this section, you will find detailed information about the following topics:​
 
-- [Single-vector search](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd#CduodT384oDTX7x2IWqcjZv9nSg)​
+- [Single-vector search](#Single-Vector-Search)​
 
-- [Bulk-vector search](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd#OSm1dPDOjoBk0WxLDz6cz0Xjnxb)​
+- [Bulk-vector search](#Bulk-Vector-Search)​
 
-- [ANN search in partition](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd#Ux9kd25VioYvdHxpBkdcabD2nTg)​
+- [ANN search in partition](#ANN-Search-in-Partition)​
 
-- [Use output fields](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd#Sm86dgCilopuURxM8pgcok8In5f)​
+- [Use output fields](#Use-Output-Fields)​
 
-- [Use limit and offset](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd#K0GIdj7YKox4wzxZCTrcbtBgnyc)​
+- [Use limit and offset](#Use-Limit-and-Offset)​
 
-- [Use level](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd#WZCsdyVa0oactBxGgOncImEdnsc)​
+- [Enhancing ANN search](#Enhance-ANN-Search)​
 
-- [Enhancing ANN search](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd#XaaRd07SEovBMixGYrlcgaqqn6b)​
-
-## Single-Vector Search​{#single-vector-search​}
+## Single-Vector Search​
 
 In ANN searches, a single-vector search refers to a search that involves only one query vector. Based on the pre-built index and the metric type carried in the search request, Zilliz Cloud will find the top-K vectors most similar to the query vector.​
 
-In this section, you will learn how to conduct a single-vector search. The code snippet assumes you have created a collection in a [quick-setup](https://zilliverse.feishu.cn/wiki/BkpkwR8Y1iwxPokhqy0cKY3xn8b#Kzm3d2uGlovuw6xP6Jic4buEnMh) manner. The search request carries a single query vector and asks Zilliz Cloud to use Inner Product (IP) to calculate the similarity between query vectors and vectors in the collection and returns the three most similar ones.​
+In this section, you will learn how to conduct a single-vector search. The code snippet assumes you have created a collection in a [quick-setup](create-collection-instantly#Quick-Setup) manner. The search request carries a single query vector and asks Zilliz Cloud to use Inner Product (IP) to calculate the similarity between query vectors and vectors in the collection and returns the three most similar ones.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -87,10 +91,6 @@ for hits in res:​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
@@ -129,10 +129,6 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 // SearchResp.SearchResult(entity={}, score=0.866088, id=7)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -183,10 +179,6 @@ func ExampleClient_Search_basic() {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -212,10 +204,6 @@ console.log(res.results)​
 // ]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -253,8 +241,6 @@ curl --request POST \​
 # }​
 
 ```
-
-</TabItem></Tabs>
 
 Milvus ranks the search results by their similarity scores to the query vector in descending order. The similarity score is also termed the distance to the query vector, and its value ranges vary with the metric types in use.​
 
@@ -298,9 +284,17 @@ The following table lists the applicable metric types and the corresponding dist
 
 </td></tr></tbody></table>
 
-## Bulk-Vector Search​{#bulk-vector-search​}
+## Bulk-Vector Search​
 
 Similarly, you can include multiple query vectors in a search request. Zilliz Cloud will conduct ANN searches for the query vectors in parallel and return two sets of results.​
+
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 7. Search with multiple vectors​
@@ -364,8 +358,6 @@ for hits in res:​
 
 ```
 
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq​
 import io.milvus.v2.service.vector.request.data.BaseVector;​
@@ -404,10 +396,6 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 // 7. Search with multiple vectors​
 const query_vectors = [​
@@ -439,10 +427,6 @@ console.log(res.results)​
 // ]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -498,15 +482,19 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## ANN Search in Partition​{#ann-search-in-partition​}
+## ANN Search in Partition​
 
 Suppose you have created multiple partitions in a collection, and you can narrow the search scope to a specific number of partitions. In that case, you can include the target partition names in the search request to restrict the search scope within the specified partitions. Reducing the number of partitions involved in the search improves search performance.​
 
 The following code snippet assumes a partition named **PartitionA** in your collection.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 4. Single vector search​
@@ -546,10 +534,6 @@ for hits in res:​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
@@ -581,10 +565,6 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 // 4. Single vector search​
 var query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
@@ -606,10 +586,6 @@ console.log(res.results)​
 // ]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -649,13 +625,17 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Use Output Fields​{#use-output-fields​}
+## Use Output Fields​
 
 In a search result, Zilliz Cloud includes the primary field values and similarity distances/scores of the entities that contain the top-K vector embeddings by default. You can include the target field names in a search request as the output fields to make the search results carry the values from other fields in these entities.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 4. Single vector search​
@@ -700,10 +680,6 @@ print(res)​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
@@ -735,10 +711,6 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 // 4. Single vector search​
 var query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
@@ -760,10 +732,6 @@ console.log(res.results)​
 // ]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -806,9 +774,7 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Use Limit and Offset​{#use-limit-and-offset​}
+## Use Limit and Offset​
 
 You may notice that the parameter `limit` carried in the search requests determines the number of entities to include in the search results. This parameter specifies the maximum number of entities to return in a single search, and it is usually termed **top-K**.​
 
@@ -850,7 +816,13 @@ The table below outlines how to set the **Limit** and **Offset** parameters for 
 
 Note that, the sum of `limit` and `offset` in a single ANN search should be less than 16,384.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # 4. Single vector search​
@@ -868,10 +840,6 @@ res = client.search(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq​
@@ -904,10 +872,6 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 // 4. Single vector search​
 var query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
@@ -921,10 +885,6 @@ res = await client.search({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -946,125 +906,7 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Use Level​{#use-level​}
-
-To optimize ANN searches, Zilliz Cloud provides a parameter named `level` to control the search precision with simplified search optimization.​
-
-This parameter ranges from `1` to `5` and defaults to `1`. Increasing the value improves search precisions with a degradation in search performance. In common cases, the default value yields a maximum of 90% recall rate. You can increase the value as required.​
-
-<Tabs><TabItem value="Python" label="python" default>
-
-```Python
-# 4. Single vector search​
-query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
-​
-res = client.search(​
-    collection_name="quick_setup",​
-    data=[query_vector],​
-    limit=3, # The number of results to return​
-    search_params={​
-        params: {​
-            # highlight-next-line​
-            "level": 1 # The precision control​
-        }​
-    }​
-)​
-
-```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
-
-```Java
-import io.milvus.v2.service.vector.request.SearchReq​
-import io.milvus.v2.service.vector.request.data.FloatVec;​
-import io.milvus.v2.service.vector.response.SearchResp​
-​
-FloatVec queryVector = new FloatVec(new float[]{0.3580376395471989f, -0.6023495712049978f, 0.18414012509913835f, -0.26286205330961354f, 0.9029438446296592f});​
-Map<String, Object> params = new HashMap<>();​
-params.put("level", 1);​
-SearchReq searchReq = SearchReq.builder()​
-        .collectionName("quick_setup")​
-        .data(Collections.singletonList(queryVector))​
-        .topK(3)​
-        .searchParams(params)​
-        .build();​
-​
-SearchResp searchResp = client.search(searchReq);​
-​
-List<List<SearchResp.SearchResult>> searchResults = searchResp.getSearchResults();​
-for (List<SearchResp.SearchResult> results : searchResults) {​
-    System.out.println("TopK results:");​
-    for (SearchResp.SearchResult result : results) {​
-        System.out.println(result);​
-    }​
-}​
-​
-// Output​
-// TopK results:​
-// SearchResp.SearchResult(entity={}, score=0.95944905, id=5)​
-// SearchResp.SearchResult(entity={}, score=0.8689616, id=1)​
-// SearchResp.SearchResult(entity={}, score=0.866088, id=7)​
-
-```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
-```JavaScript
-// 4. Single vector search​
-var query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
-​
-res = await client.search({​
-    collection_name: "quick_setup",​
-    data: query_vector,​
-    limit: 3, // The number of results to return,​
-    params: {​
-        // highlight-next-line​
-        "level": 1 // The precision control​
-    }​
-})​
-
-```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
-```Bash
-export CLUSTER_ENDPOINT="http://localhost:19530"​
-export TOKEN="root:Milvus"​
-​
-curl --request POST \​
---url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
---header "Authorization: Bearer ${TOKEN}" \​
---header "Content-Type: application/json" \​
--d '{​
-    "collectionName": "quick_setup",​
-    "data": [​
-        [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
-        [0.19886812562848388, 0.06023560599112088, 0.6976963061752597, 0.2614474506242501, 0.838729485096104]​
-    ],​
-    "annsField": "vector",​
-    "limit": 3,​
-    "searchParams":{​
-        "params":{​
-            "level":1​
-        }​
-    }​
-}'​
-​
-# {"code":0,"cost":0,"data":[{"distance":1,"id":0},{"distance":0.6290165,"id":1},{"distance":0.5975797,"id":4},{"distance":0.9999999,"id":1},{"distance":0.7408552,"id":7},{"distance":0.6290165,"id":0}]}​
-
-```
-
-</TabItem></Tabs>
-
-## Enhancing ANN Search​{#enhancing-ann-search​}
+## Enhancing ANN Search​
 
 AUTOINDEX considerably flattens the learning curve of ANN searches. However, the search results may not always be correct as the top-K increases. By reducing the search scope, improving search result relevancy, and diversifying the search results, Zilliz Cloud works out the following search enhancements.​
 
@@ -1072,55 +914,59 @@ AUTOINDEX considerably flattens the learning curve of ANN searches. However, the
 
     You can include filtering conditions in a search request so that Zilliz Cloud conducts metadata filtering before conducting ANN searches, reducing the search scope from the whole collection to only the entities matching the specified filtering conditions.​
 
-    For more about metadata filtering and filtering conditions, refer to [​Filtered Search](https://zilliverse.feishu.cn/wiki/CpBbwcJ87irHp0k9oCSc2RNIn3d) and [​Metadata Filtering](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow).​
+    For more about metadata filtering and filtering conditions, refer to [​Filtered Search](filtered-search.md) and [​Metadata Filtering](metadata-filtering.md).​
 
 - Range Search​
 
     You can improve search result relevancy by restricting the distance or score of the returned entities within a specific range. In Zilliz Cloud, a range search involves drawing two concentric circles with the vector embedding most similar to the query vector as the center. The search request specifies the radius of both circles, and Zilliz Cloud returns all vector embeddings that fall within the outer circle but not the inner circle.​
 
-    For more about range search, refer to [​Range Search](https://zilliverse.feishu.cn/wiki/GnvtwMeQWi8iRCk7dGccCBQZnOh).​
+    For more about range search, refer to [​Range Search](range-search.md).​
 
 - Grouping Search​
 
     If the returned entities hold the same value in a specific field, the search results may not represent the distribution of all vector embeddings in the vector space. To diversify the search results, consider using the grouping search.​
 
-    For more about grouping search, refer to [​Grouping Search](https://zilliverse.feishu.cn/wiki/JWZGw89MBiUDBNkhtGfcyyUcnsd),​
+    For more about grouping search, refer to [​Grouping Search](grouping-search.md),​
 
 - Hybrid Search​
 
     A collection can include up to four vector fields to save the vector embeddings generated using different embedding models. By doing so, you can use a hybrid search to rerank the search results from these vector fields, improving the recall rate.​
 
-    For more about hybrid search, refer to [​Hybrid Search](https://zilliverse.feishu.cn/wiki/WTsmwWdgOiKnwpkdZdScp093njh).​
+    For more about hybrid search, refer to [​Hybrid Search](multi-vector-search.md).​
 
 - Search Iterator​
 
     A single ANN search returns a maximum of 16,384 entities. Consider using search iterators if you need more entities to return in a single search.​
 
-    For details on search iterators, refer to [​Search Iterator](https://zilliverse.feishu.cn/wiki/QVTnwVz2aifvSAkgomAc9KWRnHb).​
+    For details on search iterators, refer to [​Search Iterator](with-iterators.md).​
 
 - Full-Text Search​
 
     Full text search is a feature that retrieves documents containing specific terms or phrases in text datasets, then ranking the results based on relevance. This feature overcomes semantic search limitations, which might overlook precise terms, ensuring you receive the most accurate and contextually relevant results. Additionally, it simplifies vector searches by accepting raw text input, automatically converting your text data into sparse embeddings without the need to manually generate vector embeddings.​
 
-    For details on full-text search, refer to [​Full Text Search](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf).​
+    For details on full-text search, refer to [​Full Text Search](full-text-search.md).​
 
 - Keyword Match​
 
     Keyword match in Milvus enables precise document retrieval based on specific terms. This feature is primarily used for filtered search to satisfy specific conditions and can incorporate scalar filtering to refine query results, allowing similarity searches within vectors that meet scalar criteria.​
 
-    For details on keyword match, refer to [​Keyword Match](https://zilliverse.feishu.cn/wiki/RQQKwqhZUiubFzkHo4WcR62Gnvh).​
+    For details on keyword match, refer to [​Keyword Match](keyword-match.md).​
 
 - Use Partition Key​
 
     Involving multiple scalar fields in metadata filtering and using a rather complicated filtering condition may affect search efficiency. Once you set a scalar field as the partition key and use a filtering condition involving the partition key in the search request, it can help restrict the search scope within the partitions corresponding to the specified partition key values. ​
 
-    For details on the partition key, refer to [​Use Partition Key](https://zilliverse.feishu.cn/wiki/QWqiwrgJViA5AJkv64VcgQX2nKd).​
+    For details on the partition key, refer to [​Use Partition Key](use-partition-key.md).​
 
 - Use mmap​
 
-    For details on mmap-settings, refer to [​Use mmap](https://zilliverse.feishu.cn/wiki/AxWmwp8TFiR8tMkUWcZcEJlrnab).​
+    In Milvus, memory-mapped files allow for direct mapping of file contents into memory. This feature enhances memory efficiency, particularly in situations where available memory is scarce but complete data loading is infeasible. This optimization mechanism can increase data capacity while ensuring performance up to a certain limit; however, when the amount of data exceeds memory by too much, search and query performance may suffer serious degradation, so please choose to turn this feature on or off as appropriate.
+
+    For details on mmap-settings, refer to [​Use mmap](mmap.md).​
 
 - Clustering Compaction​
 
-    For details on clustering compactions, refer to [​Clustering Compaction](https://zilliverse.feishu.cn/wiki/Vc5TwGAoziR4GRkhUmwc1SqCnCg).​
+    Clustering compaction is designed to improve search performance and reduce costs in large collections. This guide will help you understand clustering compaction and how this feature can improve search performance.
+
+    For details on clustering compactions, refer to [​Clustering Compaction](clustering-compaction.md).​
 

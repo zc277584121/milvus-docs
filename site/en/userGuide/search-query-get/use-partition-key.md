@@ -7,13 +7,13 @@ title: Use Partition Key
 
 The Partition Key is a search optimization solution based on partitions. By designating a specific scalar field as the Partition Key and specifying filtering conditions based on the Partition Key during the search, the search scope can be narrowed down to several partitions, thereby improving search efficiency. This article will introduce how to use the Partition Key and related considerations.​
 
-## Overview​{#overview​}
+## Overview​
 
 In Milvus, you can use partitions to implement data segregation and improve search performance by restricting the search scope to specific partitions. If you choose to manage partitions manually, you can create a maximum of 1,024 partitions in a collection, and insert entities into these partitions based on a specific rule so that you can narrow the search scope by restricting searches within a specific number of partitions.​
 
 Milvus introduces the Partition Key for you to reuse partitions in data segregation to overcome the limit on the number of partitions you can create in a collection. When creating a collection, you can use a scalar field as the Partition Key. Once the collection is ready, Milvus creates the specified number of partitions inside the collection with each partition corresponding to a range of the values in the Partition Key. Upon receiving inserted entities, Milvus stores them into different partitions based on their Partition Key values.​
 
-![XIwMd6DFYobFbmxfm5Zc85E2nUe](请手动下载图片并替换)
+![Partition v.s. Partition Key](../../../../assets/partition-vs-partition-key.png)
 
 The following figure illustrates how Milvus processes the search requests in a collection with or without the Partition Key feature enabled. ​
 
@@ -21,9 +21,9 @@ The following figure illustrates how Milvus processes the search requests in a c
 
 - If the Partition Key is enabled, Milvus determines the search scope based on the Partition Key value specified in a search filter and scans only the entities within the partitions that match. ​
 
-![Arf6dlKtyoMCDhxAcsNc3I93nYb](请手动下载图片并替换)
+![With or Without Partition Key](../../../../assets/with-and-without-partition-key.png)
 
-## Use Partition Key​{#use-partition-key​}
+## Use Partition Key​
 
 To use the Partition Key, you need to​
 
@@ -33,11 +33,17 @@ To use the Partition Key, you need to​
 
 - Create a filtering condition based on the Partition Key.​
 
-### Set Partition Key​{#set-partition-key​}
+### Set Partition Key​
 
 To designate a scalar field as the Partition Key, you need to set its `is_partition_key` attribute to `true` when you add the scalar field.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import (​
@@ -61,10 +67,6 @@ schema.add_field(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -92,10 +94,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -116,10 +114,6 @@ const fields = [​
 ]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export schema='{​
@@ -151,17 +145,19 @@ export schema='{​
 
 ```
 
-</TabItem></Tabs>
-
-![Z2gBdSy8LofbJVxWvUFcK2m7nBe](请手动下载图片并替换)
-
-### Set Partition Numbers​{#set-partition-numbers​}
+### Set Partition Numbers​
 
 When you designate a scalar field in a collection as the Partition Key, Milvus automatically creates 16 partitions in the collection. Upon receiving an entity, Milvus chooses a partition based on the Partition Key value of this entity and stores the entity in the partition, resulting in some or all partitions holding entities with different Partition Key values. ​
 
 You can also determine the number of partitions to create along with the collection. This is valid only if you have a scalar field designated as the Partition Key.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.create_collection(​
@@ -172,10 +168,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.collection.request.CreateCollectionReq;​
@@ -189,10 +181,6 @@ CreateCollectionReq createCollectionReq = CreateCollectionReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 await client.create_collection({​
     collection_name: "my_collection",​
@@ -201,10 +189,6 @@ await client.create_collection({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export params='{​
@@ -226,15 +210,19 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-### Create Filtering Condition​{#create-filtering-condition​}
+### Create Filtering Condition​
 
 When conducting ANN searches in a collection with the Partition Key feature enabled, you need to include a filtering expression involving the Partition Key in the search request. In the filtering expression, you can restrict the Partition Key value within a specific range so that Milvus restricts the search scope within the corresponding partitions.​
 
 The following examples demonstrate Partition-Key-based filtering based on a specific Partition Key value and a set of Partition Key values.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Go">Go</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # Filter based on a single partition key value, or​
@@ -245,10 +233,6 @@ filter='partition_key in ["x", "y", "z"] && <other conditions>'​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 // Filter based on a single partition key value, or​
 String filter = "partition_key == 'x' && <other conditions>";​
@@ -257,10 +241,6 @@ String filter = "partition_key == 'x' && <other conditions>";​
 String filter = "partition_key in ['x', 'y', 'z'] && <other conditions>";​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 // Filter based on a single partition key value, or​
@@ -271,10 +251,6 @@ const filter = 'partition_key in ["x", "y", "z"] && <other conditions>'​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 # Filter based on a single partition key value, or​
 export filter='partition_key == "x" && <other conditions>'​
@@ -283,7 +259,3 @@ export filter='partition_key == "x" && <other conditions>'​
 export filter='partition_key in ["x", "y", "z"] && <other conditions>'​
 
 ```
-
-</TabItem></Tabs>
-​
-

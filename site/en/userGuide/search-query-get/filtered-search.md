@@ -1,12 +1,19 @@
+---
+id: filtered-search.md
+title: Filtered Search​
+related_key: ann search, filtered search
+summary: An ANN search finds vector embeddings most similar to specified vector embeddings. However, the search results may not always be correct. You can include filtering conditions in a search request so that Zilliz Cloud conducts metadata filtering before conducting ANN searches, reducing the search scope from the whole collection to only the entities matching the specified filtering conditions.​
+---
+
 # Filtered Search​
 
 An ANN search finds vector embeddings most similar to specified vector embeddings. However, the search results may not always be correct. You can include filtering conditions in a search request so that Zilliz Cloud conducts metadata filtering before conducting ANN searches, reducing the search scope from the whole collection to only the entities matching the specified filtering conditions.​
 
-## Overview​{#overview​}
+## Overview
 
 If a collection contains both vector embeddings and their metadata, you can filter metadata before ANN search to improve the relevancy of the search result. Once Zilliz Cloud receives a search request carrying a filtering condition, it restricts the search scope within the entities matching the specified filtering condition.​
 
-![Lu0Ad8pjJo5cB2x5SbAcsyG9nke](请手动下载图片并替换)
+![Filtered search](../../../../assets/filtered-search.png)
 
 As shown in the above diagram, the search request carries `chunk like % red %` as the filtering condition, indicating that Zilliz Cloud should conduct the ANN search within all the entities that have the word `red` in the `chunk` field. Specifically, Zilliz Cloud does the following:​
 
@@ -16,7 +23,7 @@ As shown in the above diagram, the search request carries `chunk like % red %` a
 
 - Returns top-K entities.​
 
-## Examples​{#examples​}
+## Examples
 
 This section demonstrates how to conduct a filtered search. Code snippets in this section assume  you already have the following entities in your collection. Each entity has four fields, namely **id**, **vector**, **color**, and **likes**.​
 
@@ -38,7 +45,12 @@ This section demonstrates how to conduct a filtered search. Code snippets in thi
 
 The search request in the following code snippet carries a filtering condition and several output fields.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -66,10 +78,6 @@ for hits in res:​
         print(hit)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -108,10 +116,6 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 // SearchResp.SearchResult(entity={color=red_9392, likes=58}, score=-0.24996188, id=6)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -162,10 +166,6 @@ func ExampleClient_Search_filter() {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -186,10 +186,6 @@ const res = await client.search({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -212,8 +208,6 @@ curl --request POST \​
 # {"code":0,"cost":0,"data":[]}​
 
 ```
-
-</TabItem></Tabs>
 
 The filtering condition carried in the search request reads `color like "red%" and likes > 50`. It uses the and operator to include two conditions: the first one asks for entities that have a value starting with `red` in the `color` field, and the other asks for entities with a value greater than `50` in the `likes` field. There are only two entities meeting these requirements. With the top-K set to `3`, Zilliz Cloud will calculate the distance between these two entities to the query vector and return them as the search results.​
 

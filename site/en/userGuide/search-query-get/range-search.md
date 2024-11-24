@@ -1,12 +1,18 @@
+---
+id: range-search.md
+summary: A range search improves search result relevancy by restricting the distance or score of the returned entities within a specific range. This page helps you understand what range search is and the procedures to conduct a range search.​
+title: Range Search
+---
+
 # Range Search​
 
 A range search improves search result relevancy by restricting the distance or score of the returned entities within a specific range. This page helps you understand what range search is and the procedures to conduct a range search.​
 
-## Overview​{#overview​}
+## Overview​
 
 When executing a Range Search request, Milvus uses the most similar vectors to the query vector from the ANN Search results as the center, with the radius specified in the Search request as the outer circle's radius, and the **range_filter** as the inner circle's radius to draw two concentric circles. All vectors with similarity scores that fall within the annular region formed by these two concentric circles will be returned. Here, the **range_filter** can be set to **0**, indicating that all entities within the specified similarity score (radius) will be returned.​
 
-![Gv0odzuoRopvKVxITsycWZOTnMf](请手动下载图片并替换)
+![Range search](../../../../assets/range-search.png)
 
 The above diagram shows that a range search request carries two parameters: radius and **range_filter**. Upon receiving a range search request, Milvus does the following:​
 
@@ -68,13 +74,18 @@ The way to set radius and **range_filter** varies with the metric type of the se
 
 </td></tr></tbody></table>
 
-## Examples​{#examples​}
+## Examples​
 
 This section demonstrates how to conduct a range search. The search requests in the following code snippets do not carry a metric type, indicating the default metric type **COSINE** applies. In this case, ensure that the radius value is smaller than the **range_filter** value.​
 
 In the following code snippets, set `radius` to `0.4` and `range_filter` to `0.6` so that Milvus returns all entities whose distances or scores to the query vector fall within **0.4** to **0.6**.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -106,10 +117,6 @@ for hits in res:​
         print(hit)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -152,18 +159,10 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Go" label="go">
-
 ```Go
 // TODO ​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
@@ -187,10 +186,6 @@ res = await client.search({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​

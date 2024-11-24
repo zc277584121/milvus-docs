@@ -10,7 +10,7 @@ summary: JSON (JavaScript Object Notation) is a lightweight data exchange format
 
 JSON fields are ideal for applications that require metadata to optimize retrieval results. For example, in e-commerce, product vectors can be enhanced with attributes like category, price, and brand. In recommendation systems, user vectors can be combined with preferences and demographic information. Below is an example of a typical JSON field:​
 
-```Python
+```json
 {​
   "category": "electronics",​
   "price": 99.99,​

@@ -1,3 +1,9 @@
+---
+id: metric.md
+summary: Similarity metrics are used to measure similarities among vectors. Choosing an appropriate distance metric helps improve classification and clustering performance significantly.​
+title: Metric Types
+---
+
 # Metric Types​
 
 Similarity metrics are used to measure similarities among vectors. Choosing an appropriate distance metric helps improve classification and clustering performance significantly.​
@@ -60,13 +66,13 @@ The table below summarizes the mapping between different field types and their c
 
 </td></tr></tbody></table>
 
-:::info[📘 Notes​]
+<div class="alert note">"
 
-- For vector fields of the `SPARSE\_FLOAT\_VECTOR` type, use the `BM25` metric type only when performing full text search. For more information, refer to [​Full Text Search](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf).​
+- For vector fields of the `SPARSE\_FLOAT\_VECTOR` type, use the `BM25` metric type only when performing full text search. For more information, refer to [​Full Text Search](full-text-search.md).​
 
 - For vector fields of the `BINARY_VECTOR` type, the dimension value (`dim`) must be a multiple of 8. ​
 
-:::
+</div>
 
 The table below summarizes the characteristics of the similarity distance values of all supported metric types and their value range.​
 
@@ -116,69 +122,69 @@ The table below summarizes the characteristics of the similarity distance values
 
 </td></tr></tbody></table>
 
-## Euclidean distance (L2)​{#euclidean-distance--l2-​}
+## Euclidean distance (L2)​
 
 Essentially, Euclidean distance measures the length of a segment that connects 2 points.​
 
 The formula for Euclidean distance is as follows:​
 
-![VPIFd4OZ9ogZ2hx1yJrc6LM1neb](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/C8gHbw8dSozNslx9wXbcyt2hnLe/?fallback_source=1&height=1280&mount_node_token=VPIFd4OZ9ogZ2hx1yJrc6LM1neb&mount_point=docx_image&policy=equal&width=1280)
+![Euclidean distance formula](../../../../assets/euclidean_metric.png)
 
 where **a = (a<sub>0</sub>, a<sub>1</sub>,..., a<sub>n-1</sub>)** and **b = (b<sub>0</sub>, b<sub>1</sub>,..., b<sub>n-1</sub>)** are two points in n-dimensional Euclidean space.​
 
 It's the most commonly used distance metric and is very useful when the data are continuous.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
 Zilliz Cloud only calculates the value before applying the square root when Euclidean distance is chosen as the distance metric.​
 
-:::
+</div>
 
-## Inner product (IP)​{#inner-product--ip-​}
+## Inner product (IP)​
 
 The IP distance between two embeddings is defined as follows:​
 
-![IJ9Ldc5VAoLp5FxcwBbcLhZ7nlb](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/Dqp4b8OP3oaQWgxZqoycL3ainwg/?fallback_source=1&height=1280&mount_node_token=IJ9Ldc5VAoLp5FxcwBbcLhZ7nlb&mount_point=docx_image&policy=equal&width=1280)
+![Inner product formula](../../../../assets/IP_formula.png)
 
 IP is more useful if you need to compare non-normalized data or when you care about magnitude and angle.​
 
-:::info[📘 Notes​]
+<div class="alert note">
 
 If you use IP to calculate similarities between embeddings, you must normalize your embeddings. After normalization, the inner product equals cosine similarity.​
 
-:::
+</div>
 
 Suppose X' is normalized from embedding X:​
 
-![ZuT6dU6t2olFvdxUj8GcyXHRnuc](blob:https://zilliverse.feishu.cn/a3aaba4b-978b-473b-9a1e-557965798ab3)
+![Normalized inner product formula](../../../../assets/normalize_formula.png)
 
 The correlation between the two embeddings is as follows:​
 
-![CldidWYomomQ99xSQo7cwcM4njD](blob:https://zilliverse.feishu.cn/ebb6c900-9ca3-4f7a-a356-b79a27e607eb)
+![Correlation between embeddings](../../../../assets/normalization_formula.png)
 
-## Cosine similarity ​{#cosine-similarity-​}
+## Cosine similarity ​
 
 Cosine similarity uses the cosine of the angle between two sets of vectors to measure how similar they are. You can think of the two sets of vectors as line segments starting from the same point, such as [0,0,...], but pointing in different directions.​
 
 To calculate the cosine similarity between two sets of vectors **A = (a<sub>0</sub>, a<sub>1</sub>,..., a<sub>n-1</sub>)** and **B = (b<sub>0</sub>, b<sub>1</sub>,..., b<sub>n-1</sub>)**, use the following formula:​
 
-![KoicdJEikoeQLNxxlOKc3a5mnbf](blob:https://zilliverse.feishu.cn/47680251-89c1-4a38-ae3c-b1188f354bd1)
+![Cosine similarity formula](../../../../assets/cosine_similarity.png)
 
 The cosine similarity is always in the interval **[-1, 1]**. For example, two proportional vectors have a cosine similarity of **1**, two orthogonal vectors have a similarity of **0**, and two opposite vectors have a similarity of **-1**. The larger the cosine, the smaller the angle between the two vectors, indicating that these two vectors are more similar to each other.​
 
 By subtracting their cosine similarity from 1, you can get the cosine distance between two vectors.​
 
-## JACCARD distance​{#jaccard-distance​}
+## JACCARD distance​
 
 JACCARD similarity coefficient measures the similarity between two sample sets and is defined as the cardinality of the intersection of the defined sets divided by the cardinality of the union of them. It can only be applied to finite sample sets.​
 
-![DAMHd9kamoSJa1xKk46cvSQMnRg](blob:https://zilliverse.feishu.cn/24be400e-f886-4034-b1c9-26452d392b3a)
+![JACCARD similarity coefficient formula](../../../../assets/jaccard_coeff.png)
 
 JACCARD distance measures the dissimilarity between data sets and is obtained by subtracting the JACCARD similarity coefficient from 1. For binary variables, JACCARD distance is equivalent to the Tanimoto coefficient.​
 
-![Usdhd4yL3oBrYmxtJOcc7kocnR3](blob:https://zilliverse.feishu.cn/11588bbd-e7c4-4399-bac5-0bffd6ed0381)
+![JACCARD distance formula](../../../../assets/jaccard_dist.png)
 
-## HAMMING distance​{#hamming-distance​}
+## HAMMING distance​
 
 HAMMING distance measures binary data strings. The distance between two strings of equal length is the number of bit positions at which the bits are different.​
 
@@ -186,7 +192,7 @@ For example, suppose there are two strings, 1101 1001 and 1001 1101.​
 
 11011001 ⊕ 10011101 = 01000100. Since, this contains two 1s, the HAMMING distance, d (11011001, 10011101) = 2.​
 
-## BM25 similarity​{#bm25-similarity​}
+## BM25 similarity​
 
 BM25 is a widely used text relevance measurement method, specifically designed for [full text search](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf). It combines the following three key factors:​
 
@@ -198,7 +204,9 @@ BM25 is a widely used text relevance measurement method, specifically designed f
 
 The BM25 scoring is calculated as follows:​
 
+```
 ​score(D,Q)=i=1∑n​IDF(qi​)⋅TF(qi​,D)+k1​⋅(1−b+b⋅avgdl∣D∣​)TF(qi​,D)⋅(k1​+1)​​
+```
 
 Parameter description:​
 

@@ -9,7 +9,7 @@ title: With Iterators
 
 The ANN Search has a maximum limit on the number of entities that can be recalled in a single query, and simply using basic ANN Search may not meet the demands of large-scale retrieval. For ANN Search requests where topK exceeds 16,384, it is advisable to consider using the SearchIterator. This section will introduce how to use the SearchIterator and related considerations.​
 
-## Overview​{#overview​}
+## Overview​
 
 A Search request returns search results, while a SearchIterator returns an iterator. You can call the **next()** method of this iterator to get the search results.​
 
@@ -21,11 +21,14 @@ Specifically, you can use the SearchIterators as follows:​
 
 3. Call the **close()** method of the iterator to end the loop if the **next()** method returns an empty result.​
 
-## Create SearchIterator​{#create-searchiterator​}
+## Create SearchIterator​
 
 The following code snippet demonstrates how to create a SearchIterator.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+</div>
 
 ```Python
 from pymilvus import connections, Collection​
@@ -54,10 +57,6 @@ iterator = collection.search_iterator(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
@@ -85,15 +84,16 @@ SearchIterator searchIterator = client.searchIterator(SearchIteratorReq.builder(
 
 ```
 
-</TabItem></Tabs>
-
 In the above examples, you have set the number of entities to return per search (**batch_size**/**batchSize**) to 50, and the total number of entities to return (**topK**) to 20,000.​
 
-## Use SearchIterator​{#use-searchiterator​}
+## Use SearchIterator​
 
 Once the SearchIterator is ready, you can call its next() method to get the search results in a paginated manner.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+</div>
 
 ```Python
 results = []​
@@ -111,10 +111,6 @@ while True:​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.response.QueryResultsWrapper;​
 ​
@@ -131,7 +127,5 @@ while (true) {​
 }​
 
 ```
-
-</TabItem></Tabs>
 
 In the above code examples, you have created an infinite loop and called the **next()** method in the loop to store the search results in a variable and closed the iterator when the **next()** returns nothing.​

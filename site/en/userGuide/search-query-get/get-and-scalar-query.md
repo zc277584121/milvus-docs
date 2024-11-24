@@ -1,6 +1,5 @@
 ---
 id: get-and-scalar-query.md
-order: 3
 summary: In addition to ANN searches, Milvus also supports metadata filtering through queries. This page introduces how to use Query, Get, and QueryIterators to perform metadata filtering.​
 title: Query
 ---
@@ -9,7 +8,7 @@ title: Query
 
 In addition to ANN searches, Milvus also supports metadata filtering through queries. This page introduces how to use Query, Get, and QueryIterators to perform metadata filtering.​
 
-## Overview​{#overview​}
+## Overview​
 
 A Collection can store various types of scalar fields. You can have Milvus filter Entities based on one or more scalar fields. Milvus offers three types of queries: Query, Get, and QueryIterator. The table below compares these three query types.​
 
@@ -85,15 +84,13 @@ A Collection can store various types of scalar fields. You can have Milvus filte
 
 </td></tr></tbody></table>
 
-For more on metadata filtering, refer to [​Metadata Filtering](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow).​
+For more on metadata filtering, refer to [​Metadata Filtering](metadata-filtering.md).​
 
-## Use Get​{#use-get​}
+## Use Get​
 
 When you need to find entities by their primary keys, you can use the **Get** method. The following code examples assume that there are three fields named `id`, `vector`, and `color` in your collection and return the entities with primary keys `1`, `2`, and `3`.​
 
-<Tabs><TabItem value="Python" label="python" default>
-
-```Python
+```json
 [​
         {"id": 0, "vector": [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592], "color": "pink_8682"},​
         {"id": 1, "vector": [0.19886812562848388, 0.06023560599112088, 0.6976963061752597, 0.2614474506242501, 0.838729485096104], "color": "red_7025"},​
@@ -109,9 +106,12 @@ When you need to find entities by their primary keys, you can use the **Get** me
 
 ```
 
-</TabItem>
-
-<TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -130,10 +130,6 @@ res = client.get(​
 print(res)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -167,10 +163,6 @@ for (QueryResp.QueryResult result : results) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -185,10 +177,6 @@ const res = client.get({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -208,13 +196,16 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Use Query​{#use-query​}
+## Use Query​
 
 When you need to find entities by custom filtering conditions, use the Query method. The following code examples assume there are three fields named `id`, `vector`, and `color` and return the specified number of entities that hold a `color` value starting with `red`.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -232,10 +223,6 @@ res = client.query(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 ​
@@ -263,10 +250,6 @@ for (QueryResp.QueryResult result : results) {​
 // {color=red_9392, vector=[0.8371978, -0.015764369, -0.31062937, -0.56266695, -0.8984948], id=6}​
 
 ```
-
-</TabItem>
-
-<TabItem value="Go" label="go">
 
 ```Go
 import (​
@@ -305,10 +288,6 @@ func ExampleClient_Query_basic() {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -324,10 +303,6 @@ const res = client.query({​
 })​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
@@ -347,13 +322,16 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-## Use QueryIterator​{#use-queryiterator​}
+## Use QueryIterator​
 
 When you need to find entities by custom filtering conditions through paginated queries, create a **QueryIterator** and use its **next()** method to iterate over all entities to find those meeting the filtering conditions. The following code examples assume that there are three fields named `id`, `vector`, and `color` and return all entities that hold a `color` value starting with `red`.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import connections, Collection​
@@ -383,10 +361,6 @@ while True:​
     results += result​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.orm.iterator.QueryIterator;​
@@ -423,10 +397,6 @@ while (true) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -445,20 +415,21 @@ for await (const value of iterator) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 # 暂无此方法​
 
 ```
 
-</TabItem></Tabs>
-
-## Queries in Partitions​{#queries-in-partitions​}
+## Queries in Partitions​
 
 You can also perform queries within one or multiple partitions by including the partition names in the Get, Query, or QueryIterator request. The following code examples assume that there is a partition named **PartitionA** in the collection.​
+
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient​
@@ -522,8 +493,6 @@ while True:​
 
 ```
 
-<TabItem value="Java" label="java">
-
 ```Java
 GetReq getReq = GetReq.builder()​
         .collectionName("query_collection")​
@@ -557,10 +526,6 @@ QueryIteratorReq req = QueryIteratorReq.builder()​
 QueryIterator queryIterator = client.queryIterator(req);​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
@@ -606,10 +571,6 @@ for await (const value of iterator) {​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
@@ -642,9 +603,6 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
 ​
-
 
     
