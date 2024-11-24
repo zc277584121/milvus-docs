@@ -137,7 +137,7 @@ In this example, we add a JSON field called `metadata` to store additional metad
 
 <div class="alert note">
 
-The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse-vector.md).​
+The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse_vector.md).​
 
 </div>
 
@@ -530,7 +530,7 @@ curl --request POST \​
 
 In this example, Milvus returns the top 5 entities most similar to the query vector, with the `metadata` field containing a brand of `"BrandA"`.​
 
-Additionally, Milvus supports advanced JSON filtering operators such as `JSON_CONTAINS`, `JSON_CONTAINS_ALL`, and `JSON_CONTAINS_ANY`, which can further enhance query capabilities. For more details, refer to [​Metadata Filtering](metadata-filtering.md).​
+Additionally, Milvus supports advanced JSON filtering operators such as `JSON_CONTAINS`, `JSON_CONTAINS_ALL`, and `JSON_CONTAINS_ANY`, which can further enhance query capabilities. For more details, refer to [​Metadata Filtering](boolean.md).​
 
 ## Limits​
 

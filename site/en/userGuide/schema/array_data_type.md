@@ -191,7 +191,7 @@ In this example:​
 
 <div class="alert note">
 
-The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse-vector.md).​
+The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse_vector.md).​
 
 </div>
 
@@ -652,7 +652,7 @@ curl --request POST \​
 
 In this example, Milvus returns the top 5 entities most similar to the query vector, with the `tags` array's first element being `"pop"`.​
 
-Additionally, Milvus supports advanced Array filtering operators like `ARRAY_CONTAINS`, `ARRAY_CONTAINS_ALL`, `ARRAY_CONTAINS_ANY`, and `ARRAY_LENGTH` to further enhance query capabilities. For more details, refer to [​Metadata Filtering](metadata-filtering.md).​
+Additionally, Milvus supports advanced Array filtering operators like `ARRAY_CONTAINS`, `ARRAY_CONTAINS_ALL`, `ARRAY_CONTAINS_ANY`, and `ARRAY_LENGTH` to further enhance query capabilities. For more details, refer to [​Metadata Filtering](boolean.md).​
 
 ## Limits​
 

@@ -50,7 +50,7 @@ Once data is vectorized, it can be stored in Milvus for management and vector re
 
 <div class="alert note">
 
-Besides dense vectors, Milvus also supports sparse vectors and binary vectors. Sparse vectors are suitable for precise matches based on specific terms, such as keyword search and term matching, while binary vectors are commonly used for efficiently handling binarized data, such as image pattern matching and certain hashing applications. For more information, refer to [​Binary Vector](binary-vector.md) and [​Sparse Vector](sparse-vector.md).​
+Besides dense vectors, Milvus also supports sparse vectors and binary vectors. Sparse vectors are suitable for precise matches based on specific terms, such as keyword search and term matching, while binary vectors are commonly used for efficiently handling binarized data, such as image pattern matching and certain hashing applications. For more information, refer to [​Binary Vector](binary-vector.md) and [​Sparse Vector](sparse_vector.md).​
 
 </div>>
 

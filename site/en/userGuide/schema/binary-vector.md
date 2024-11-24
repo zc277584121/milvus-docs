@@ -36,7 +36,7 @@ After binary vectorization, the data can be stored in Milvus for management and 
 
 <div class="alert note">
 
-Although binary vectors excel in specific scenarios, they have limitations in their expressive capability, making it difficult to capture complex semantic relationships. Therefore, in real-world scenarios, binary vectors are often used alongside other vector types to balance efficiency and expressiveness. For more information, refer to [​Dense Vector](dense-vector.md) and [​Sparse Vector](sparse-vector.md).​
+Although binary vectors excel in specific scenarios, they have limitations in their expressive capability, making it difficult to capture complex semantic relationships. Therefore, in real-world scenarios, binary vectors are often used alongside other vector types to balance efficiency and expressiveness. For more information, refer to [​Dense Vector](dense-vector.md) and [​Sparse Vector](sparse_vector.md).​
 
 </div>
 

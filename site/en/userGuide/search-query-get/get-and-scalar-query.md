@@ -84,7 +84,7 @@ A Collection can store various types of scalar fields. You can have Milvus filte
 
 </td></tr></tbody></table>
 
-For more on metadata filtering, refer to [​Metadata Filtering](metadata-filtering.md).​
+For more on metadata filtering, refer to [​Metadata Filtering](boolean.md).​
 
 ## Use Get​
 

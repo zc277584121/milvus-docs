@@ -914,7 +914,7 @@ AUTOINDEX considerably flattens the learning curve of ANN searches. However, the
 
     You can include filtering conditions in a search request so that Zilliz Cloud conducts metadata filtering before conducting ANN searches, reducing the search scope from the whole collection to only the entities matching the specified filtering conditions.​
 
-    For more about metadata filtering and filtering conditions, refer to [​Filtered Search](filtered-search.md) and [​Metadata Filtering](metadata-filtering.md).​
+    For more about metadata filtering and filtering conditions, refer to [​Filtered Search](filtered-search.md) and [​Metadata Filtering](boolean.md).​
 
 - Range Search​
 

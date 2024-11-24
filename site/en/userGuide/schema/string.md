@@ -156,7 +156,7 @@ In this example, we add two `VARCHAR` fields: `varchar_field1` and `varchar_fiel
 
 <div class="alert note">
 
-The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse-vector.md).​
+The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse_vector.md).​
 
 </div>
 
@@ -496,7 +496,7 @@ curl --request POST \​
 
 ```
 
-This query expression returns all matching entities and outputs their `varchar_field1` and `varchar_field2` fields. For more information on filter queries, refer to [​Metadata Filtering](metadata-filtering.md).​
+This query expression returns all matching entities and outputs their `varchar_field1` and `varchar_field2` fields. For more information on filter queries, refer to [​Metadata Filtering](boolean.md).​
 
 ### Vector search with string filtering​
 
@@ -586,5 +586,5 @@ curl --request POST \​
 
 ```
 
-In this example, we first define a query vector and add a filter condition `varchar_field1 == "Product A"` during the search. This ensures that the search results are not only similar to the query vector but also match the specified string filter condition. For more information, refer to [​Metadata Filtering](metadata-filtering.md).​
+In this example, we first define a query vector and add a filter condition `varchar_field1 == "Product A"` during the search. This ensures that the search results are not only similar to the query vector but also match the specified string filter condition. For more information, refer to [​Metadata Filtering](boolean.md).​
 

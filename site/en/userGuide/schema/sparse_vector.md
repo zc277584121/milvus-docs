@@ -1,5 +1,5 @@
 ---
-id: sparse-vector.md
+id: sparse_vector.md
 title: Sparse Vector
 summary: Sparse vectors are an important method of data representation in information retrieval and natural language processing. While dense vectors are popular for their excellent semantic understanding capabilities, sparse vectors often provide more accurate results when it comes to applications that require precise matching of keywords or phrases.​
 ---

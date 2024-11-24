@@ -1,5 +1,5 @@
 ---
-id: metadata-filtering.md
+id: boolean.md
 summary: A filter expression can be used to filter a specific scalar field during a search or query to obtain precisely matched results. This guide will introduce how to use filter expressions in Zilliz through an example dataset. For demonstration purposes, this guide will only provide examples of query operations.​
 title: Metadata Filtering
 ---

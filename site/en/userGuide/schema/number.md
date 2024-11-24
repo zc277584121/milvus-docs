@@ -184,7 +184,7 @@ export schema="{​
 
 <div class="alert note">
 
-The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse-vector.md).​
+The primary field and vector field are mandatory when you create a collection. The primary field uniquely identifies each entity, while the vector field is crucial for similarity search. For more details, refer to [​Primary Field & AutoID](primary-field.md), [​Dense Vector](dense-vector.md), [​Binary Vector](binary-vector.md), or [​Sparse Vector](sparse_vector.md).​
 
 </div>
 
@@ -516,7 +516,7 @@ curl --request POST \​
 
 ```
 
-This query expression returns all matching entities and outputs their `age` and `price` fields. For more information on filter queries, refer to [​Metadata Filtering](metadata-filtering.md).​
+This query expression returns all matching entities and outputs their `age` and `price` fields. For more information on filter queries, refer to [​Metadata Filtering](boolean.md).​
 
 ### Vector search with number filtering​
 
@@ -602,5 +602,5 @@ curl --request POST \​
 
 ```
 
-In this example, we first define a query vector and add a filter condition `25 <= age <= 35` during the search. This ensures that the search results are not only similar to the query vector but also meet the specified age range. For more information, refer to [​Metadata Filtering](metadata-filtering.md).​
+In this example, we first define a query vector and add a filter condition `25 <= age <= 35` during the search. This ensures that the search results are not only similar to the query vector but also meet the specified age range. For more information, refer to [​Metadata Filtering](boolean.md).​
 
