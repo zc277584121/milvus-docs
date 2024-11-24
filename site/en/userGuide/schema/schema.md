@@ -1,8 +1,14 @@
+---
+id: schema.md
+title: Schema Explained
+summary: A schema defines the data structure of a collection. Before creating a collection, you need to work out a design of its schema. This page helps you understand the collection schema and design an example schema on your own.​
+---
+
 # Schema Explained​
 
 A schema defines the data structure of a collection. Before creating a collection, you need to work out a design of its schema. This page helps you understand the collection schema and design an example schema on your own.​
 
-## Overview​{#overview​}
+## Overview​
 
 On Zilliz Cloud, a collection schema assembles a table in a relational database, which defines how Zilliz Cloud organizes data in the collection. ​
 
@@ -10,17 +16,22 @@ A well-designed schema is essential as it abstracts the data model and decides i
 
 A collection schema has a primary key, a maximum of four vector fields, and several scalar fields. The following diagram illustrates how to map an article to a list of schema fields.​
 
-![M6epdxRnkolx85xV1tKcO0tnnrd](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/RoJFbyTsuoY8mHxoBBicgBH9nTc/?fallback_source=1&height=1280&mount_node_token=M6epdxRnkolx85xV1tKcO0tnnrd&mount_point=docx_image&policy=equal&width=1280)
+![Schema design](../../../../assets/schema-explained.PNG)
 
 The data model design of a search system involves analyzing business needs and abstracting information into a schema-expressed data model. For instance, searching a piece of text must be "indexed" by converting the literal string into a vector through "embedding" and enabling vector search. Beyond this essential requirement, storing other properties such as publication timestamp and author may be necessary. This metadata allows for semantic searches to be refined through filtering, returning only texts published after a specific date or by a particular author. You can also retrieve these scalars with the main text to render the search result in the application. Each should be assigned a unique identifier to organize these text pieces, expressed as an integer or string. These elements are essential for achieving sophisticated search logic.​
 
-Refer to [​How to Design Schema](https://zilliverse.feishu.cn/wiki/KHwkwrjQJiybu7kiXAkcSUvjngb) to figure out how to make a well-designed schema.​
+Refer to [Schema Design Hands-On](schema-hands-on.md) to figure out how to make a well-designed schema.​
 
-## Create Schema​{#create-schema​}
+## Create Schema​
 
 The following code snippet demonstrates how to create a schema.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -29,20 +40,12 @@ schema = MilvusClient.create_schema()​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 import io.milvus.v2.service.collection.request.CreateCollectionReq;​
 ​
 CreateCollectionReq.CollectionSchema schema = client.createSchema();​
 
 ```
-
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
 
 ```JavaScript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
@@ -51,10 +54,6 @@ const schema = []​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 export schema='{​
     "fields": []​
@@ -62,13 +61,16 @@ export schema='{​
 
 ```
 
-</TabItem></Tabs>
-
-## Add Primary Field​{#add-primary-field​}
+## Add Primary Field​
 
 The primary field in a collection uniquely identifies an entity. It only accepts **Int64** or **VarChar** values. The following code snippets demonstrate how to add the primary field.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 schema.add_field(​
@@ -81,10 +83,6 @@ schema.add_field(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.DataType;​
@@ -101,10 +99,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 schema.push({​
     name: "my_id",​
@@ -116,10 +110,6 @@ schema.push({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export primaryField='{​
@@ -137,19 +127,22 @@ export schema='{​
 
 ```
 
-</TabItem></Tabs>
-
 When adding a field, you can explicitly clarify the field as the primary field by setting its `is_primary` property to `True`. A primary field accepts **Int64** values by default. In this case, the primary field value should be integers similar to `12345`. If you choose to use **VarChar** values in the primary field, the value should be strings similar to `my_entity_1234`.​
 
 You can also set the `autoId` properties to `True` to make Zilliz Cloud automatically allocate primary field values upon data insertions.​
 
-For details, refer to [​Primary Field & AutoID](https://zilliverse.feishu.cn/wiki/D2ctwKZhNilLY0ke1vpcHL62n5G).​
+For details, refer to [​Primary Field & AutoID](primary-field.md).​
 
-## Add Vector Fields​{#add-vector-fields​}
+## Add Vector Fields​
 
 Vector fields accept various sparse and dense vector embeddings. On Zilliz Cloud, you can add four vector fields to a collection. The following code snippets demonstrate how to add a vector field.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 schema.add_field(​
@@ -161,10 +154,6 @@ schema.add_field(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_vector")​
@@ -175,10 +164,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 schema.push({​
     name: "my_vector",​
@@ -188,10 +173,6 @@ schema.push({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export vectorField='{​
@@ -212,8 +193,6 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
-
 The `dim` paramter in the above code snippets indicates the dimensionality of the vector embeddings to be held in the vector field. The `FLOAT_VECTOR` value indicates that the vector field holds a list of 32-bit floating numbers, which are usually used to represent antilogarithms.In addition to that, Zilliz Cloud also supports the following types of vector embeddings:​
 
 - `FLOAT16_VECTOR`​
@@ -232,15 +211,20 @@ The `dim` paramter in the above code snippets indicates the dimensionality of th
 
     A vector field of this type holds a list of non-zero numbers and their sequence numbers to represent sparse vector embeddings.​
 
-## Add Scalar Fields​{#add-scalar-fields​}
+## Add Scalar Fields​
 
 In common cases, you can use scalar fields to store the metadata of the vector embeddings stored in Milvus, and conduct ANN searches with metadata filtering to improve the correctness of the search results. Zilliz Cloud supports multiple scalar field types, including **VarChar**, **Boolean**, **Int**, Float, **Double**, **Array**, and JSON.​
 
-### Add String Fields​{#add-string-fields​}
+### Add String Fields​
 
-In Milvus, you can use VarChar fields to store strings. For more on the VarChar field, refer to [​String Field](https://zilliverse.feishu.cn/wiki/QBXVwP7oiiuEovkprDnckJlEnoK).​
+In Milvus, you can use VarChar fields to store strings. For more on the VarChar field, refer to [​String Field](string.md).​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 schema.add_field(​
@@ -252,10 +236,6 @@ schema.add_field(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_varchar")​
@@ -266,10 +246,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 schema.push({​
     name: "my_varchar",​
@@ -279,10 +255,6 @@ schema.push({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export varCharField='{​
@@ -304,13 +276,16 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
+### Add Number Fields​
 
-### Add Number Fields​{#add-number-fields​}
+The types of numbers that Milvus supports are `Int8`, `Int16`, `Int32`, `Int64`, `Float`, and `Double`. For more on the number fields, refer to [​Number Field](number.md).​
 
-The types of numbers that Milvus supports are `Int8`, `Int16`, `Int32`, `Int64`, `Float`, and `Double`. For more on the number fields, refer to [​Number Field](https://zilliverse.feishu.cn/wiki/EwArwXCOPip15hkSvvpciAMJnSe).​
-
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 schema.add_field(​
@@ -320,10 +295,6 @@ schema.add_field(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_int64")​
@@ -332,10 +303,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 schema.push({​
     name: "my_int64",​
@@ -343,10 +310,6 @@ schema.push({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export int64Field='{​
@@ -366,13 +329,16 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
-
-### Add Boolean Fields​{#add-boolean-fields​}
+### Add Boolean Fields​
 
 Milvus supports boolean fields. The following code snippets demonstrate how to add a boolean field.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 schema.add_field(​
@@ -382,10 +348,6 @@ schema.add_field(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_bool")​
@@ -394,10 +356,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 schema.push({​
     name: "my_bool",​
@@ -405,10 +363,6 @@ schema.push({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export boolField='{​
@@ -429,13 +383,16 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
+### Add JSON fields​
 
-### Add JSON fields​{#add-json-fields​}
+A JSON field usually stores half-structured JSON data. For more on the JSON fields, refer to [​JSON Field](use-json-field.md).​
 
-A JSON field usually stores half-structured JSON data. For more on the JSON fields, refer to [​JSON Field](https://zilliverse.feishu.cn/wiki/BkDMwo71MiZMazk7gbtc7fqknbh).​
-
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 schema.add_field(​
@@ -445,10 +402,6 @@ schema.add_field(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_json")​
@@ -457,10 +410,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 schema.push({​
     name: "my_json",​
@@ -468,10 +417,6 @@ schema.push({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export jsonField='{​
@@ -493,13 +438,16 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
+### Add Array Fields​
 
-### Add Array Fields​{#add-array-fields​}
+An array field stores a list of elements. The data types of all elements in an array field should be the same. For more on the array fields, refer to [​Array Field](array.md).​
 
-An array field stores a list of elements. The data types of all elements in an array field should be the same. For more on the array fields, refer to [​Array Field](https://zilliverse.feishu.cn/wiki/N0RmwUtmqinQvokWdYLc3yV5nJh).​
-
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 schema.add_field(​
@@ -512,10 +460,6 @@ schema.add_field(​
 
 ```
 
-</TabItem>
-
-<TabItem value="Java" label="java">
-
 ```Java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_array")​
@@ -527,10 +471,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 schema.push({​
     name: "my_array",​
@@ -541,10 +481,6 @@ schema.push({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export arrayField='{​
@@ -570,8 +506,6 @@ export schema="{​
 }"​
 
 ```
-
-</TabItem></Tabs>
 
 ​
 

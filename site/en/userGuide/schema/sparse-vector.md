@@ -1,8 +1,14 @@
+---
+id: sparse-vector.md
+title: Sparse Vector
+summary: Sparse vectors are an important method of data representation in information retrieval and natural language processing. While dense vectors are popular for their excellent semantic understanding capabilities, sparse vectors often provide more accurate results when it comes to applications that require precise matching of keywords or phrases.​
+---
+
 # Sparse Vector​
 
 Sparse vectors are an important method of data representation in information retrieval and natural language processing. While dense vectors are popular for their excellent semantic understanding capabilities, sparse vectors often provide more accurate results when it comes to applications that require precise matching of keywords or phrases.​
 
-## Overview​{#overview​}
+## Overview​
 
 A sparse vector is a special representation of high-dimensional vectors where most elements are zero, and only a few dimensions have non-zero values. This characteristic makes sparse vectors particularly effective in handling large-scale, high-dimensional, but sparse data. Common applications include:​
 
@@ -14,27 +20,34 @@ A sparse vector is a special representation of high-dimensional vectors where mo
 
 As shown in the diagram below, dense vectors are typically represented as continuous arrays where each position has a value (e.g., `[0.3, 0.8, 0.2, 0.3, 0.1]`). In contrast, sparse vectors store only non-zero elements and their indices, often represented as key-value pairs (e.g., `[{2: 0.2}, ..., {9997: 0.5}, {9999: 0.7}]`). This representation significantly reduces storage space and increases computational efficiency, especially when dealing with extremely high-dimensional data (e.g., 10,000 dimensions).​
 
-![RSyvdcRVLoAUT2xNaThcwV6ynJg](请手动下载图片并替换)
+![Spare vector representation](../../../../assets/sparse-vector.png)
 
 Sparse vectors can be generated using various methods, such as [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) (Term Frequency-Inverse Document Frequency) and [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) in text processing. Additionally, Milvus offers convenient methods to help generate and process sparse vectors. For details, refer to <ins>Embeddings</ins>.​
 
-For text data, Milvus also provides full-text search capabilities, allowing you to perform vector searches directly on raw text data without using external embedding models to generate sparse vectors. For more information, refer to [​Full Text Search](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf).​
+For text data, Milvus also provides full-text search capabilities, allowing you to perform vector searches directly on raw text data without using external embedding models to generate sparse vectors. For more information, refer to [​Full Text Search](full-text-search.md).​
 
 After vectorization, the data can be stored in Milvus for management and vector retrieval. The diagram below illustrates the basic process.​
 
-![LlOrdRPh6oIF4dxo4RzchvDwn0g](请手动下载图片并替换)
+![Use sparse vector in Milvus](../../../../assets/use-sparse-vector.png)
 
-:::info[📘 Notes​]
+<div class="alert note">
 
-In addition to sparse vectors, Milvus also supports dense vectors and binary vectors. Dense vectors are ideal for capturing deep semantic relationships, while binary vectors excel in scenarios like quick similarity comparisons and content deduplication. For more information, refer to [​Dense Vector](https://zilliverse.feishu.cn/wiki/ARalwpaVDiCwDZkoSHtcPNgXnRg) and [​Binary Vector](https://zilliverse.feishu.cn/wiki/NTwawtvYdiXTkukbss7ccw2RnXc).​
+In addition to sparse vectors, Milvus also supports dense vectors and binary vectors. Dense vectors are ideal for capturing deep semantic relationships, while binary vectors excel in scenarios like quick similarity comparisons and content deduplication. For more information, refer to [​Dense Vector](dense-vector.md) and [​Binary Vector](binary-vector.md).​
 
-:::
+</div>
 
-## Use sparse vectors in Milvus​{#use-sparse-vectors-in-milvus​}
+## Use sparse vectors in Milvus​
 
 Milvus supports representing sparse vectors in any of the following formats:​
 
 - **Sparse Matrix (using the **`**scipy.sparse**`** class)**​
+
+    <div class="multipleCode">
+        <a href="#Python">Python </a>
+        <a href="#Java">Java</a>
+        <a href="#JavaScript">Node.js</a>
+        <a href="#Bash">cURL</a>
+    </div>
 
     ```Python
     from scipy.sparse import csr_matrix​
@@ -52,17 +65,18 @@ Milvus supports representing sparse vectors in any of the following formats:​
 
 - **List of Dictionaries (formatted as **`**{dimension_index: value, ...}**`**)**​
 
-    <Tabs><TabItem value="Python" label="python" default>
+    <div class="multipleCode">
+        <a href="#Python">Python </a>
+        <a href="#Java">Java</a>
+        <a href="#JavaScript">Node.js</a>
+        <a href="#Bash">cURL</a>
+    </div>
 
     ```Python
     # Represent sparse vector using a dictionary​
     sparse_vector = [{1: 0.5, 100: 0.3, 500: 0.8, 1024: 0.2, 5000: 0.6}]​
 
     ```    
-
-</TabItem>
-
-    <TabItem value="Java" label="java">
 
     ```Java
     SortedMap<Long, Float> sparseVector = new TreeMap<>();​
@@ -74,9 +88,14 @@ Milvus supports representing sparse vectors in any of the following formats:​
 
     ```    
 
-</TabItem></Tabs>
-
 - **List of **Tuple** Iterators (formatted as **`**[(dimension_index, value)]**`**)**​
+
+    <div class="multipleCode">
+        <a href="#Python">Python </a>
+        <a href="#Java">Java</a>
+        <a href="#JavaScript">Node.js</a>
+        <a href="#Bash">cURL</a>
+    </div>
 
     ```Python
     # Represent sparse vector using a list of tuples​
@@ -84,7 +103,7 @@ Milvus supports representing sparse vectors in any of the following formats:​
 
     ```
 
-### Add vector field​{#add-vector-field​}
+### Add vector field​
 
 To use sparse vectors in Milvus, define a field for storing sparse vectors when creating a collection. This process includes:​
 
@@ -92,7 +111,12 @@ To use sparse vectors in Milvus, define a field for storing sparse vectors when 
 
 2. No need to specify the dimension.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 from pymilvus import MilvusClient, DataType​
@@ -110,10 +134,6 @@ schema.add_field(field_name="pk", datatype=DataType.VARCHAR, is_primary=True, ma
 schema.add_field(field_name="sparse_vector", datatype=DataType.SPARSE_FLOAT_VECTOR)​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -144,10 +164,6 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -169,10 +185,6 @@ const schema = [​
 ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export primaryField='{​
@@ -199,15 +211,18 @@ export schema="{​
 
 ```
 
-</TabItem></Tabs>
-
 In this example, a vector field named `sparse_vector` is added for storing sparse vectors. The data type of this field is `SPARSE_FLOAT_VECTOR`.​
 
-### Set index params for vector field​{#set-index-params-for-vector-field​}
+### Set index params for vector field​
 
-The process of creating an index for sparse vectors is similar to that for [dense vectors](https://zilliverse.feishu.cn/wiki/ARalwpaVDiCwDZkoSHtcPNgXnRg), but with differences in the specified index type (`index_type`), distance metric (`metric_type`), and index parameters (`params`).​
+The process of creating an index for sparse vectors is similar to that for [dense vectors](dense-vector.md), but with differences in the specified index type (`index_type`), distance metric (`metric_type`), and index parameters (`params`).​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 index_params = client.prepare_index_params()​
@@ -221,10 +236,6 @@ index_params.add_index(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.common.IndexParam;​
@@ -243,10 +254,6 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const indexParams = await client.createIndex({​
     index_name: 'sparse_inverted_index',​
@@ -259,10 +266,6 @@ const indexParams = await client.createIndex({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 export indexParams='[​
@@ -277,21 +280,24 @@ export indexParams='[​
 
 ```
 
-</TabItem></Tabs>
-
 In the example above:​
 
-- An index of type `SPARSE_INVERTED_INDEX` is created for the sparse vector. For sparse vectors, you can specify `SPARSE_INVERTED_INDEX` or `SPARSE_WAND`. For details, refer to [​Sparse Vector Indexes](https://zilliverse.feishu.cn/wiki/GXbvwiLamir1vckA6u2c1KUFnMe).​
+- An index of type `SPARSE_INVERTED_INDEX` is created for the sparse vector. For sparse vectors, you can specify `SPARSE_INVERTED_INDEX` or `SPARSE_WAND`. For details, refer to [​Sparse Vector Indexes](https://milvus.io/docs/index.md?tab=sparse).​
 
-- For sparse vectors, `metric_type` only supports `IP` (Inner Product), used to measure the similarity between two sparse vectors. For more information on similarity, refer to [​Metric Types](https://zilliverse.feishu.cn/wiki/EOxmwUDxMiy2cpkOfIsc1dYzn4c).​
+- For sparse vectors, `metric_type` only supports `IP` (Inner Product), used to measure the similarity between two sparse vectors. For more information on similarity, refer to [​Metric Types](metric.md).​
 
 - `drop_ratio_build` is an optional index parameter specifically for sparse vectors. It controls the proportion of small vector values excluded during index building. For example, with `{"drop_ratio_build": 0.2}`, the smallest 20% of vector values will be excluded during index creation, reducing computational effort during searches.​
 
-### Create collection​{#create-collection​}
+### Create collection​
 
 Once the sparse vector and index settings are complete, you can create a collection that contains sparse vectors. The example below uses the <ins>`create_collection`</ins> method to create a collection named `my_sparse_collection`.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 client.create_collection(​
@@ -301,10 +307,6 @@ client.create_collection(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.client.ConnectConfig;​
@@ -323,10 +325,6 @@ client.createCollection(requestCreate);​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -342,10 +340,6 @@ await client.createCollection({​
 
 ```
 
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
-
 ```Bash
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
@@ -359,13 +353,16 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-### Insert data​{#insert-data​}
+### Insert data​
 
 After creating the collection, insert data containing sparse vectors.​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 sparse_vectors = [​
@@ -379,10 +376,6 @@ client.insert(​
 )​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import com.google.gson.Gson;​
@@ -418,10 +411,6 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 const data = [​
   { sparse_vector: { "1": 0.5, "100": 0.3, "500": 0.8 } },​
@@ -434,10 +423,6 @@ client.insert({​
 ​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -456,11 +441,16 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-### Perform similarity search​{#perform-similarity-search​}
+### Perform similarity search​
 
 To perform similarity search using sparse vectors, prepare the query vector and search parameters.​
+
+<div class="multipleCode">
+    <a href="#Python">Python </a>
+    <a href="#Java">Java</a>
+    <a href="#JavaScript">Node.js</a>
+    <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 # Prepare search parameters​
@@ -477,7 +467,12 @@ In this example, `drop_ratio_search` is an optional parameter specifically for s
 
 Then, execute the similarity search using the `search` method:​
 
-<Tabs><TabItem value="Python" label="python" default>
+<div class="multipleCode">
+  <a href="#Python">Python </a>
+  <a href="#Java">Java</a>
+  <a href="#JavaScript">Node.js</a>
+  <a href="#Bash">cURL</a>
+</div>
 
 ```Python
 res = client.search(​
@@ -494,10 +489,6 @@ print(res)​
 # data: ["[{'id': '453718927992172266', 'distance': 0.6299999952316284, 'entity': {'pk': '453718927992172266'}}, {'id': '453718927992172265', 'distance': 0.10000000149011612, 'entity': {'pk': '453718927992172265'}}]"]​
 
 ```
-
-</TabItem>
-
-<TabItem value="Java" label="java">
 
 ```Java
 import io.milvus.v2.service.vector.request.SearchReq;​
@@ -531,10 +522,6 @@ System.out.println(searchR.getSearchResults());​
 
 ```
 
-</TabItem>
-
-<TabItem value="JavaScript" label="Node.js">
-
 ```JavaScript
 client.search({​
     collection_name: 'my_sparse_collection',​
@@ -547,10 +534,6 @@ client.search({​
 });​
 
 ```
-
-</TabItem>
-
-<TabItem value="Bash" label="cURL">
 
 ```Bash
 curl --request POST \​
@@ -574,7 +557,5 @@ curl --request POST \​
 
 ```
 
-</TabItem></Tabs>
-
-For more information on similarity search parameters, refer to [​Basic ANN Search](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd).​
+For more information on similarity search parameters, refer to [​Basic ANN Search](single-vector-search.md).​
 
