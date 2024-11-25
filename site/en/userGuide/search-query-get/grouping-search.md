@@ -58,10 +58,10 @@ This section provides example code to demonstrate the use of Grouping Search. Th
 In the search request, set both `group_by_field` and `output_fields` to `docId`. Milvus will group the results by the specified field and return the most similar entity from each group, including the value of `docId` for each returned entity.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -220,10 +220,10 @@ In the request above, `limit=3` indicates that the system will return search res
 By default, Grouping Search returns only one entity per group. If you want multiple results per group, adjust the `group_size` and `strict_group_size` parameters.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python

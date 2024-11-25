@@ -81,10 +81,10 @@ This section demonstrates how to conduct a range search. The search requests in 
 In the following code snippets, set `radius` to `0.4` and `range_filter` to `0.6` so that Milvus returns all entities whose distances or scores to the query vector fall within **0.4** to **0.6**.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python

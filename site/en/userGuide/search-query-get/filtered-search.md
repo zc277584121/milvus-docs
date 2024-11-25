@@ -46,10 +46,10 @@ This section demonstrates how to conduct a filtered search. Code snippets in thi
 The search request in the following code snippet carries a filtering condition and several output fields.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python

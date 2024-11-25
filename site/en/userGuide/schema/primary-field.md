@@ -21,10 +21,10 @@ The primary field in a collection does not have a default value and cannot be nu
 To use primary keys of the Int64 type, you need to set `datatype` to `DataType.INT64` and set `is_primary` to `true`. If you also need Milvus to allocate the primary keys for the incoming entities, also set `auto_id` to `true`.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -103,10 +103,10 @@ export schema="{​
 To use VarChar primary keys, in addition to changing the value of the `data_type` parameter to `DataType.VARCHAR`, you also need to set the `max_length` parameter for the field. ​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

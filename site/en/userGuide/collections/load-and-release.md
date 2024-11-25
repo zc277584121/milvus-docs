@@ -14,11 +14,11 @@ When you load a collection, Zilliz Cloud loads the index files and the raw data 
 The following code snippets demonstrate how to load a collection.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -184,11 +184,11 @@ Zilliz Cloud can load only the fields involved in searches and queries, reducing
 The following code snippet assumes that you have created a collection named **customized_setup_2**, and there are two fields named **my_id** and **my_vector** in the collection.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -291,11 +291,11 @@ Searches and queries are memory-intensive operations. To save the cost, you are 
 The following code snippet demonstrates how to release a collection.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

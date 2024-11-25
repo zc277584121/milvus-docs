@@ -38,11 +38,11 @@ To use the Partition Key, you need to​
 To designate a scalar field as the Partition Key, you need to set its `is_partition_key` attribute to `true` when you add the scalar field.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -152,11 +152,11 @@ When you designate a scalar field in a collection as the Partition Key, Milvus a
 You can also determine the number of partitions to create along with the collection. This is valid only if you have a scalar field designated as the Partition Key.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -217,11 +217,11 @@ When conducting ANN searches in a collection with the Partition Key feature enab
 The following examples demonstrate Partition-Key-based filtering based on a specific Partition Key value and a set of Partition Key values.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

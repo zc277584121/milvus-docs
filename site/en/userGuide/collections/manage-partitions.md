@@ -28,11 +28,11 @@ This feature will not be discussed on this page. To find more, refer to [​Use 
 When creating a collection, Zilliz Cloud also creates a partition named **_default** in the collection. You can list the partitions in a collection as follows.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -161,11 +161,11 @@ curl --request POST \​
 You can add more partitions to the collection and insert entities into these partitions based on certain criteria.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -289,11 +289,11 @@ curl --request POST \​
 The following code snippets demonstrate how to check whether a partition exists in a specific collection.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -389,11 +389,11 @@ You can separately load or release one or certain partitions.​
 You can separately load specific partitions in a collection. It is worth noting that the load status of a collection stays unloaded if there is an unloaded partition in the collection.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -508,11 +508,11 @@ curl --request POST \​
 You can also release specific partitions.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -646,11 +646,11 @@ You can conduct searches and queries within specific partitions. For details, re
 You can drop partitions that are no longer needed. Before dropping a partition, ensure that the partition has been released.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

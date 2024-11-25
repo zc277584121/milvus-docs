@@ -27,10 +27,10 @@ Refer to [Schema Design Hands-On](schema-hands-on.md) to figure out how to make 
 The following code snippet demonstrates how to create a schema.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -66,10 +66,10 @@ export schema='{​
 The primary field in a collection uniquely identifies an entity. It only accepts **Int64** or **VarChar** values. The following code snippets demonstrate how to add the primary field.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -138,10 +138,10 @@ For details, refer to [​Primary Field & AutoID](primary-field.md).​
 Vector fields accept various sparse and dense vector embeddings. On Zilliz Cloud, you can add four vector fields to a collection. The following code snippets demonstrate how to add a vector field.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -220,10 +220,10 @@ In common cases, you can use scalar fields to store the metadata of the vector e
 In Milvus, you can use VarChar fields to store strings. For more on the VarChar field, refer to [​String Field](string.md).​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -281,10 +281,10 @@ export schema="{​
 The types of numbers that Milvus supports are `Int8`, `Int16`, `Int32`, `Int64`, `Float`, and `Double`. For more on the number fields, refer to [​Number Field](number.md).​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -334,10 +334,10 @@ export schema="{​
 Milvus supports boolean fields. The following code snippets demonstrate how to add a boolean field.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -388,10 +388,10 @@ export schema="{​
 A JSON field usually stores half-structured JSON data. For more on the JSON fields, refer to [​JSON Field](use-json-field.md).​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -443,10 +443,10 @@ export schema="{​
 An array field stores a list of elements. The data types of all elements in an array field should be the same. For more on the array fields, refer to [​Array Field](array_data_field.md).​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

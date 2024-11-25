@@ -21,11 +21,11 @@ For a collection with the dynamic field enabled, you can use keys in the dynamic
 Collections created using the method described in [​Create Collection Instantly](create-collection-instantly.md) have the dynamic field enabled by default. You can also enable the dynamic field manually when creating a collection with custom settings.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -119,11 +119,11 @@ The dataset above contains 10 entities, each including the fields `id`, `vector`
 The following code demonstrates how to insert this dataset into the collection.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -269,11 +269,11 @@ curl --request POST \​
 Milvus supports the use of filter expressions during queries and searches, allowing you to specify which fields to include in the results. The following example demonstrates how to perform queries and searches using the `color` field, which is not defined in the schema, by using the dynamic field.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

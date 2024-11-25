@@ -56,10 +56,10 @@ To use number fields in Milvus, define the relevant fields in the collection sch
 The following example shows how to define a schema that includes number fields `age` and `price`:​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -195,10 +195,10 @@ Setting index parameters for number fields is optional but can significantly imp
 In the following example, we create an `AUTOINDEX` for the `age` number field, allowing Milvus to automatically create an appropriate index based on the data type. For more information, refer to [​AUTOINDEX](https://milvus.io/docs/glossary.md#Auto-Index).​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -250,10 +250,10 @@ In addition to `AUTOINDEX`, you can specify other number field index types. For 
 Moreover, before creating the collection, you must create an index for the vector field. In this example, we use `AUTOINDEX` to simplify vector index settings.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -314,10 +314,10 @@ export indexParams='[​
 Once the schema and indexes are defined, you can create a collection that includes number fields.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -367,10 +367,10 @@ curl --request POST \​
 After creating the collection, you can insert data that includes number fields.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -451,10 +451,10 @@ After adding number fields, you can use them for filtering in search and query o
 After adding number fields, you can use them for filtering in queries. For example, you can query all entities where `age` is between 30 and 40:​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -523,10 +523,10 @@ This query expression returns all matching entities and outputs their `age` and 
 In addition to basic number field filtering, you can combine vector similarity searches with number field filters. For example, the following code shows how to add a number field filter to a vector search:​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

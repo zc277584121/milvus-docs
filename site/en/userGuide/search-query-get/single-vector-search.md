@@ -40,11 +40,11 @@ In ANN searches, a single-vector search refers to a search that involves only on
 In this section, you will learn how to conduct a single-vector search. The code snippet assumes you have created a collection in a [quick-setup](create-collection-instantly#Quick-Setup) manner. The search request carries a single query vector and asks Zilliz Cloud to use Inner Product (IP) to calculate the similarity between query vectors and vectors in the collection and returns the three most similar ones.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -289,11 +289,11 @@ The following table lists the applicable metric types and the corresponding dist
 Similarly, you can include multiple query vectors in a search request. Zilliz Cloud will conduct ANN searches for the query vectors in parallel and return two sets of results.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -489,11 +489,11 @@ Suppose you have created multiple partitions in a collection, and you can narrow
 The following code snippet assumes a partition named **PartitionA** in your collection.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -630,11 +630,11 @@ curl --request POST \​
 In a search result, Zilliz Cloud includes the primary field values and similarity distances/scores of the entities that contain the top-K vector embeddings by default. You can include the target field names in a search request as the output fields to make the search results carry the values from other fields in these entities.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -817,11 +817,11 @@ The table below outlines how to set the **Limit** and **Offset** parameters for 
 Note that, the sum of `limit` and `offset` in a single ANN search should be less than 16,384.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Go">Go</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#go">Go</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

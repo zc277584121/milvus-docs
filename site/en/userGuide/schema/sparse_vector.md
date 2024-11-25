@@ -43,10 +43,10 @@ Milvus supports representing sparse vectors in any of the following formats:​
 - **Sparse Matrix (using the **`**scipy.sparse**`** class)**​
 
     <div class="multipleCode">
-        <a href="#Python">Python </a>
-        <a href="#Java">Java</a>
-        <a href="#JavaScript">Node.js</a>
-        <a href="#Bash">cURL</a>
+        <a href="#python">Python </a>
+        <a href="#java">Java</a>
+        <a href="#javascript">Node.js</a>
+        <a href="#curl">cURL</a>
     </div>
 
     ```python
@@ -66,10 +66,10 @@ Milvus supports representing sparse vectors in any of the following formats:​
 - **List of Dictionaries (formatted as **`**{dimension_index: value, ...}**`**)**​
 
     <div class="multipleCode">
-        <a href="#Python">Python </a>
-        <a href="#Java">Java</a>
-        <a href="#JavaScript">Node.js</a>
-        <a href="#Bash">cURL</a>
+        <a href="#python">Python </a>
+        <a href="#java">Java</a>
+        <a href="#javascript">Node.js</a>
+        <a href="#curl">cURL</a>
     </div>
 
     ```python
@@ -91,10 +91,10 @@ Milvus supports representing sparse vectors in any of the following formats:​
 - **List of **Tuple** Iterators (formatted as **`**[(dimension_index, value)]**`**)**​
 
     <div class="multipleCode">
-        <a href="#Python">Python </a>
-        <a href="#Java">Java</a>
-        <a href="#JavaScript">Node.js</a>
-        <a href="#Bash">cURL</a>
+        <a href="#python">Python </a>
+        <a href="#java">Java</a>
+        <a href="#javascript">Node.js</a>
+        <a href="#curl">cURL</a>
     </div>
 
     ```python
@@ -112,10 +112,10 @@ To use sparse vectors in Milvus, define a field for storing sparse vectors when 
 2. No need to specify the dimension.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -218,10 +218,10 @@ In this example, a vector field named `sparse_vector` is added for storing spars
 The process of creating an index for sparse vectors is similar to that for [dense vectors](dense-vector.md), but with differences in the specified index type (`index_type`), distance metric (`metric_type`), and index parameters (`params`).​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -293,10 +293,10 @@ In the example above:​
 Once the sparse vector and index settings are complete, you can create a collection that contains sparse vectors. The example below uses the <ins>`create_collection`</ins> method to create a collection named `my_sparse_collection`.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -358,10 +358,10 @@ curl --request POST \​
 After creating the collection, insert data containing sparse vectors.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -446,10 +446,10 @@ curl --request POST \​
 To perform similarity search using sparse vectors, prepare the query vector and search parameters.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -468,10 +468,10 @@ In this example, `drop_ratio_search` is an optional parameter specifically for s
 Then, execute the similarity search using the `search` method:​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
-  <a href="#JavaScript">Node.js</a>
-  <a href="#Bash">cURL</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
+  <a href="#javascript">Node.js</a>
+  <a href="#curl">cURL</a>
 </div>
 
 ```python

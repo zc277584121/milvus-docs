@@ -26,8 +26,8 @@ Specifically, you can use the SearchIterators as follows:​
 The following code snippet demonstrates how to create a SearchIterator.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
 </div>
 
 ```python
@@ -91,8 +91,8 @@ In the above examples, you have set the number of entities to return per search 
 Once the SearchIterator is ready, you can call its next() method to get the search results in a paginated manner.​
 
 <div class="multipleCode">
-  <a href="#Python">Python </a>
-  <a href="#Java">Java</a>
+  <a href="#python">Python </a>
+  <a href="#java">Java</a>
 </div>
 
 ```python

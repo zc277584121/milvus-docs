@@ -72,10 +72,10 @@ The following example defines a collection schema, where `dense` and `sparse` ar
 - `sparse`: This field is used to store the sparse vectors of the texts. The data type of this field is SPARSE_FLOAT_VECTOR.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -220,10 +220,10 @@ During sparse vector searches, you can simplify the process of generating sparse
 After defining the collection schema, it is necessary to set up the vector indexes and the similarity metrics. In this example, an IVF_FLAT index is created for the dense vector field `dense`, and a SPARSE_INVERTED_INDEX is created for the sparse vector field `sparse`. To learn about the types of indexes supported, see [​Index Explained](https://milvus.io/docs/index.md?tab=floating).​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -318,10 +318,10 @@ export indexParams='[​
 Create a collection named `demo` with the collection schema and indexes configured in the previous two steps.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -375,10 +375,10 @@ curl --request POST \​
 Insert the sparse-dense vectors into the the collection `demo`.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -476,10 +476,10 @@ In Hybrid Search, each `AnnSearchRequest` supports only one query vector.​
 Suppose the query text "Who started AI research?" has already been converted into sparse and dense vectors. Based on this, two `AnnSearchRequest` search requests are created for the `sparse` and `dense` vector fields respectively, as shown in the following example.​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
@@ -618,10 +618,10 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     When using the WeightedRanker strategy, you need to input weight values into the `WeightedRanker` function. The number of basic ANN searches in a Hybrid Search corresponds to the number of values that need to be inputted. The input values should be in the range [0,1], with values closer to 1 indicating greater importance.​
 
     <div class="multipleCode">
-        <a href="#Python">Python </a>
-        <a href="#Java">Java</a>
-        <a href="#JavaScript">Node.js</a>
-        <a href="#Bash">cURL</a>
+        <a href="#python">Python </a>
+        <a href="#java">Java</a>
+        <a href="#javascript">Node.js</a>
+        <a href="#curl">cURL</a>
     </div>
     
     ```python
@@ -662,10 +662,10 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     When using the RRFRanker strategy, you need to input the parameter value `k` into the RRFRanker. The default value of `k` is 60. This parameter helps to determine how the ranks are combined from different ANN searches, aiming to balance and blend the importance across all searches.​
 
     <div class="multipleCode">
-        <a href="#Python">Python </a>
-        <a href="#Java">Java</a>
-        <a href="#JavaScript">Node.js</a>
-        <a href="#Bash">cURL</a>
+        <a href="#python">Python </a>
+        <a href="#java">Java</a>
+        <a href="#javascript">Node.js</a>
+        <a href="#curl">cURL</a>
     </div>
 
     
@@ -707,10 +707,10 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
 Before conducting a Hybrid Search, it is necessary to load the collection into memory. If any vector fields in the collection do not have an index or are not loaded, an error will occur when calling the Hybrid Search method. ​
 
 <div class="multipleCode">
-    <a href="#Python">Python </a>
-    <a href="#Java">Java</a>
-    <a href="#JavaScript">Node.js</a>
-    <a href="#Bash">cURL</a>
+    <a href="#python">Python </a>
+    <a href="#java">Java</a>
+    <a href="#javascript">Node.js</a>
+    <a href="#curl">cURL</a>
 </div>
 
 ```python
