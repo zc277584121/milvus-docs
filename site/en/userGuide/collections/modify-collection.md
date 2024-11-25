@@ -135,7 +135,7 @@ The following code snippet demonstrates how to change the TTL of a collection.�
 </div>
 
 ```python
-# Python 暂无此功能​
+# Currently not available for Python
 
 ```
 
@@ -201,6 +201,6 @@ if err != nil {​
 ```
 
 ```curl
-# REST 暂无此功能​
+# Currently not available for REST
 
 ```

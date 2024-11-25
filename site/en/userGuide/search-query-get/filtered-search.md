@@ -235,4 +235,4 @@ The filtering condition carried in the search request reads `color like "red%" a
 
 ```
 
-For more information on the operators that you can use in metadata filtering, refer to [​Metadata Filtering](metadata-filtering.md).​
+For more information on the operators that you can use in metadata filtering, refer to [​Metadata Filtering](boolean.md).​

@@ -17,7 +17,7 @@ The following chart shows a collection with eight columns and six entities.​
 
 ## Schema and Fields​
 
-When describing an object, we usually mention its attributes, such as size, weight, and position. You can use these attributes as fields in a collection. Each field has various constraining properties, such as the data type and the dimensionality of a vector field. You can form a collection schema by creating the fields and defining their order. For possible applicable data types, refer to [​Schema Explained](schema-explained.md).​
+When describing an object, we usually mention its attributes, such as size, weight, and position. You can use these attributes as fields in a collection. Each field has various constraining properties, such as the data type and the dimensionality of a vector field. You can form a collection schema by creating the fields and defining their order. For possible applicable data types, refer to [​Schema Explained](schema.md).​
 
 You should include all schema-defined fields in the entities to insert. To make some of them optional, consider​
 
@@ -49,7 +49,7 @@ Entities are data records that share the same set of fields in a collection. The
 
 You can insert as many entities as you need into a collection. However, as the number of entities mounts, the memory size it takes also increases, affecting search performance.​
 
-For more information, refer to [​Schema Explained](schema-explained.md).​
+For more information, refer to [​Schema Explained](schema.md).​
 
 ## Load and Release​
 

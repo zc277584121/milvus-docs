@@ -10,7 +10,7 @@ Dense vectors are numerical data representations widely used in machine learning
 
 Dense vectors are mainly used in scenarios that require understanding the semantics of data, such as semantic search and recommendation systems. In semantic search, dense vectors help capture the underlying connections between queries and documents, improving the relevance of search results. In recommendation systems, they aid in identifying similarities between users and items, offering more personalized suggestions.​
 
-## Overview​{#overview​}
+## Overview​
 
 Dense vectors are typically represented as arrays of floating-point numbers with a fixed length, such as `[0.2, 0.7, 0.1, 0.8, 0.3, ..., 0.5]`. The dimensionality of these vectors usually ranges from hundreds to thousands, such as 128, 256, 768, or 1024. Each dimension captures specific semantic features of an object, making it applicable to various scenarios through similarity calculations.​
 
@@ -52,11 +52,11 @@ Once data is vectorized, it can be stored in Milvus for management and vector re
 
 Besides dense vectors, Milvus also supports sparse vectors and binary vectors. Sparse vectors are suitable for precise matches based on specific terms, such as keyword search and term matching, while binary vectors are commonly used for efficiently handling binarized data, such as image pattern matching and certain hashing applications. For more information, refer to [​Binary Vector](binary-vector.md) and [​Sparse Vector](sparse_vector.md).​
 
-</div>>
+</div>
 
-## Use dense vectors in Milvus​{#use-dense-vectors-in-milvus​}
+## Use dense vectors in Milvus​
 
-### Add vector field​{#add-vector-field​}
+### Add vector field​
 
 To use dense vectors in Milvus, first define a vector field for storing dense vectors when creating a collection. This process includes:​
 
@@ -163,20 +163,20 @@ export schema="{​
 
 </th><th data-block-token="TGq6d0VpNoRoW2xg8Kac7nLZnab" colspan="1" rowspan="1"><p data-block-token="ON8LdxqpPoPktOxcEZ2cvC9Unkg">Description​</p>
 
-</th></tr></thead><tbody><tr><td data-block-token="RiuCd0ekQoV004xdoOMcxYXfnvg" colspan="1" rowspan="1"><p data-block-token="D0ivdW1gVoSFLRxo1q9cmNK2nrb"><code>`FLOAT_VECTOR`</code>​</p>
+</th></tr></thead><tbody><tr><td data-block-token="RiuCd0ekQoV004xdoOMcxYXfnvg" colspan="1" rowspan="1"><p data-block-token="D0ivdW1gVoSFLRxo1q9cmNK2nrb"><code>FLOAT_VECTOR</code>​</p>
 
 </td><td data-block-token="E3pTdyOLUoxAehx1Tt1cTfaUn6f" colspan="1" rowspan="1"><p data-block-token="O6OAdU97DoBnEsxkIMzcZe71nPc">Stores 32-bit floating-point numbers, commonly used for representing real numbers in scientific computations and machine learning. Ideal for scenarios requiring high precision, such as distinguishing similar vectors.​</p>
 
-</td></tr><tr><td data-block-token="JmvQdldr7oBr0cxhObWcvoH9nRe" colspan="1" rowspan="1"><p data-block-token="RqhOdkiICop2sGxmEplciH9HnAb"><code>`FLOAT16_VECTOR`</code>​</p>
+</td></tr><tr><td data-block-token="JmvQdldr7oBr0cxhObWcvoH9nRe" colspan="1" rowspan="1"><p data-block-token="RqhOdkiICop2sGxmEplciH9HnAb"><code>FLOAT16_VECTOR</code>​</p>
 
 </td><td data-block-token="P7Q1dhgCSo9ONKxS7Uucy3Wcn0f" colspan="1" rowspan="1"><p data-block-token="AKGld9vXtobxivx4LNgcszcmnMc">Stores 16-bit half-precision floating-point numbers, used for deep learning and GPU computations. It saves storage space in scenarios where precision is less critical, such as in the low-precision recall phase of recommendation systems.​</p>
 
-</td></tr><tr><td data-block-token="SuMwdk8fLohKcVxGPrpcHe08npd" colspan="1" rowspan="1"><p data-block-token="RMrjd1l4yoxYpkxI599cPc5Qn7X"><code>`BFLOAT16_VECTOR`</code>​</p>
+</td></tr><tr><td data-block-token="SuMwdk8fLohKcVxGPrpcHe08npd" colspan="1" rowspan="1"><p data-block-token="RMrjd1l4yoxYpkxI599cPc5Qn7X"><code>BFLOAT16_VECTOR</code>​</p>
 
 </td><td data-block-token="VMfrdtFHToAHFaxS8gfcdSwunSb" colspan="1" rowspan="1"><p data-block-token="FrLVdqlrtoau2axEYevc5kDBnVr">Stores 16-bit Brain Floating Point (bfloat16) numbers, offering the same range of exponents as Float32 but with reduced precision. Suitable for scenarios that need to process large volumes of vectors quickly, such as large-scale image retrieval.​</p>
 
 </td></tr></tbody>
-### Set index params for vector field​{#set-index-params-for-vector-field​}
+### Set index params for vector field​
 
 To accelerate semantic searches, an index must be created for the vector field. Indexing can significantly improve the retrieval efficiency of large-scale vector data.​
 
@@ -249,7 +249,7 @@ In the example above, an index named `dense_vector_index` is created for the `de
 
 Milvus supports other index types as well. For more details, refer to [​Floating Vector Indexes](https://milvus.io/docs/index.md?tab=floating). Additionally, Milvus supports other metric types. For more information, refer to [​Metric Types](metric.md).​
 
-### Create collection​{#create-collection​}
+### Create collection​
 
 Once the dense vector and index param settings are complete, you can create a collection containing dense vectors. The example below uses the `create_collection` method to create a collection named `my_dense_collection`.​
 
@@ -316,7 +316,7 @@ curl --request POST \​
 
 ```
 
-### Insert data​{#insert-data​}
+### Insert data​
 
 After creating the collection, use the `insert` method to add data containing dense vectors. Ensure that the dimensionality of the dense vectors being inserted matches the `dim` value defined when adding the dense vector field.​
 
@@ -389,7 +389,7 @@ curl --request POST \​
 
 ```
 
-### Perform similarity search​{#perform-similarity-search​}
+### Perform similarity search​
 
 Semantic search based on dense vectors is one of the core features of Milvus, allowing you to quickly find data that is most similar to a query vector based on the distance between vectors. To perform a similarity search, prepare the query vector and search parameters, then call the `search` method.​
 

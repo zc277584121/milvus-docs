@@ -737,7 +737,7 @@
           },
           {
             "label": "Metadata Filtering",
-            "id": "metadata-filtering.md",
+            "id": "boolean.md",
             "order": 14,
             "children": []
           },

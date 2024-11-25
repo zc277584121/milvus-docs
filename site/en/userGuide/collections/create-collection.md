@@ -662,7 +662,7 @@ fmt.Println("collection created")​
 ```
 
 ```curl
-# REST 暂无此功能。​
+# Currently not available for REST
 
 ```
 

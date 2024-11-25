@@ -416,7 +416,7 @@ for await (const value of iterator) {​
 ```
 
 ```curl
-# 暂无此方法​
+# Currently not available
 
 ```
 

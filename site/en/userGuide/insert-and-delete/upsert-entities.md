@@ -7,7 +7,7 @@ title: Upsert Entities
 
 The Upsert operation combines the actions of updating and inserting data. Milvus determines whether to perform an update or an insert operation by checking if the primary key exists. This section will introduce how to Upsert an Entity and the specific behaviors of the Upsert operation in different scenarios.​
 
-## Overview​{#overview​}
+## Overview​
 
 When you need to update an Entity in a Collection or are not sure whether to update or insert, you can try using the Upsert operation. When using this operation, it is essential to ensure that the Entity included in the Upsert request contains the primary key; otherwise, an error will occur. Upon receiving an Upsert request, Milvus will execute the following process:​
 
@@ -21,7 +21,7 @@ When you need to update an Entity in a Collection or are not sure whether to upd
 
 ![Upsert Entities](../../../../assets/upsert-entities.png)
 
-## Upsert Entity in a Collection​{#upsert-entity-in-a-collection​}
+## Upsert Entity in a Collection​
 
 In this section, you will upsert Entities into a Collection created [in the quick-setup manner](create-collection-instantly.md#Quick-Setup). A Collection created in this manner has only two fields, named **id** and **vector**. Additionally, this Collection has the dynamic field enabled, so the Entities in the example code include a field called **color** that is not defined in the Schema.​
 
@@ -190,7 +190,7 @@ curl --request POST \​
 ```
 
 
-## Upsert Entities in a Partition​{#upsert-entities-in-a-partition​}
+## Upsert Entities in a Partition​
 
 You can also insert entities into a specified partition. The following code snippets assume that you have a partition named **PartitionA** in your collection.​
 

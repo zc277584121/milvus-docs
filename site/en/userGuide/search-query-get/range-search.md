@@ -30,31 +30,31 @@ The way to set radius and **range_filter** varies with the metric type of the se
 
 </th><th data-block-token="D1eedZmCjow2Whx7vIicOx4Enrc" colspan="1" rowspan="1"><p data-block-token="K7bldgyVFo2DmDxNamFcNddNnNb">Requirements for Setting radius and range_filter​</p>
 
-</th></tr></thead><tbody><tr><td data-block-token="C3xxdZ0uHon6bWxACXkcOM0bnrf" colspan="1" rowspan="1"><p data-block-token="EoJSd1jo1oqt0pxhKElcLptwnJe"><code>`L2`</code>​</p>
+</th></tr></thead><tbody><tr><td data-block-token="C3xxdZ0uHon6bWxACXkcOM0bnrf" colspan="1" rowspan="1"><p data-block-token="EoJSd1jo1oqt0pxhKElcLptwnJe"><code>L2</code>​</p>
 
 </td><td data-block-token="AcRkdW156oOcQixJbXZchC8WnEd" colspan="1" rowspan="1"><p data-block-token="ATGrduoF1ownRSxJngycJ3NYnAe">A smaller L2 distance indicates a higher similarity.​</p>
 
 </td><td data-block-token="Ja1hdVXtholWNfxCGKAcXzQ9nCc" colspan="1" rowspan="1"><p data-block-token="FqvMdDe6DocjQXxKHdvcp0hTnmb">To ignore the most similar vector embeddings, ensure that​</p>
 
-<p data-block-token="Ctzxdq1bjoIqKOx5WOScosN3nUf"><code>`range_filter`</code> <= distance < <code>`radius`</code>​</p>
+<p data-block-token="Ctzxdq1bjoIqKOx5WOScosN3nUf"><code>range_filter</code> <= distance < <code>radius</code>​</p>
 
-</td></tr><tr><td data-block-token="UIkGdxueEo9hNox7TMFcUTTUn6d" colspan="1" rowspan="1"><p data-block-token="IpGVd1lBrojv3uxxcv1c5ZcZnBh"><code>`IP`</code>​</p>
+</td></tr><tr><td data-block-token="UIkGdxueEo9hNox7TMFcUTTUn6d" colspan="1" rowspan="1"><p data-block-token="IpGVd1lBrojv3uxxcv1c5ZcZnBh"><code>IP</code>​</p>
 
 </td><td data-block-token="VcGrdY9X5o2I8Zxv1EYcgSiwngc" colspan="1" rowspan="1"><p data-block-token="WQs5dm4BrotLVhxSRpecH6wInUc">A greater IP distance indicates a higher similarity.​</p>
 
 </td><td data-block-token="DETWdE7fWo21TzxH2FxcRoQZnwd" colspan="1" rowspan="1"><p data-block-token="Wy8jdWzhsoZUJhx98jLcNIKjnSb">To ignore the most similar vector embeddings, ensure that​</p>
 
-<p data-block-token="TqYLdOaBzoVv2ZxXlwkc2UHln0d"><code>`radius`</code> < distance <= <code>`range_filter`</code>​</p>
+<p data-block-token="TqYLdOaBzoVv2ZxXlwkc2UHln0d"><code>radius</code> < distance <= <code>range_filter</code>​</p>
 
-</td></tr><tr><td data-block-token="NVeUd1byionhILxsXLRcTx32nbc" colspan="1" rowspan="1"><p data-block-token="ZvAcdO3b4oYibFxohwqcEIObnoh"><code>`COSINE`</code>​</p>
+</td></tr><tr><td data-block-token="NVeUd1byionhILxsXLRcTx32nbc" colspan="1" rowspan="1"><p data-block-token="ZvAcdO3b4oYibFxohwqcEIObnoh"><code>COSINE</code>​</p>
 
 </td><td data-block-token="IdUKdAUIdoNllqxLiKncqQE0nbc" colspan="1" rowspan="1"><p data-block-token="UBiudQZVbopMjcx9mg6cSLQpnVh">A greater COSINE distance indicates a higher similarity.​</p>
 
 </td><td data-block-token="JHc5dyljBogsOKxsPSfcb9qrnHh" colspan="1" rowspan="1"><p data-block-token="CLWEd89pQoUTeZxYOJFczlu2nwh">To ignore the most similar vector embeddings, ensure that​</p>
 
-<p data-block-token="Zx9TdYxu5ouObNxhZjvcS95wnMd"><code>`radius`</code> < distance <= <code>`range_filter`</code>​</p>
+<p data-block-token="Zx9TdYxu5ouObNxhZjvcS95wnMd"><code>radius</code> < distance <= <code>range_filter</code>​</p>
 
-</td></tr><tr><td data-block-token="WsI8dAHxxobNtBxkYCmcFFtFn4c" colspan="1" rowspan="1"><p data-block-token="XvsMdyuLEoLR2wx0KdXcUmOcnlf"><code>`JACCARD`</code> ​</p>
+</td></tr><tr><td data-block-token="WsI8dAHxxobNtBxkYCmcFFtFn4c" colspan="1" rowspan="1"><p data-block-token="XvsMdyuLEoLR2wx0KdXcUmOcnlf"><code>JACCARD</code> ​</p>
 
 </td><td data-block-token="YC1MdSNIwoYPg2xUXAZcL74AnZd" colspan="1" rowspan="1"><p data-block-token="JaCGdLjCKonfQsxe5pecj5uQn7g">A smaller Jaccard distance indicates a higher similarity.​</p>
 
@@ -62,15 +62,15 @@ The way to set radius and **range_filter** varies with the metric type of the se
 
 </td><td data-block-token="JOfSdPDQmopx3exh68zctrUCnJc" colspan="1" rowspan="1"><p data-block-token="YoZzdQw3CoUKcfx60roc0DuKnze">To ignore the most similar vector embeddings, ensure that​</p>
 
-<p data-block-token="AURId9AadouFaLxI8esczMpgnrf"><code>`range_filter`</code> <= distance < <code>`radius`</code>​</p>
+<p data-block-token="AURId9AadouFaLxI8esczMpgnrf"><code>range_filter</code> <= distance < <code>radius</code>​</p>
 
-</td></tr><tr><td data-block-token="BVuOdQPiKoJBYoxwBgQcqugqnmh" colspan="1" rowspan="1"><p data-block-token="R96ldn7iHoUj2Gxrf65c2TmAnmf"><code>`HAMMING`</code> ​</p>
+</td></tr><tr><td data-block-token="BVuOdQPiKoJBYoxwBgQcqugqnmh" colspan="1" rowspan="1"><p data-block-token="R96ldn7iHoUj2Gxrf65c2TmAnmf"><code>HAMMING</code> ​</p>
 
 </td><td data-block-token="OnAOdCFC8oyQwrx4XTRcMik1nbg" colspan="1" rowspan="1"><p data-block-token="LDT4dk5ygoAFKtxF12WctkFRnfb">A smaller Hamming distance indicates a higher similarity.​</p>
 
 </td><td data-block-token="VBaIdrQOOokaBvxlegWcTKDvnkc" colspan="1" rowspan="1"><p data-block-token="Z2ridFRhBoS64vxBiTrcfOagnIh">To ignore the most similar vector embeddings, ensure that​</p>
 
-<p data-block-token="UOf2do2U8oGdDNxMzqlcYdMVnie"><code>`range_filter`</code> <= distance < <code>`radius`</code>​</p>
+<p data-block-token="UOf2do2U8oGdDNxMzqlcYdMVnie"><code>range_filter</code> <= distance < <code>radius</code>​</p>
 
 </td></tr></tbody></table>
 
