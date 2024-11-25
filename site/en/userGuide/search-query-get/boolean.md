@@ -184,17 +184,17 @@ Suppose the example dataset is stored in a collection named "my_collection" and 
 
 The following types of operators can be used in filters with single condition:​
 
-- [Comparison operators](#comparison-operators)​
+- [Comparison operators](#Comparison-operators)​
 
-- [Term operators](#term-operators)​
+- [Term operators](#Term-operators)​
 
-- [Match operators](#match-operators)​
+- [Match operators](#Match-operators)​
 
-- [Arithmetic operators](#arithmetic-operators)​
+- [Arithmetic operators](#Arithmetic-operators)​
 
-- [Advanced JSON operators](#advanced-json-operators)​
+- [Advanced JSON operators](#Advanced-json-operators)​
 
-- [Advanced Array operators](#advanced-array-operators)​
+- [Advanced Array operators](#Advanced-array-operators)​
 
 ### Comparison operators
 
