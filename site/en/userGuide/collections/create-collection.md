@@ -841,7 +841,7 @@ curl --request POST \​
 
 ```
 
-For more on consistency levels, see [​Consistency Level](tune-consistency.md).​
+For more on consistency levels, see [​Consistency Level](consistency.md).​
 
 ### Enable Dynamic Field​
 

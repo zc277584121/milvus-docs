@@ -123,7 +123,7 @@ You can set functions for Zilliz Cloud to derive fields upon collection creation
 
 Distributed database systems usually use the consistency level to define the data sameness across data nodes and replicas. You can set separate consistency levels when you create a collection or conduct similarity searches within the collection. The applicable consistency levels are **Strong**, **Bounded Staleness**, **Session**, and **Eventually**.​
 
- For details on these consistency levels, refer to [​Consistency Level](tune-consistency.md).​
+ For details on these consistency levels, refer to [​Consistency Level](consistency.md).​
 
 ## Limits​
 
