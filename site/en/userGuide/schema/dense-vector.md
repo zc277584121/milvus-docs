@@ -159,8 +159,6 @@ export schema="{​
 
 ```
 
-**Supported data types for dense vector fields**:​
-
 **Supported data types for dense vector fields**:
 
 | **Type**                | **Description**                                                                                                                                                     |

@@ -40,7 +40,7 @@ In addition to sparse vectors, Milvus also supports dense vectors and binary vec
 
 Milvus supports representing sparse vectors in any of the following formats:​
 
-- Sparse Matrix (using the `**scipy.sparse**` class)*
+- Sparse Matrix (using the `scipy.sparse` class)
 
     <div class="multipleCode">
         <a href="#python">Python </a>

@@ -66,9 +66,9 @@ The table below summarizes the mapping between different field types and their c
 
 </td></tr></tbody></table>
 
-<div class="alert note">"
+<div class="alert note">
 
-- For vector fields of the `SPARSE\_FLOAT\_VECTOR` type, use the `BM25` metric type only when performing full text search. For more information, refer to [​Full Text Search](full-text-search.md).​
+- For vector fields of the `SPARSE_FLOAT_VECTOR` type, use the `BM25` metric type only when performing full text search. For more information, refer to [​Full Text Search](full-text-search.md).​
 
 - For vector fields of the `BINARY_VECTOR` type, the dimension value (`dim`) must be a multiple of 8. ​
 

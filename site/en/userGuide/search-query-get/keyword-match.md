@@ -20,7 +20,7 @@ Milvus integrates [Tantivy](https://github.com/quickwit-oss/tantivy) to power it
 
 1. [Analyzer](analyzer-overview.md): The analyzer processes input text by tokenizing it into individual words, or tokens, and then applying filters as needed. This allows Milvus to build an index based on these tokens.​
 
-2. Indexing: After text analysis, Milvus creates an inverted index that maps each unique token to the documents containing it.​
+2. [Indexing](index-scalar-fields.md): After text analysis, Milvus creates an inverted index that maps each unique token to the documents containing it.​
 
 When a user performs a keyword match, the inverted index is used to quickly retrieve all documents containing the keywords. This is much faster than scanning through each document individually.​
 

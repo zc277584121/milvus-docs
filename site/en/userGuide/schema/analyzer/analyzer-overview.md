@@ -60,7 +60,7 @@ analyzer_params = {​
 
 ```
 
-The configuration of the `standard` built-in analyzer above is equivalent to setting up a custom analyzer with the following parameters, where `tokenizer` and `filter` options are explicitly defined to achieve similar functionality:​
+The configuration of the `standard` built-in analyzer above is equivalent to setting up a custom analyzer with the following parameters, where `tokenizer` and `filter` options are explicitly defined to achieve the same functionality:
 
 ```python
 analyzer_params = {​
@@ -76,7 +76,7 @@ analyzer_params = {​
 
 ```
 
-Milvus offers the following built-in analyzers, each designed for specific text processing needs:​
+Milvus offers the following built-in analyzers, each of which can be used directly by specifying their name as the `type` parameter:​
 
 - `standard`: Suitable for general-purpose text processing, applying standard tokenization and lowercase filtering.​
 

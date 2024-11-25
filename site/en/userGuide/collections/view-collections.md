@@ -199,10 +199,3 @@ curl --request POST \​
 }'​
 
 ```
-
-The result of the above example should be similar to the following.​
-
-```JSON
-// TO BE ADDED​
-
-```
