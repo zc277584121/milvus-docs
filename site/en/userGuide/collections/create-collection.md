@@ -41,7 +41,7 @@ You can set default values for any scalar field and make it nullable. For detail
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 3. Create a collection in customized setup mode​
 from pymilvus import MilvusClient, DataType​
 ​
@@ -63,7 +63,7 @@ schema.add_field(field_name="my_varchar", datatype=DataType.VARCHAR, max_length=
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.DataType;​
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
@@ -108,7 +108,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -138,7 +138,7 @@ const fields = [​
 
 ```
 
-```Go
+```go
 import "github.com/milvus-io/milvus/client/v2/entity"​
 ​
 schema := entity.NewSchema().WithDynamicFieldEnabled(true).​
@@ -148,7 +148,7 @@ schema := entity.NewSchema().WithDynamicFieldEnabled(true).​
 
 ```
 
-```Bash
+```curl
 export schema='{​
         "autoId": false,​
         "enabledDynamicField": false,​
@@ -195,7 +195,7 @@ For details, refer to [​Indexes](index-vector-fields.md).​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 3.3. Prepare index parameters​
 index_params = client.prepare_index_params()​
 ​
@@ -213,7 +213,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.IndexParam;​
 import java.util.*;​
 ​
@@ -235,7 +235,7 @@ indexParams.add(indexParamForVectorField);​
 
 ```
 
-```JavaScript
+```javascript
 // 3.2 Prepare index parameters​
 const index_params = [{​
     field_name: "my_id",​
@@ -248,7 +248,7 @@ const index_params = [{​
 
 ```
 
-```Go
+```go
 import (​
     "github.com/milvus-io/milvus/client/v2"​
     "github.com/milvus-io/milvus/client/v2/entity"​
@@ -262,7 +262,7 @@ indexOptions := []client.CreateIndexOption{​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "my_vector",​
@@ -293,7 +293,7 @@ The following code snippets demonstrate how to create the collection with index 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 3.5. Create a collection with the index loaded simultaneously​
 client.create_collection(​
     collection_name="customized_setup_1",​
@@ -315,7 +315,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.CreateCollectionReq;​
 import io.milvus.v2.service.collection.request.GetLoadStateReq;​
 ​
@@ -341,7 +341,7 @@ System.out.println(loaded);​
 
 ```
 
-```JavaScript
+```javascript
 // 3.3 Create a collection with fields and index parameters​
 res = await client.createCollection({​
     collection_name: "customized_setup_1",​
@@ -369,7 +369,7 @@ console.log(res.state)​
 
 ```
 
-```Go
+```go
 import "github.com/milvus-io/milvus/client/v2"​
 ​
 err := cli.CreateCollection(ctx, client.NewCreateCollectionOption("customized_setup_1", schema).​
@@ -382,7 +382,7 @@ fmt.Println("collection created")​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -410,7 +410,7 @@ The following code snippet demonstrates how to create a collection without a col
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 3.6. Create a collection and index it separately​
 client.create_collection(​
     collection_name="customized_setup_2",​
@@ -431,7 +431,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 // 3.6 Create a collection and index it separately​
 CreateCollectionReq customizedSetupReq2 = CreateCollectionReq.builder()​
     .collectionName("customized_setup_2")​
@@ -452,7 +452,7 @@ System.out.println(loaded);​
 
 ```
 
-```JavaScript
+```javascript
 // 3.4 Create a collection and index it seperately​
 res = await client.createCollection({​
     collection_name: "customized_setup_2",​
@@ -479,7 +479,7 @@ console.log(res.state)​
 
 ```
 
-```Go
+```go
 import "github.com/milvus-io/milvus/client/v2"​
 ​
 err := cli.CreateCollection(ctx, client.NewCreateCollectionOption("customized_setup_2", schema))​
@@ -490,7 +490,7 @@ fmt.Println("collection created")​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -535,7 +535,7 @@ The following code snippet demonstrates how to set the shard number when you cre
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # With shard number​
 client.create_collection(​
     collection_name="customized_setup_3",​
@@ -546,7 +546,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 // With shard number​
 CreateCollectionReq customizedSetupReq3 = CreateCollectionReq.builder()​
     .collectionName("customized_setup_3")​
@@ -558,7 +558,7 @@ client.createCollection(customizedSetupReq3);​
 
 ```
 
-```JavaScript
+```javascript
 const createCollectionReq = {​
     collection_name: "customized_setup_3",​
     schema: schema,​
@@ -568,7 +568,7 @@ const createCollectionReq = {​
 
 ```
 
-```Go
+```go
 import "github.com/milvus-io/milvus/client/v2"​
 ​
 err := cli.CreateCollection(ctx, client.NewCreateCollectionOption("customized_setup_3", schema).WithShardNum(1))​
@@ -579,7 +579,7 @@ fmt.Println("collection created")​
 
 ```
 
-```Bash
+```curl
 export params='{​
     "shardsNum": 1​
 }'​
@@ -601,7 +601,7 @@ curl --request POST \​
 
 ### Enable mmap​
 
-Milvus enables mmap on all collections by default, allowing Milvus to map raw field data into memory instead of fully loading them. This reduces memory footprints and increases collection capacity. For details on mmap, refer to [​Use mmap](https://zilliverse.feishu.cn/wiki/AxWmwp8TFiR8tMkUWcZcEJlrnab).​
+Milvus enables mmap on all collections by default, allowing Milvus to map raw field data into memory instead of fully loading them. This reduces memory footprints and increases collection capacity. For details on mmap, refer to [​Use mmap](mmap.md).​
 
 <div class="multipleCode">
   <a href="#Python">Python </a>
@@ -611,7 +611,7 @@ Milvus enables mmap on all collections by default, allowing Milvus to map raw fi
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # With mmap​
 client.create_collection(​
     collection_name="customized_setup_4",​
@@ -622,7 +622,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.param.Constant;​
 ​
 // With MMap​
@@ -636,7 +636,7 @@ client.createCollection(customizedSetupReq4);​
 
 ```
 
-```JavaScript
+```javascript
 client.create_collection({​
     collection_name: "customized_setup_4",​
     schema: schema,​
@@ -647,7 +647,7 @@ client.create_collection({​
 
 ```
 
-```Go
+```go
 import (​
     "github.com/milvus-io/milvus/client/v2"​
     "github.com/milvus-io/milvus/pkg/common"​
@@ -661,7 +661,7 @@ fmt.Println("collection created")​
 
 ```
 
-```Bash
+```curl
 # REST 暂无此功能。​
 
 ```
@@ -680,7 +680,7 @@ The following code snippet sets the TTL to one day (86400 seconds). You are advi
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # With TTL​
 client.create_collection(​
     collection_name="customized_setup_5",​
@@ -694,7 +694,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.param.Constant;​
 ​
 // With TTL​
@@ -708,7 +708,7 @@ client.createCollection(customizedSetupReq5);​
 
 ```
 
-```JavaScript
+```javascript
 const createCollectionReq = {​
     collection_name: "customized_setup_5",​
     schema: schema,​
@@ -721,7 +721,7 @@ const createCollectionReq = {​
 
 ```
 
-```Go
+```go
 import (​
     "github.com/milvus-io/milvus/client/v2"​
     "github.com/milvus-io/milvus/pkg/common"​
@@ -736,7 +736,7 @@ fmt.Println("collection created")​
 
 ```
 
-```Bash
+```curl
 export params='{​
     "ttlSeconds": 86400​
 }'​
@@ -768,7 +768,7 @@ When creating a collection, you can set the consistency level for searches and q
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # With consistency level​
 client.create_collection(​
     collection_name="customized_setup_6",​
@@ -779,7 +779,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.ConsistencyLevel;​
 ​
 // With consistency level​
@@ -793,7 +793,7 @@ client.createCollection(customizedSetupReq6);​
 
 ```
 
-```JavaScript
+```javascript
 const createCollectionReq = {​
     collection_name: "customized_setup_6",​
     schema: schema,​
@@ -806,7 +806,7 @@ client.createCollection(createCollectionReq);​
 
 ```
 
-```Go
+```go
 import (​
     "github.com/milvus-io/milvus/client/v2"​
     "github.com/milvus-io/milvus/client/v2/entity"​
@@ -821,7 +821,7 @@ fmt.Println("collection created")​
 
 ```
 
-```Bash
+```curl
 export params='{​
     "consistencyLevel": "Bounded"​
 }'​
@@ -841,7 +841,7 @@ curl --request POST \​
 
 ```
 
-For more on consistency levels, see [​Consistency Level](https://zilliverse.feishu.cn/wiki/Xx9EwWtekinLZfkWKqic37dDnFb).​
+For more on consistency levels, see [​Consistency Level](tune-consistency.md).​
 
 ### Enable Dynamic Field​
 

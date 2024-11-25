@@ -64,7 +64,7 @@ In the search request, set both `group_by_field` and `output_fields` to `docId`.
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -89,7 +89,7 @@ doc_ids = [result['entity']['docId'] for result in res[0]]​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.vector.request.SearchReq​
@@ -128,7 +128,7 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```Go
+```go
 // nolint​
 func ExampleClient_Search_grouping() {​
     ctx, cancel := context.WithCancel(context.Background())​
@@ -169,7 +169,7 @@ func ExampleClient_Search_grouping() {​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -192,7 +192,7 @@ var docIds = res.results.map(result => result.entity.docId)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -226,7 +226,7 @@ By default, Grouping Search returns only one entity per group. If you want multi
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Group search results​
 ​
 res = client.search(​
@@ -241,7 +241,7 @@ res = client.search(​
 
 ```
 
-```Java
+```java
 FloatVec queryVector = new FloatVec(new float[]{0.14529211512077012f, 0.9147257273453546f, 0.7965055218724449f, 0.7009258593102812f, 0.5605206522382088f});​
 SearchReq searchReq = SearchReq.builder()​
         .collectionName("group_search_collection")​
@@ -274,7 +274,7 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -299,7 +299,7 @@ var docIds = res.results.map(result => result.entity.docId)​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
 --header "Authorization: Bearer ${TOKEN}" \​

@@ -12,7 +12,7 @@ The `jieba` tokenizer processes Chinese text by breaking it down into its compon
 
 To configure an analyzer using the `jieba` tokenizer, set `tokenizer` to `jieba` in `analyzer_params`.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "jieba",​
 }​
@@ -26,12 +26,12 @@ Here’s an example of how the `jieba` tokenizer processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "Milvus 是一个高性能、可扩展的向量数据库！"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["Milvus", " ", "是", "一个", "高性", "性能", "高性能", "、", "可", "扩展", "的", "向量", "数据", "据库", "数据库", "！"]​
 ```

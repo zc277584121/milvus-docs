@@ -25,7 +25,7 @@ The `english` analyzer uses the following components:​
 
 The functionality of the `english` analyzer is equivalent to the following custom analyzer configuration:​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter": [​
@@ -45,7 +45,7 @@ analyzer_params = {​
 
 To apply the `english` analyzer to a field, simply set `type` to `english` in `analyzer_params`, and include optional parameters as needed.​
 
-```Python
+```python
 analyzer_params = {​
     "type": "english",​
 }​
@@ -65,14 +65,14 @@ The `english` analyzer accepts the following optional parameters: ​
 
 Example configuration with custom stop words:​
 
-```Python
+```python
 analyzer_params = {​
     "type": "english",​
     "stop_words": ["a", "an", "the"]​
 }​
 ```
 
-After defining `analyzer_params`, you can apply them to a `VARCHAR` field when defining a collection schema. This allows Milvus to process the text in that field using the specified analyzer for efficient tokenization and filtering. For details, refer to [Example use](https://zilliverse.feishu.cn/wiki/H8MVwnjdgihp0hkRHHKcjBe9n5e#share-I38Md0nO2o1lw2xifGzccPpWncd).​
+After defining `analyzer_params`, you can apply them to a `VARCHAR` field when defining a collection schema. This allows Milvus to process the text in that field using the specified analyzer for efficient tokenization and filtering. For details, refer to [Example use](analyzer-overview.md).​
 
 ### Example output​
 
@@ -80,12 +80,12 @@ Here’s how the `english` analyzer processes text.​
 
 **Original text**:​
 
-```Python
+```python
 "The Milvus vector database is built for scale!"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["milvus", "vector", "databas", "built", "scale"]​
 ```

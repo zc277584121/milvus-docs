@@ -12,7 +12,7 @@ The `stop` filter removes specified stop words from tokenized text, helping to e
 
 The `length` filter is a custom filter in Milvus. To use it, specify `"type": "stop"` in the filter configuration, along with a `stop_words` parameter that provides a list of stop words.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter":[{​
@@ -44,12 +44,12 @@ Here’s an example of how the `stop` filter processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "The stop filter allows control over common stop words for text processing."​
 ```
 
 **Expected output** (with `stop_words: ["the", "over", "_english_"]`):​
 
-```Python
+```python
 ["The", "stop", "filter", "allows", "control", "common", "stop", "words", "text", "processing"]​
 ```

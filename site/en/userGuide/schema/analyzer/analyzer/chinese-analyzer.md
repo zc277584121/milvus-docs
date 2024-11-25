@@ -19,7 +19,7 @@ The `chinese` analyzer consists of:​
 
 The functionality of the `chinese` analyzer is equivalent to the following custom analyzer configuration:​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "jieba",​
     "filter": ["cnalphanumonly"]​
@@ -30,7 +30,7 @@ analyzer_params = {​
 
 To apply the `chinese` analyzer to a field, simply set `type` to `chinese` in `analyzer_params`.​
 
-```Python
+```python
 analyzer_params = {​
     "type": "chinese",​
 }​
@@ -48,12 +48,12 @@ Here’s how the `chinese` analyzer processes text.​
 
 **Original text**:​
 
-```Python
+```python
 "Milvus 是一个高性能、可扩展的向量数据库！"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["Milvus", "是", "一个", "高性", "性能", "高性能", "可", "扩展", "的", "向量", "数据", "据库", "数据库"]​
 ```

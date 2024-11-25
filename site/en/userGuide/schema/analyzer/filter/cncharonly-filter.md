@@ -12,7 +12,7 @@ The `cncharonly` filter removes tokens that contain any non-Chinese characters. 
 
 The `cncharonly` filter is built into Milvus. To use it, simply specify its name in the `filter` section within `analyzer_params`.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter": ["cncharonly"],​
@@ -29,12 +29,12 @@ Here’s an example of how the `cncharonly` filter processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "Milvus 是 LF AI & Data Foundation 下的一个开源项目，以 Apache 2.0 许可发布。"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["是", "下", "的", "一个", "开源", "项目", "以", "许可", "发布"]​
 ```

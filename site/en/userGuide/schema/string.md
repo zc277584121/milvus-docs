@@ -23,7 +23,7 @@ To use string data in Milvus, define a `VARCHAR` field when creating a collectio
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 client = MilvusClient(uri="http://localhost:19530")​
@@ -41,7 +41,7 @@ schema.add_field(field_name="embedding", datatype=DataType.FLOAT_VECTOR, dim=3)�
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 ​
@@ -82,7 +82,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const schema = [​
@@ -109,7 +109,7 @@ const schema = [​
 
 ```
 
-```Bash
+```curl
 export varcharField1='{​
     "fieldName": "varchar_field1",​
     "dataType": "VarChar",​
@@ -173,7 +173,7 @@ In the following example, we create an `AUTOINDEX` for `varchar_field1`, meaning
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 index_params = client.prepare_index_params()​
 ​
 index_params.add_index(​
@@ -184,7 +184,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 ​
 import io.milvus.v2.common.IndexParam;​
 import java.util.*;​
@@ -198,7 +198,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const indexParams = [{​
     index_name: 'varchar_index',​
     field_name: 'varchar_field1',​
@@ -207,7 +207,7 @@ const indexParams = [{​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "varchar_field1",​
@@ -229,7 +229,7 @@ Moreover, before creating the collection, you must create an index for the vecto
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Add vector index​
 index_params.add_index(​
     field_name="embedding",​
@@ -239,7 +239,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 indexes.add(IndexParam.builder()​
         .fieldName("embedding")​
         .indexType(IndexParam.IndexType.AUTOINDEX)​
@@ -248,7 +248,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
 indexParams.push({​
     index_name: 'embedding_index',​
     field_name: 'embedding',​
@@ -258,7 +258,7 @@ indexParams.push({​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "varchar_field1",​
@@ -285,7 +285,7 @@ Once the schema and index are defined, you can create a collection that includes
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Create Collection​
 client.create_collection(​
     collection_name="your_collection_name",​
@@ -295,7 +295,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 CreateCollectionReq requestCreate = CreateCollectionReq.builder()​
         .collectionName("my_varchar_collection")​
         .collectionSchema(schema)​
@@ -305,7 +305,7 @@ client.createCollection(requestCreate);​
 
 ```
 
-```JavaScript
+```javascript
 client.create_collection({​
     collection_name: "my_varchar_collection",​
     schema: schema,​
@@ -314,7 +314,7 @@ client.create_collection({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -339,7 +339,7 @@ After creating the collection, you can insert data that includes string fields.�
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 data = [​
     {"varchar_field1": "Product A", "varchar_field2": "High quality product", "pk": 1, "embedding": [0.1, 0.2, 0.3]},​
     {"varchar_field1": "Product B", "varchar_field2": "Affordable price", "pk": 2, "embedding": [0.4, 0.5, 0.6]},​
@@ -353,7 +353,7 @@ client.insert(​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 import io.milvus.v2.service.vector.request.InsertReq;​
@@ -372,7 +372,7 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const data = [​
   {​
     varchar_field1: "Product A",​
@@ -401,7 +401,7 @@ client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -438,7 +438,7 @@ After adding string fields, you can filter results using these fields in queries
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 filter = 'varchar_field1 == "Product A"'​
 ​
 res = client.query(​
@@ -454,7 +454,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq;​
 import io.milvus.v2.service.vector.response.QueryResp;​
 ​
@@ -473,7 +473,7 @@ System.out.println(resp.getQueryResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.query({​
     collection_name: 'my_varchar_collection',​
     filter: 'varchar_field1 == "Product A"',​
@@ -482,7 +482,7 @@ client.query({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/query" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -509,7 +509,7 @@ In addition to basic scalar field filtering, you can combine vector similarity s
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 filter = 'varchar_field1 == "Product A"'​
 ​
 res = client.search(​
@@ -528,7 +528,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq;​
 import io.milvus.v2.service.vector.response.SearchResp;​
 ​
@@ -550,7 +550,7 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.search({​
     collection_name: 'my_varchar_collection',​
     data: [0.3, -0.6, 0.1],​
@@ -564,7 +564,7 @@ client.search({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
 --header "Authorization: Bearer ${TOKEN}" \​

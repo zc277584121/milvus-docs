@@ -45,7 +45,7 @@ In this manner, you can create a collection instantly with only the collection n
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 CLUSTER_ENDPOINT = "http://localhost:19530"​
@@ -77,7 +77,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.collection.request.GetLoadStateReq;​
@@ -114,7 +114,7 @@ System.out.println(res);​
 
 ```
 
-```JavaScript
+```javascript
 // 1. Set up a Milvus Client​
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
@@ -148,12 +148,12 @@ console.log(res.state)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -185,7 +185,7 @@ If the default metric type, field names, and data types does not meet your need,
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 CLUSTER_ENDPOINT = "http://localhost:19530"​
@@ -223,7 +223,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.collection.request.GetLoadStateReq;​
@@ -266,7 +266,7 @@ System.out.println(res);​
 
 ```
 
-```JavaScript
+```javascript
 // 1. Set up a Milvus Client​
 const address = "http://localhost:19530";​
 const token = "root:Milvus";​
@@ -304,12 +304,12 @@ console.log(res.state)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

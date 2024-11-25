@@ -1,7 +1,7 @@
 ---
 id: analyzer-overview.md
 title: Analyzer Overview​
-summary: In text processing, an analyzer is a crucial component that converts raw text into a structured, searchable format. Each analyzer typically consists of two core elements: tokenizer and filter. Together, they transform input text into tokens, refine these tokens, and prepare them for efficient indexing and retrieval.​
+summary: "In text processing, an analyzer is a crucial component that converts raw text into a structured, searchable format. Each analyzer typically consists of two core elements: tokenizer and filter. Together, they transform input text into tokens, refine these tokens, and prepare them for efficient indexing and retrieval.​"
 ---
 
 # Analyzer Overview​
@@ -52,7 +52,7 @@ Built-in analyzers in Milvus are pre-configured with specific tokenizers and fil
 
 For example, to use the `standard` built-in analyzer, simply specify its name `standard` as the `type` and optionally include extra configurations specific to this analyzer type, such as `stop_words`:​
 
-```Python
+```python
 analyzer_params = {​
     "type": "standard", # Uses the standard built-in analyzer​
     "stop_words": ["a", "an", "for"] # Defines a list of common words (stop words) to exclude from tokenization​
@@ -62,7 +62,7 @@ analyzer_params = {​
 
 The configuration of the `standard` built-in analyzer above is equivalent to setting up a custom analyzer with the following parameters, where `tokenizer` and `filter` options are explicitly defined to achieve similar functionality:​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter": [​
@@ -100,7 +100,7 @@ For example, a tokenizer would convert text `"Vector Database Built for Scale"` 
 
 **Example of specifying a tokenizer**:​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "whitespace",​
 }​
@@ -130,7 +130,7 @@ Filters in a custom analyzer can be either **built-in** or **custom**, depending
 
     **Example of using a built-in filter:**​
 
-    ```Python
+    ```python
     analyzer_params = {​
         "tokenizer": "standard", # Mandatory: Specifies tokenizer​
         "filter": ["lowercase"], # Optional: Built-in filter that converts text to lowercase​
@@ -139,15 +139,15 @@ Filters in a custom analyzer can be either **built-in** or **custom**, depending
 
 - **Custom filters**: Custom filters allow for specialized configurations. You can define a custom filter by choosing a valid filter type (`filter.type`) and adding specific settings for each filter type. Examples of filter types that support customization:​
 
-    - `stop`: Removes specified common words by setting a list of stop words (e.g., `"stop_words": ["of", "to"]`). For details, refer to [​Stop](https://zilliverse.feishu.cn/wiki/ScncwBnDBiVoLjksXAwcUgrgnod).​
+    - `stop`: Removes specified common words by setting a list of stop words (e.g., `"stop_words": ["of", "to"]`). For details, refer to [​Stop](stop-filter.md).​
 
-    - `length`: Excludes tokens based on length criteria, such as setting a maximum token length. For details, refer to [​Length](https://zilliverse.feishu.cn/wiki/MKdvwWBDRi5MMAkkn5PcD1x9nfh).​
+    - `length`: Excludes tokens based on length criteria, such as setting a maximum token length. For details, refer to [​Length](length-filter.md).​
 
-    - `stemmer`: Reduces words to their root forms for more flexible matching. For details, refer to [​Stemmer](https://zilliverse.feishu.cn/wiki/JksSwTwJPidjsnk18Olc2TjWnZe).​
+    - `stemmer`: Reduces words to their root forms for more flexible matching. For details, refer to [​Stemmer](stemmer-filter.md).​
 
     **Example of configuring a custom filter:**​
 
-    ```Python
+    ```python
     analyzer_params = {​
         "tokenizer": "standard", # Mandatory: Specifies tokenizer​
         "filter": [​
@@ -164,7 +164,7 @@ Filters in a custom analyzer can be either **built-in** or **custom**, depending
 
 In this example, we define a collection schema with a vector field for embeddings and two `VARCHAR` fields for text processing capabilities. Each `VARCHAR` field is configured with its own analyzer settings to handle different processing needs.​
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 # Set up a Milvus client​

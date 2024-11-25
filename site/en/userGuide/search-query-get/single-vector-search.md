@@ -47,7 +47,7 @@ In this section, you will learn how to conduct a single-vector search. The code 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -91,7 +91,7 @@ for hits in res:​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.vector.request.SearchReq;​
@@ -130,7 +130,7 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -179,7 +179,7 @@ func ExampleClient_Search_basic() {​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -205,7 +205,7 @@ console.log(res.results)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -296,7 +296,7 @@ Similarly, you can include multiple query vectors in a search request. Zilliz Cl
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 7. Search with multiple vectors​
 # 7.1. Prepare query vectors​
 query_vectors = [​
@@ -358,7 +358,7 @@ for hits in res:​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq​
 import io.milvus.v2.service.vector.request.data.BaseVector;​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
@@ -396,7 +396,7 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```JavaScript
+```javascript
 // 7. Search with multiple vectors​
 const query_vectors = [​
     [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592], ​
@@ -428,7 +428,7 @@ console.log(res.results)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -496,7 +496,7 @@ The following code snippet assumes a partition named **PartitionA** in your coll
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 4. Single vector search​
 query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592]​
 res = client.search(​
@@ -534,7 +534,7 @@ for hits in res:​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
 import io.milvus.v2.service.vector.response.SearchResp​
@@ -565,7 +565,7 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```JavaScript
+```javascript
 // 4. Single vector search​
 var query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
 ​
@@ -587,7 +587,7 @@ console.log(res.results)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -637,7 +637,7 @@ In a search result, Zilliz Cloud includes the primary field values and similarit
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 4. Single vector search​
 query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
 ​
@@ -680,7 +680,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
 import io.milvus.v2.service.vector.response.SearchResp​
@@ -711,7 +711,7 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```JavaScript
+```javascript
 // 4. Single vector search​
 var query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
 ​
@@ -733,7 +733,7 @@ console.log(res.results)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -824,7 +824,7 @@ Note that, the sum of `limit` and `offset` in a single ANN search should be less
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 4. Single vector search​
 query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
 ​
@@ -841,7 +841,7 @@ res = client.search(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
 import io.milvus.v2.service.vector.response.SearchResp​
@@ -872,7 +872,7 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```JavaScript
+```javascript
 // 4. Single vector search​
 var query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592],​
 ​
@@ -886,7 +886,7 @@ res = await client.search({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

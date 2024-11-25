@@ -49,7 +49,7 @@ Milvus supports representing sparse vectors in any of the following formats:​
         <a href="#Bash">cURL</a>
     </div>
 
-    ```Python
+    ```python
     from scipy.sparse import csr_matrix​
     ​
     # Create a sparse matrix​
@@ -72,13 +72,13 @@ Milvus supports representing sparse vectors in any of the following formats:​
         <a href="#Bash">cURL</a>
     </div>
 
-    ```Python
+    ```python
     # Represent sparse vector using a dictionary​
     sparse_vector = [{1: 0.5, 100: 0.3, 500: 0.8, 1024: 0.2, 5000: 0.6}]​
 
     ```    
 
-    ```Java
+    ```java
     SortedMap<Long, Float> sparseVector = new TreeMap<>();​
     sparseVector.put(1L, 0.5f);​
     sparseVector.put(100L, 0.3f);​
@@ -97,7 +97,7 @@ Milvus supports representing sparse vectors in any of the following formats:​
         <a href="#Bash">cURL</a>
     </div>
 
-    ```Python
+    ```python
     # Represent sparse vector using a list of tuples​
     sparse_vector = [[(1, 0.5), (100, 0.3), (500, 0.8), (1024, 0.2), (5000, 0.6)]]​
 
@@ -118,7 +118,7 @@ To use sparse vectors in Milvus, define a field for storing sparse vectors when 
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 client = MilvusClient(uri="http://localhost:19530")​
@@ -135,7 +135,7 @@ schema.add_field(field_name="sparse_vector", datatype=DataType.SPARSE_FLOAT_VECT
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 ​
@@ -164,7 +164,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const schema = [​
@@ -186,7 +186,7 @@ const schema = [​
 
 ```
 
-```Bash
+```curl
 export primaryField='{​
     "fieldName": "pk",​
     "dataType": "VarChar",​
@@ -224,7 +224,7 @@ The process of creating an index for sparse vectors is similar to that for [dens
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 index_params = client.prepare_index_params()​
 ​
 index_params.add_index(​
@@ -237,7 +237,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.IndexParam;​
 import java.util.*;​
 ​
@@ -254,7 +254,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const indexParams = await client.createIndex({​
     index_name: 'sparse_inverted_index',​
     field_name: 'sparse_vector',​
@@ -267,7 +267,7 @@ const indexParams = await client.createIndex({​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "sparse_vector",​
@@ -299,7 +299,7 @@ Once the sparse vector and index settings are complete, you can create a collect
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.create_collection(​
     collection_name="my_sparse_collection",​
     schema=schema,​
@@ -308,7 +308,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 ​
@@ -325,7 +325,7 @@ client.createCollection(requestCreate);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";​
 ​
 const client = new MilvusClient({​
@@ -340,7 +340,7 @@ await client.createCollection({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -364,7 +364,7 @@ After creating the collection, insert data containing sparse vectors.​
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 sparse_vectors = [​
     {"sparse_vector": {1: 0.5, 100: 0.3, 500: 0.8}},​
     {"sparse_vector": {10: 0.1, 200: 0.7, 1000: 0.9}},​
@@ -377,7 +377,7 @@ client.insert(​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 import io.milvus.v2.service.vector.request.InsertReq;​
@@ -411,7 +411,7 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const data = [​
   { sparse_vector: { "1": 0.5, "100": 0.3, "500": 0.8 } },​
   { sparse_vector: { "10": 0.1, "200": 0.7, "1000": 0.9 } },​
@@ -424,7 +424,7 @@ client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -452,7 +452,7 @@ To perform similarity search using sparse vectors, prepare the query vector and 
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Prepare search parameters​
 search_params = {​
     "params": {"drop_ratio_search": 0.2},  # Additional optional search parameters​
@@ -474,7 +474,7 @@ Then, execute the similarity search using the `search` method:​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 res = client.search(​
     collection_name="my_sparse_collection",​
     data=query_vector,​
@@ -490,7 +490,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq;​
 import io.milvus.v2.service.vector.request.data.SparseFloatVec;​
 import io.milvus.v2.service.vector.response.SearchResp;​
@@ -522,7 +522,7 @@ System.out.println(searchR.getSearchResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.search({​
     collection_name: 'my_sparse_collection',​
     data: {1: 0.2, 50: 0.4, 1000: 0.7},​
@@ -535,7 +535,7 @@ client.search({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
 --header "Authorization: Bearer ${TOKEN}" \​

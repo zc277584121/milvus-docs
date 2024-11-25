@@ -87,7 +87,7 @@ In the following code snippets, set `radius` to `0.4` and `range_filter` to `0.6
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -118,7 +118,7 @@ for hits in res:​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
  io.milvus.v2.service.vector.request.SearchReq​
@@ -159,12 +159,12 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```Go
+```go
 // TODO ​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -187,7 +187,7 @@ res = await client.search({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

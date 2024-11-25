@@ -58,7 +58,7 @@ To use binary vectors in Milvus, first define a vector field for storing binary 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 client = MilvusClient(uri="http://localhost:19530")​
@@ -73,7 +73,7 @@ schema.add_field(field_name="binary_vector", datatype=DataType.BINARY_VECTOR, di
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 ​
@@ -103,7 +103,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 schema.push({​
@@ -114,7 +114,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export primaryField='{​
     "fieldName": "pk",​
     "dataType": "VarChar",​
@@ -158,7 +158,7 @@ To speed up searches, an index must be created for the binary vector field. Inde
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 index_params = client.prepare_index_params()​
 ​
 index_params.add_index(​
@@ -171,7 +171,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.IndexParam;​
 import java.util.*;​
 ​
@@ -187,7 +187,7 @@ indexParams.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { MetricType, IndexType } from "@zilliz/milvus2-sdk-node";​
 ​
 const indexParams = {​
@@ -202,7 +202,7 @@ const indexParams = {​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "binary_vector",​
@@ -231,7 +231,7 @@ Once the binary vector and index settings are complete, create a collection that
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.create_collection(​
     collection_name="my_binary_collection",​
     schema=schema,​
@@ -240,7 +240,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 ​
@@ -257,7 +257,7 @@ client.createCollection(requestCreate);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";​
 ​
 const client = new MilvusClient({​
@@ -272,7 +272,7 @@ await client.createCollection({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -299,7 +299,7 @@ For example, for a 128-dimensional binary vector, a 16-byte array is required (s
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 def convert_bool_list_to_bytes(bool_list):​
     if len(bool_list) % 8 != 0:​
         raise ValueError("The length of a boolean list must be a multiple of 8")​
@@ -327,7 +327,7 @@ client.insert(​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 import io.milvus.v2.service.vector.request.InsertReq;​
@@ -368,7 +368,7 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const data = [​
   { binary_vector: [1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1] },​
   { binary_vector: [1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1] },​
@@ -381,7 +381,7 @@ client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -407,7 +407,7 @@ During search operations, binary vectors must also be provided in the form of a 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 search_params = {​
     "params": {"nprobe": 10}​
 }​
@@ -431,7 +431,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq;​
 import io.milvus.v2.service.vector.request.data.BinaryVec;​
 import io.milvus.v2.service.vector.response.SearchResp;​
@@ -459,7 +459,7 @@ SearchResp searchR = client.search(SearchReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 query_vector = [1,0,1,0,1,1,1,1,1,1,1,1];​
 ​
 client.search({​
@@ -474,7 +474,7 @@ client.search({​
 
 ```
 
-```Bash
+```curl
 export searchParams='{​
         "params":{"nprobe":10}​
     }'​

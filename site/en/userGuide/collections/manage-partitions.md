@@ -35,7 +35,7 @@ When creating a collection, Zilliz Cloud also creates a partition named **_defau
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -55,7 +55,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.partition.request.ListPartitionsReq;​
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
@@ -85,7 +85,7 @@ System.out.println(partitionNames);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -103,7 +103,7 @@ console.log(res);​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     ​
@@ -135,7 +135,7 @@ fmt.Println(partitionNames)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -168,7 +168,7 @@ You can add more partitions to the collection and insert entities into these par
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.create_partition(​
     collection_name="quick_setup",​
     partition_name="partitionA"​
@@ -186,7 +186,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.partition.request.CreatePartitionReq;​
 ​
 CreatePartitionReq createPartitionReq = CreatePartitionReq.builder()​
@@ -208,7 +208,7 @@ System.out.println(partitionNames);​
 
 ```
 
-```JavaScript
+```javascript
 await client.createPartition({​
     collection_name: "quick_setup",​
     partition_name: "partitionA"​
@@ -225,7 +225,7 @@ console.log(res)​
 
 ```
 
-```Go
+```go
 import (​
     "fmt"​
     ​
@@ -248,7 +248,7 @@ fmt.Println(partitionNames)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -296,7 +296,7 @@ The following code snippets demonstrate how to check whether a partition exists 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 res = client.has_partition(​
     collection_name="quick_setup",​
     partition_name="partitionA"​
@@ -310,7 +310,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.partition.request.HasPartitionReq;​
 ​
 HasPartitionReq hasPartitionReq = HasPartitionReq.builder()​
@@ -326,7 +326,7 @@ System.out.println(hasPartitionRes);​
 
 ```
 
-```JavaScript
+```javascript
 res = await client.hasPartition({​
     collection_name: "quick_setup",​
     partition_name: "partitionA"​
@@ -339,7 +339,7 @@ console.log(res.value)​
 
 ```
 
-```Go
+```go
 import (​
     "fmt"​
     ​
@@ -358,7 +358,7 @@ fmt.Println(result)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -396,7 +396,7 @@ You can separately load specific partitions in a collection. It is worth noting 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.load_partitions(​
     collection_name="quick_setup",​
     partition_names=["partitionA"]​
@@ -416,7 +416,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.partition.request.LoadPartitionsReq;​
 import io.milvus.v2.service.collection.request.GetLoadStateReq;​
 ​
@@ -440,7 +440,7 @@ System.out.println(getLoadStateRes);​
 
 ```
 
-```JavaScript
+```javascript
 await client.loadPartitions({​
     collection_name: "quick_setup",​
     partition_names: ["partitionA"]​
@@ -460,12 +460,12 @@ console.log(res)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -515,7 +515,7 @@ You can also release specific partitions.​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.release_partitions(​
     collection_name="quick_setup",​
     partition_names=["partitionA"]​
@@ -536,7 +536,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.partition.request.ReleasePartitionsReq;​
 ​
 ReleasePartitionsReq releasePartitionsReq = ReleasePartitionsReq.builder()​
@@ -558,7 +558,7 @@ System.out.println(getLoadStateRes);​
 
 ```
 
-```JavaScript
+```javascript
 await client.releasePartitions({​
     collection_name: "quick_setup",​
     partition_names: ["partitionA"]​
@@ -578,12 +578,12 @@ console.log(res)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -653,7 +653,7 @@ You can drop partitions that are no longer needed. Before dropping a partition, 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.release_partitions(​
     collection_name="quick_setup",​
     partition_names=["partitionA"]​
@@ -674,7 +674,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.partition.request.DropPartitionReq;​
 import io.milvus.v2.service.partition.request.ReleasePartitionsReq;​
 import io.milvus.v2.service.partition.request.ListPartitionsReq;​
@@ -705,7 +705,7 @@ System.out.println(partitionNames);​
 
 ```
 
-```JavaScript
+```javascript
 await client.releasePartitions({​
     collection_name: "quick_setup",​
     partition_names: ["partitionA"]​
@@ -727,12 +727,12 @@ console.log(res)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

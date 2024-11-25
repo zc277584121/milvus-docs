@@ -194,7 +194,7 @@ For example, suppose there are two strings, 1101 1001 and 1001 1101.​
 
 ## BM25 similarity​
 
-BM25 is a widely used text relevance measurement method, specifically designed for [full text search](https://zilliverse.feishu.cn/wiki/RQTRwhOVPiwnwokqr4scAtyfnBf). It combines the following three key factors:​
+BM25 is a widely used text relevance measurement method, specifically designed for [full text search](full-text-search.md). It combines the following three key factors:​
 
 - **Term Frequency (TF):** Measures how frequently a term appears in a document. While higher frequencies often indicate greater importance, BM25 uses the saturation parameter ​k1​ to prevent overly frequent terms from dominating the relevance score.​
 

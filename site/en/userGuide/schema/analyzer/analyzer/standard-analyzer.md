@@ -19,7 +19,7 @@ The `standard` analyzer consists of:​
 
 The functionality of the `standard` analyzer is equivalent to the following custom analyzer configuration:​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter": ["lowercase"]​
@@ -30,7 +30,7 @@ analyzer_params = {​
 
 To apply the `standard` analyzer to a field, simply set `type` to `standard` in `analyzer_params`, and include optional parameters as needed.​
 
-```Python
+```python
 analyzer_params = {​
     "type": "standard", # Specifies the standard analyzer type​
 }​
@@ -50,7 +50,7 @@ The `standard` analyzer accepts the following optional parameters: ​
 
 Example configuration of custom stop words:​
 
-```Python
+```python
 analyzer_params = {​
     "type": "standard", # Specifies the standard analyzer type​
     "stop_words", ["of"] # Optional: List of words to exclude from tokenization​
@@ -65,12 +65,12 @@ Here’s how the `standard` analyzer processes text.​
 
 **Original text**:​
 
-```Python
+```python
 "The Milvus vector database is built for scale!"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["the", "milvus", "vector", "database", "is", "built", "for", "scale"]​
 ```

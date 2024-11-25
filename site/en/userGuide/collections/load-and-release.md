@@ -21,7 +21,7 @@ The following code snippets demonstrate how to load a collection.​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -48,7 +48,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.LoadCollectionReq;​
 import io.milvus.v2.service.collection.request.GetLoadStateReq;​
 import io.milvus.v2.client.ConnectConfig;​
@@ -85,7 +85,7 @@ System.out.println(res);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -117,7 +117,7 @@ console.log(res.state)​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -141,7 +141,7 @@ if err != nil {​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -191,7 +191,7 @@ The following code snippet assumes that you have created a collection named **cu
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.load_collection(​
     collection_name="customized_setup_1",​
     # highlight-next-line​
@@ -213,7 +213,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 // 6. Load the collection​
 LoadCollectionReq loadCollectionReq = LoadCollectionReq.builder()​
         .collectionName("customized_setup_1")​
@@ -232,7 +232,7 @@ System.out.println(res);​
 
 ```
 
-```JavaScript
+```javascript
 await client.load_collection({​
   collection_name: "customized_setup_1",​
   load_fields: ["my_id", "my_vector"], // Load only the specified fields​
@@ -247,7 +247,7 @@ console.log(loadState);​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -273,7 +273,7 @@ if err != nil {​
 
 ```
 
-```Bash
+```curl
 # REST 缺失​
 
 ```
@@ -298,7 +298,7 @@ The following code snippet demonstrates how to release a collection.​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 8. Release the collection​
 client.release_collection(​
     collection_name="custom_quick_setup"​
@@ -318,7 +318,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.ReleaseCollectionReq;​
 ​
 ​
@@ -340,7 +340,7 @@ System.out.println(res);​
 
 ```
 
-```JavaScript
+```javascript
 // 8. Release the collection​
 res = await client.releaseCollection({​
     collection_name: "custom_quick_setup"​
@@ -366,7 +366,7 @@ console.log(res.state)​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
 ​
@@ -380,7 +380,7 @@ if err != nil {​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

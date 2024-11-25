@@ -25,7 +25,7 @@ The following code snippet demonstrates how to create an alias for a collection.
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -47,7 +47,7 @@ client.create_alias(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.utility.request.CreateAliasReq;​
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
@@ -82,7 +82,7 @@ client.createAlias(createAliasReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -117,12 +117,12 @@ console.log(res.error_code)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -168,7 +168,7 @@ The following code snippet demonstrates the procedure to list the aliases alloca
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 9.2. List aliases​
 res = client.list_aliases(​
     collection_name="customized_setup_2"​
@@ -189,7 +189,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.utility.request.ListAliasesReq;​
 import io.milvus.v2.service.utility.response.ListAliasResp;​
 ​
@@ -207,7 +207,7 @@ System.out.println(listAliasRes.getAlias());​
 
 ```
 
-```JavaScript
+```javascript
 // 9.2 List aliases​
 res = await client.listAliases({​
     collection_name: "customized_setup_2"​
@@ -222,12 +222,12 @@ console.log(res.aliases)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -259,7 +259,7 @@ The following code snippet describes a specific alias in detail, including the n
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 9.3. Describe aliases​
 res = client.describe_alias(​
     alias="bob"​
@@ -277,7 +277,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.utility.request.DescribeAliasReq;​
 import io.milvus.v2.service.utility.response.DescribeAliasResp;​
 ​
@@ -295,7 +295,7 @@ System.out.println(describeAliasRes);​
 
 ```
 
-```JavaScript
+```javascript
 // 9.3 Describe aliases​
 res = await client.describeAlias({​
     collection_name: "customized_setup_2",​
@@ -323,12 +323,12 @@ console.log(res)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -363,7 +363,7 @@ You can reallocate the alias already allocated to a specific collection to anoth
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # 9.4 Reassign aliases to other collections​
 client.alter_alias(​
     collection_name="customized_setup_1",​
@@ -404,7 +404,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.utility.request.AlterAliasReq;​
 ​
 // 9.4 Reassign alias to other collections​
@@ -436,7 +436,7 @@ System.out.println(listAliasRes.getAlias());​
 
 ```
 
-```JavaScript
+```javascript
 // 9.4 Reassign aliases to other collections​
 res = await client.alterAlias({​
     collection_name: "customized_setup_1",​
@@ -475,12 +475,12 @@ console.log(res.aliases)​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

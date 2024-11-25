@@ -19,7 +19,7 @@ When deleting multiple entities that share some attributes in a batch, you can u
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -40,7 +40,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.vector.request.DeleteReq;​
@@ -59,7 +59,7 @@ DeleteResp deleteResp = client.delete(DeleteReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 const address = "http://localhost:19530";​
@@ -82,7 +82,7 @@ console.log(res.delete_cnt)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -111,7 +111,7 @@ In most cases, a primary key uniquely identifies an Entity. You can delete Entit
 </div>
 
 
-```Python
+```python
 res = client.delete(​
     collection_name="quick_setup",​
     # highlight-next-line​
@@ -125,7 +125,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.DeleteReq;​
 import io.milvus.v2.service.vector.response.DeleteResp;​
 ​
@@ -139,7 +139,7 @@ DeleteResp deleteResp = client.delete(DeleteReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 res = await client.delete({​
@@ -156,7 +156,7 @@ console.log(res.delete_cnt)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -186,7 +186,7 @@ You can also delete entities stored in specific partitions. The following code s
 </div>
 
 
-```Python
+```python
 res = client.delete(​
     collection_name="quick_setup",​
     ids=[18, 19],​
@@ -200,7 +200,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.DeleteReq;​
 import io.milvus.v2.service.vector.response.DeleteResp;​
 ​
@@ -214,7 +214,7 @@ DeleteResp deleteResp = client.delete(DeleteReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 res = await client.delete({​
@@ -232,7 +232,7 @@ console.log(res.delete_cnt)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

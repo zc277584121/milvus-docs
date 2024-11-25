@@ -55,7 +55,7 @@ To enable full text search, create a collection with a specific schema. This sch
 
 First, create the schema and add the necessary fields:​
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType, Function, FunctionType​
 ​
 schema = MilvusClient.create_schema()​
@@ -76,7 +76,7 @@ In this configuration,​
 
 Now, define a function that will convert your text into sparse vector representations and then add it to the schema:​
 
-```Python
+```python
 bm25_function = Function(​
     name="text_bm25_emb", # Function name​
     input_field_names=["text"], # Name of the VARCHAR field containing raw text data​
@@ -122,7 +122,7 @@ For collections with multiple `VARCHAR` fields requiring text-to-sparse-vector c
 
 After defining the schema with necessary fields and the built-in function, set up the index for your collection. To simplify this process, use `AUTOINDEX` as the `index_type`, an option that allows Milvus to choose and configure the most suitable index type based on the structure of your data.​
 
-```Python
+```python
 index_params = MilvusClient.prepare_index_params()​
 ​
 index_params.add_index(​
@@ -155,7 +155,7 @@ index_params.add_index(​
 
 Now create the collection using the schema and index parameters defined.​
 
-```Python
+```python
 MilvusClient.create_collection(​
     collection_name='demo', ​
     schema=schema, ​
@@ -168,7 +168,7 @@ MilvusClient.create_collection(​
 
 After setting up your collection and index, you're ready to insert text data. In this process, you need only to provide the raw text. The built-in function we defined earlier automatically generates the corresponding sparse vector for each text entry.​
 
-```Python
+```python
 MilvusClient.insert('demo', [​
     {'text': 'Artificial intelligence was founded as an academic discipline in 1956.'},​
     {'text': 'Alan Turing was the first person to conduct substantial research in AI.'},​
@@ -181,7 +181,7 @@ MilvusClient.insert('demo', [​
 
 Once you've inserted data into your collection, you can perform full text searches using raw text queries. Milvus automatically converts your query into a sparse vector and ranks the matched search results using the BM25 algorithm, and then returns the topK (`limit`) results.​
 
-```Python
+```python
 search_params = {​
     'params': {'drop_ratio_search': 0.6},​
 }​

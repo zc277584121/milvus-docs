@@ -52,7 +52,7 @@ The search request in the following code snippet carries a filtering condition a
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -79,7 +79,7 @@ for hits in res:​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.vector.request.SearchReq​
@@ -117,7 +117,7 @@ for (List<SearchResp.SearchResult> results : searchResults) {​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "log"​
@@ -166,7 +166,7 @@ func ExampleClient_Search_filter() {​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -187,7 +187,7 @@ const res = await client.search({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -235,4 +235,4 @@ The filtering condition carried in the search request reads `color like "red%" a
 
 ```
 
-For more information on the operators that you can use in metadata filtering, refer to [​Metadata Filtering](https://zilliverse.feishu.cn/wiki/Y3JIwe49Rin8ZiksgoJc11wQnow).​
+For more information on the operators that you can use in metadata filtering, refer to [​Metadata Filtering](metadata-filtering.md).​

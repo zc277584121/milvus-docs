@@ -12,7 +12,7 @@ The `asciifolding`** **filter converts characters outside the [Basic Latin Unico
 
 The `asciifolding` filter is built into Milvus. To use it, simply specify its name in the `filter` section within `analyzer_params`.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter": ["asciifolding"],​
@@ -29,12 +29,12 @@ Here’s an example of how the `asciifolding` filter processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "Café Möller serves crème brûlée and piñatas."​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["Cafe", "Moller", "serves", "creme", "brulee", "and", "pinatas"]​
 ```

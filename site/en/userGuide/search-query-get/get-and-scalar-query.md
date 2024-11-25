@@ -113,7 +113,7 @@ When you need to find entities by their primary keys, you can use the **Get** me
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -131,7 +131,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.vector.request.GetReq​
@@ -163,7 +163,7 @@ for (QueryResp.QueryResult result : results) {​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -178,7 +178,7 @@ const res = client.get({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -207,7 +207,7 @@ When you need to find entities by custom filtering conditions, use the Query met
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -224,7 +224,7 @@ res = client.query(​
 
 ```
 
-```Java
+```java
 ​
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
@@ -251,7 +251,7 @@ for (QueryResp.QueryResult result : results) {​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -288,7 +288,7 @@ func ExampleClient_Query_basic() {​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -304,7 +304,7 @@ const res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -333,7 +333,7 @@ When you need to find entities by custom filtering conditions through paginated 
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import connections, Collection​
 ​
 connections.connect(​
@@ -362,7 +362,7 @@ while True:​
 
 ```
 
-```Java
+```java
 import io.milvus.orm.iterator.QueryIterator;​
 import io.milvus.response.QueryResultsWrapper;​
 import io.milvus.v2.common.ConsistencyLevel;​
@@ -397,7 +397,7 @@ while (true) {​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const iterator = await milvusClient.queryIterator({​
@@ -415,7 +415,7 @@ for await (const value of iterator) {​
 
 ```
 
-```Bash
+```curl
 # 暂无此方法​
 
 ```
@@ -431,7 +431,7 @@ You can also perform queries within one or multiple partitions by including the 
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 client = MilvusClient(​
     uri="http://localhost:19530",​
@@ -493,7 +493,7 @@ while True:​
 
 ```
 
-```Java
+```java
 GetReq getReq = GetReq.builder()​
         .collectionName("query_collection")​
         .partitionName("partitionA")​
@@ -527,7 +527,7 @@ QueryIterator queryIterator = client.queryIterator(req);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -571,7 +571,7 @@ for await (const value of iterator) {​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

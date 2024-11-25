@@ -12,7 +12,7 @@ The `standard` tokenizer in Milvus splits text based on spaces and punctuation m
 
 To configure an analyzer using the `standard` tokenizer, set `tokenizer` to `standard` in `analyzer_params`.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
 }​
@@ -21,7 +21,7 @@ analyzer_params = {​
 
 The `standard` tokenizer can work in conjunction with one or more filters. For example, the following code defines an analyzer that uses the `standard` tokenizer and `lowercase` filter:​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter": ["lowercase"]​
@@ -43,12 +43,12 @@ Here’s an example of how the `standard` tokenizer processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "The Milvus vector database is built for scale!"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["The", "Milvus", "vector", "database", "is", "built", "for", "scale"]​
 ```

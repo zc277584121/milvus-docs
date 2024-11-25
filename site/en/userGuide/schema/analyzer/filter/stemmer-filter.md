@@ -12,7 +12,7 @@ The `stemmer` filter reduces words to their base or root form (known as stemming
 
 The `stemmer` filter is a custom filter in Milvus. To use it, specify `"type": "stemmer"` in the filter configuration, along with a `language` parameter to select the desired language for stemming.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter":[{​
@@ -44,12 +44,12 @@ Here’s an example of how the `stemmer` filter processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "running runs looked ran runner"​
 ```
 
 **Expected output** (with `language: "english"`):​
 
-```Python
+```python
 ["run", "run", "look", "ran", "runner"]​
 ```

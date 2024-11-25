@@ -12,7 +12,7 @@ The `length`** **filter removes tokens that do not meet specified length require
 
 The `length` filter is a custom filter in Milvus, specified by setting `"type": "length"` in the filter configuration. You can configure it as a dictionary within the `analyzer_params` to define length limits.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter":[{​
@@ -44,12 +44,12 @@ Here’s an example of how the `length` filter processes text:​
 
 **Example text**:​
 
-```Python
+```python
 "The length filter allows control over token length requirements for text processing."​
 ```
 
 **Expected output** (with `max: 10`):​
 
-```Python
+```python
 ["length", "filter", "allows", "control", "over", "token", "length", "for", "text"]​
 ```

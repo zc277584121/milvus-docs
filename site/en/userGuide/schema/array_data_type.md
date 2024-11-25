@@ -40,7 +40,7 @@ Here’s how to define a collection schema that includes Array fields:​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 client = MilvusClient(uri="http://localhost:19530")​
@@ -63,7 +63,7 @@ schema.add_field(field_name="embedding", datatype=DataType.FLOAT_VECTOR, dim=3)�
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.common.DataType;​
@@ -105,7 +105,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 const schema = [​
   {​
@@ -135,7 +135,7 @@ const schema = [​
 
 ```
 
-```Bash
+```curl
 export arrayField1='{​
     "fieldName": "tags",​
     "dataType": "Array",​
@@ -209,7 +209,7 @@ In the following example, we create an `AUTOINDEX` for the `tags` field, which m
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Prepare index parameters​
 index_params = client.prepare_index_params()  # Prepare IndexParams object​
 ​
@@ -221,7 +221,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.IndexParam;​
 import java.util.*;​
 ​
@@ -234,7 +234,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const indexParams = [{​
     index_name: 'inverted_index',​
     field_name: 'tags',​
@@ -243,7 +243,7 @@ const indexParams = [{​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "tags",​
@@ -266,7 +266,7 @@ Moreover, you must create an index for the vector field before creating the coll
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Add vector index​
 index_params.add_index(​
     field_name="embedding",​
@@ -276,7 +276,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 indexes.add(IndexParam.builder()​
         .fieldName("embedding")​
         .indexType(IndexParam.IndexType.AUTOINDEX)​
@@ -285,7 +285,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
  indexParams.push({​
     index_name: 'embedding_index',​
     field_name: 'embedding',​
@@ -294,7 +294,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "tags",​
@@ -322,7 +322,7 @@ Use the defined schema and index parameters to create a collection:​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.create_collection(​
     collection_name="my_array_collection",​
     schema=schema,​
@@ -331,7 +331,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 CreateCollectionReq requestCreate = CreateCollectionReq.builder()​
         .collectionName("my_array_collection")​
         .collectionSchema(schema)​
@@ -341,7 +341,7 @@ client.createCollection(requestCreate);​
 
 ```
 
-```JavaScript
+```javascript
 client.create_collection({​
     collection_name: "my_array_collection",​
     schema: schema,​
@@ -350,7 +350,7 @@ client.create_collection({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -375,7 +375,7 @@ After creating the collection, you can insert data that includes Array fields.�
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 data = [​
     {​
         "tags": ["pop", "rock", "classic"],​
@@ -404,7 +404,7 @@ client.insert(​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 ​
@@ -424,7 +424,7 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const data = [​
     {​
         "tags": ["pop", "rock", "classic"],​
@@ -453,7 +453,7 @@ client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -506,7 +506,7 @@ You can filter data based on properties of Array fields, such as accessing a spe
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 filter = 'ratings[0] < 4'​
 ​
 res = client.query(​
@@ -522,7 +522,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq;​
 import io.milvus.v2.service.vector.response.QueryResp;​
 ​
@@ -541,7 +541,7 @@ System.out.println(resp.getQueryResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.query({​
     collection_name: 'my_array_collection',​
     filter: 'ratings[0] < 4',​
@@ -550,7 +550,7 @@ client.query({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/query" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -578,7 +578,7 @@ By combining vector similarity with Array filtering, you can ensure that the ret
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 filter = 'tags[0] == "pop"'​
 ​
 res = client.search(​
@@ -597,7 +597,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq;​
 import io.milvus.v2.service.vector.response.SearchResp;​
 ​
@@ -619,7 +619,7 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.search({​
     collection_name: 'my_array_collection',​
     data: [0.3, -0.6, 0.1],​
@@ -630,7 +630,7 @@ client.search({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
 --header "Authorization: Bearer ${TOKEN}" \​

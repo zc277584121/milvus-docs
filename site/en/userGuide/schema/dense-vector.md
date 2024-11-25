@@ -74,7 +74,7 @@ In the example below, we add a vector field named `dense_vector` to store dense 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 client = MilvusClient(uri="http://localhost:19530")​
@@ -89,7 +89,7 @@ schema.add_field(field_name="dense_vector", datatype=DataType.FLOAT_VECTOR, dim=
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 ​
@@ -119,7 +119,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 schema.push({​
@@ -131,7 +131,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export primaryField='{​
     "fieldName": "pk",​
     "dataType": "VarChar",​
@@ -188,7 +188,7 @@ To accelerate semantic searches, an index must be created for the vector field. 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 index_params = client.prepare_index_params()​
 ​
 index_params.add_index(​
@@ -201,7 +201,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.IndexParam;​
 import java.util.*;​
 ​
@@ -217,7 +217,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { MetricType, IndexType } from "@zilliz/milvus2-sdk-node";​
 ​
 const indexParams = {​
@@ -232,7 +232,7 @@ const indexParams = {​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "dense_vector",​
@@ -261,7 +261,7 @@ Once the dense vector and index param settings are complete, you can create a co
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.create_collection(​
     collection_name="my_dense_collection",​
     schema=schema,​
@@ -270,7 +270,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 ​
@@ -287,7 +287,7 @@ client.createCollection(requestCreate);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";​
 ​
 const client = new MilvusClient({​
@@ -303,7 +303,7 @@ await client.createCollection({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -328,7 +328,7 @@ After creating the collection, use the `insert` method to add data containing de
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 data = [​
     {"dense_vector": [0.1, 0.2, 0.3, 0.7]},​
     {"dense_vector": [0.2, 0.3, 0.4, 0.8]},​
@@ -341,7 +341,7 @@ client.insert(​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 import io.milvus.v2.service.vector.request.InsertReq;​
@@ -359,7 +359,7 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const data = [​
   { dense_vector: [0.1, 0.2, 0.3, 0.7] },​
   { dense_vector: [0.2, 0.3, 0.4, 0.8] },​
@@ -372,7 +372,7 @@ client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -401,7 +401,7 @@ Semantic search based on dense vectors is one of the core features of Milvus, al
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 search_params = {​
     "params": {"nprobe": 10}​
 }​
@@ -424,7 +424,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.data.FloatVec;​
 ​
 Map<String,Object> searchParams = new HashMap<>();​
@@ -449,7 +449,7 @@ System.out.println(searchR.getSearchResults());​
 
 ```
 
-```JavaScript
+```javascript
 query_vector = [0.1, 0.2, 0.3, 0.7];​
 ​
 client.search({​
@@ -464,7 +464,7 @@ client.search({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
 --header "Authorization: Bearer ${TOKEN}" \​

@@ -78,7 +78,7 @@ The following example defines a collection schema, where `dense` and `sparse` ar
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Create a collection in customized setup mode​
 from pymilvus import (​
     MilvusClient, DataType​
@@ -102,7 +102,7 @@ schema.add_field(field_name="dense", datatype=DataType.FLOAT_VECTOR, dim=5)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.common.DataType;​
@@ -141,12 +141,12 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```Go
+```go
 // WIP​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -180,7 +180,7 @@ const fields = [​
 
 ```
 
-```Bash
+```curl
 export schema='{​
         "autoId": false,​
         "enabledDynamicField": true,​
@@ -226,7 +226,7 @@ After defining the collection schema, it is necessary to set up the vector index
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 # Prepare index parameters​
@@ -251,7 +251,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.IndexParam;​
 import java.util.*;​
 ​
@@ -281,7 +281,7 @@ indexParams.add(indexParamForSparseField);​
 
 ```
 
-```JavaScript
+```javascript
 const index_params = [{​
     field_name: "dense",​
     index_type: "IVF_FLAT",​
@@ -294,7 +294,7 @@ const index_params = [{​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "dense",​
@@ -324,7 +324,7 @@ Create a collection named `demo` with the collection schema and indexes configur
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client.create_collection(​
@@ -335,7 +335,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 CreateCollectionReq createCollectionReq = CreateCollectionReq.builder()​
         .collectionName("hybrid_search_collection")​
         .collectionSchema(schema)​
@@ -345,7 +345,7 @@ client.createCollection(createCollectionReq);​
 
 ```
 
-```JavaScript
+```javascript
 res = await client.createCollection({​
     collection_name: "hybrid_search_collection",​
     fields: fields,​
@@ -354,7 +354,7 @@ res = await client.createCollection({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -381,7 +381,7 @@ Insert the sparse-dense vectors into the the collection `demo`.​
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 data=[​
@@ -397,7 +397,7 @@ res = client.insert(​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 import io.milvus.v2.service.vector.request.InsertReq;​
@@ -431,7 +431,7 @@ InsertResp insertResp = client.insert(insertReq);​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 var data = [​
@@ -447,7 +447,7 @@ var res = await client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -482,7 +482,7 @@ Suppose the query text "Who started AI research?" has already been converted int
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import AnnSearchRequest​
 ​
 query_dense_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592]​
@@ -515,7 +515,7 @@ reqs = [request_1, request_2]​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.AnnSearchReq;​
 import io.milvus.v2.service.vector.request.data.BaseVector;​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
@@ -550,7 +550,7 @@ searchRequests.add(AnnSearchReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const search_param_1 = {​
     "data": query_vector, ​
     "anns_field": "dense", ​
@@ -573,7 +573,7 @@ const search_param_2 = {​
 
 ```
 
-```Bash
+```curl
 export req='[​
     {​
         "data": [[0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592,....]],​
@@ -624,7 +624,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
         <a href="#Bash">cURL</a>
     </div>
     
-    ```Python
+    ```python
     from pymilvus import WeightedRanker​
     ​
     rerank= WeightedRanker(0.8, 0.3) ​
@@ -632,7 +632,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     ```    
 
     
-    ```Java
+    ```java
     import io.milvus.v2.service.vector.request.ranker.BaseRanker;​
     import io.milvus.v2.service.vector.request.ranker.WeightedRanker;​
     ​
@@ -641,7 +641,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     ```    
 
     
-    ```JavaScript
+    ```javascript
     import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
     ​
     const rerank = WeightedRanker(0.8, 0.3);​
@@ -649,7 +649,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     ```    
 
     
-    ```Bash
+    ```curl
     export rerank='{​
             "strategy": "ws",​
             "params": {"weights": [0.8,0.3]}​
@@ -669,7 +669,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     </div>
 
     
-    ```Python
+    ```python
     from pymilvus import RRFRanker​
     ​
     ranker = RRFRanker(100)​
@@ -677,7 +677,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     ```    
 
     
-    ```Java
+    ```java
     import io.milvus.v2.service.vector.request.ranker.BaseRanker;​
     import io.milvus.v2.service.vector.request.ranker.RRFRanker;​
     ​
@@ -686,7 +686,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     ```    
 
     
-    ```JavaScript
+    ```javascript
     import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
     ​
     const rerank = RRFRanker("100");​
@@ -694,7 +694,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     ```    
 
     
-    ```Bash
+    ```curl
     export rerank='{​
             "strategy": "rrf",​
             "params": { "k": 100}​
@@ -713,7 +713,7 @@ Before conducting a Hybrid Search, it is necessary to load the collection into m
     <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 res = client.hybrid_search(​
@@ -729,7 +729,7 @@ for hits in res:​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.ConsistencyLevel;​
 import io.milvus.v2.service.vector.request.HybridSearchReq;​
 import io.milvus.v2.service.vector.response.SearchResp;​
@@ -746,7 +746,7 @@ SearchResp searchResp = client.hybridSearch(hybridSearchReq);​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 res = await client.loadCollection({​
@@ -764,7 +764,7 @@ const search = await client.search({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/advanced_search" \​
 --header "Authorization: Bearer ${TOKEN}" \​

@@ -28,7 +28,7 @@ Collections created using the method described in [​Create Collection Instantl
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client= MilvusClient(uri="http://localhost:19530")​
@@ -42,7 +42,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.collection.request.CreateCollectionReq;​
@@ -61,7 +61,7 @@ client.createCollection(createCollectionReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const client = new Client({​
@@ -77,7 +77,7 @@ await client.createCollection({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -126,7 +126,7 @@ The following code demonstrates how to insert this dataset into the collection.�
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 data=[​
     {"id": 0, "vector": [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592], "color": "pink_8682"},​
     {"id": 1, "vector": [0.19886812562848388, 0.06023560599112088, 0.6976963061752597, 0.2614474506242501, 0.838729485096104], "color": "red_7025"},​
@@ -152,7 +152,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 ​
@@ -187,7 +187,7 @@ System.out.println(insertResp);​
 
 ```
 
-```JavaScript
+```javascript
 const { DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 // 3. Insert some data​
@@ -219,7 +219,7 @@ console.log(res.insert_cnt)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -276,7 +276,7 @@ Milvus supports the use of filter expressions during queries and searches, allow
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592]​
 ​
 res = client.search(​
@@ -297,7 +297,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
 import io.milvus.v2.service.vector.response.SearchResp​
@@ -322,7 +322,7 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-```JavaScript
+```javascript
 const query_vector = [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592]​
 ​
 res = await client.search({​
@@ -337,7 +337,7 @@ res = await client.search({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

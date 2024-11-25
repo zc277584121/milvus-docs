@@ -19,7 +19,7 @@ The following example demonstrates how to obtain the name list of all collection
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 client = MilvusClient(​
@@ -33,7 +33,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.collection.response.ListCollectionsResp;​
@@ -50,7 +50,7 @@ System.out.println(resp.getCollectionNames());​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient } from '@zilliz/milvus2-sdk-node';​
 ​
 const client = new MilvusClient({​
@@ -64,7 +64,7 @@ console.log(collections);​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -97,7 +97,7 @@ fmt.Println(collectionNames)​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/list" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -126,7 +126,7 @@ You can also obtain the details of a specific collection. The following example 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 res = client.describe_collection(​
     collection_name="quick_setup"​
 )​
@@ -135,7 +135,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.DescribeCollectionReq;​
 import io.milvus.v2.service.collection.response.DescribeCollectionResp;​
 ​
@@ -147,7 +147,7 @@ System.out.println(resp);​
 
 ```
 
-```JavaScript
+```javascript
 const res = await client.describeCollection({​
     collection_name: "quick_setup"​
 });​
@@ -156,7 +156,7 @@ console.log(res);​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -189,7 +189,7 @@ fmt.Println(collection)​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/describe" \​
 --header "Authorization: Bearer ${TOKEN}" \​

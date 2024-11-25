@@ -27,7 +27,7 @@ To use primary keys of the Int64 type, you need to set `datatype` to `DataType.I
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 schema = MilvusClient.create_schema()​
@@ -43,7 +43,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.DataType;​
 import io.milvus.v2.service.collection.request.AddFieldReq; ​
 import io.milvus.v2.service.collection.request.CreateCollectionReq;​
@@ -62,7 +62,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const schema = [​
@@ -77,12 +77,12 @@ const schema = [​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export primaryField='{​
     "fieldName": "my_id",​
     "dataType": "Int64",​
@@ -109,7 +109,7 @@ To use VarChar primary keys, in addition to changing the value of the `data_type
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema.add_field(​
     field_name="my_id",​
     datatype=DataType.VARCHAR,​
@@ -122,7 +122,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.DataType;​
 import io.milvus.v2.service.collection.request.AddFieldReq; ​
 ​
@@ -138,7 +138,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 schema.push({​
     name: "my_id",​
     data_type: DataType.VarChar,​
@@ -151,12 +151,12 @@ schema.push({​
 
 ```
 
-```Go
+```go
 // Go 缺失​
 
 ```
 
-```Bash
+```curl
 export primaryField='{​
     "fieldName": "my_id",​
     "dataType": "VarChar",​

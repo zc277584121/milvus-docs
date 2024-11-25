@@ -30,7 +30,7 @@ In this section, you will insert Entities into a Collection created [in the quic
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -63,7 +63,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 import io.milvus.v2.client.ConnectConfig;​
@@ -106,7 +106,7 @@ System.out.println(insertResp);​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 const address = "http://localhost:19530";​
@@ -142,7 +142,7 @@ console.log(res.insert_cnt)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -199,7 +199,7 @@ You can also insert entities into a specified partition. The following code snip
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 data=[​
     {"id": 10, "vector": [0.3580376395471989, -0.6023495712049978, 0.18414012509913835, -0.26286205330961354, 0.9029438446296592], "color": "pink_8682"},​
     {"id": 11, "vector": [0.19886812562848388, 0.06023560599112088, 0.6976963061752597, 0.2614474506242501, 0.838729485096104], "color": "red_7025"},​
@@ -227,7 +227,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 import io.milvus.v2.service.vector.request.InsertReq;​
@@ -264,7 +264,7 @@ System.out.println(insertResp);​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 // 3. Insert some data​
@@ -298,7 +298,7 @@ console.log(res.insert_cnt)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

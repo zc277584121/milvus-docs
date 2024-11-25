@@ -45,7 +45,7 @@ To designate a scalar field as the Partition Key, you need to set its `is_partit
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import (​
     MilvusClient, DataType​
 )​
@@ -68,7 +68,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.common.DataType;​
@@ -94,7 +94,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -115,7 +115,7 @@ const fields = [​
 
 ```
 
-```Bash
+```curl
 export schema='{​
         "autoId": true,​
         "enabledDynamicField": false,​
@@ -159,7 +159,7 @@ You can also determine the number of partitions to create along with the collect
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 client.create_collection(​
     collection_name="my_collection",​
     schema=schema,​
@@ -169,7 +169,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.CreateCollectionReq;​
 ​
 CreateCollectionReq createCollectionReq = CreateCollectionReq.builder()​
@@ -181,7 +181,7 @@ CreateCollectionReq createCollectionReq = CreateCollectionReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 await client.create_collection({​
     collection_name: "my_collection",​
     schema: schema,​
@@ -190,7 +190,7 @@ await client.create_collection({​
 
 ```
 
-```Bash
+```curl
 export params='{​
     "partitionsNum": 1024​
 }'​
@@ -224,7 +224,7 @@ The following examples demonstrate Partition-Key-based filtering based on a spec
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Filter based on a single partition key value, or​
 filter='partition_key == "x" && <other conditions>'​
 ​
@@ -233,7 +233,7 @@ filter='partition_key in ["x", "y", "z"] && <other conditions>'​
 
 ```
 
-```Java
+```java
 // Filter based on a single partition key value, or​
 String filter = "partition_key == 'x' && <other conditions>";​
 ​
@@ -242,7 +242,7 @@ String filter = "partition_key in ['x', 'y', 'z'] && <other conditions>";​
 
 ```
 
-```JavaScript
+```javascript
 // Filter based on a single partition key value, or​
 const filter = 'partition_key == "x" && <other conditions>'​
 ​
@@ -251,7 +251,7 @@ const filter = 'partition_key in ["x", "y", "z"] && <other conditions>'​
 
 ```
 
-```Bash
+```curl
 # Filter based on a single partition key value, or​
 export filter='partition_key == "x" && <other conditions>'​
 ​

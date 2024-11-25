@@ -62,7 +62,7 @@ The following example shows how to define a schema that includes number fields `
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 client = MilvusClient(uri="http://localhost:19530")​
@@ -79,7 +79,7 @@ schema.add_field(field_name="embedding", datatype=DataType.FLOAT_VECTOR, dim=3)�
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 ​
@@ -119,7 +119,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 const schema = [​
   {​
@@ -145,7 +145,7 @@ const schema = [​
 
 ```
 
-```Bash
+```curl
 export int64Field='{​
     "fieldName": "age",​
     "dataType": "Int64"​
@@ -201,7 +201,7 @@ In the following example, we create an `AUTOINDEX` for the `age` number field, a
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 index_params = client.prepare_index_params()​
 ​
 index_params.add_index(​
@@ -212,7 +212,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.IndexParam;​
 import java.util.*;​
 ​
@@ -225,7 +225,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const indexParams = {​
     index_name: 'inverted_index',​
     field_name: 'age',​
@@ -234,7 +234,7 @@ const indexParams = {​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "age",​
@@ -256,7 +256,7 @@ Moreover, before creating the collection, you must create an index for the vecto
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Add vector index​
 index_params.add_index(​
     field_name="embedding",​
@@ -266,7 +266,7 @@ index_params.add_index(​
 
 ```
 
-```Java
+```java
 indexes.add(IndexParam.builder()​
         .fieldName("embedding")​
         .indexType(IndexParam.IndexType.AUTOINDEX)​
@@ -275,7 +275,7 @@ indexes.add(IndexParam.builder()​
 
 ```
 
-```JavaScript
+```javascript
 import { IndexType } from "@zilliz/milvus2-sdk-node";​
 const indexParams = [​
   {​
@@ -293,7 +293,7 @@ const indexParams = [​
 
 ```
 
-```Bash
+```curl
 export indexParams='[​
         {​
             "fieldName": "age",​
@@ -320,7 +320,7 @@ Once the schema and indexes are defined, you can create a collection that includ
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Create Collection​
 client.create_collection(​
     collection_name="your_collection_name",​
@@ -330,7 +330,7 @@ client.create_collection(​
 
 ```
 
-```Java
+```java
 CreateCollectionReq requestCreate = CreateCollectionReq.builder()​
         .collectionName("my_scalar_collection")​
         .collectionSchema(schema)​
@@ -340,7 +340,7 @@ client.createCollection(requestCreate);​
 
 ```
 
-```JavaScript
+```javascript
 client.create_collection({​
     collection_name: "my_scalar_collection",​
     schema: schema,​
@@ -349,7 +349,7 @@ client.create_collection({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/collections/create" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -373,7 +373,7 @@ After creating the collection, you can insert data that includes number fields.�
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 data = [​
     {"age": 25, "price": 99.99, "pk": 1, "embedding": [0.1, 0.2, 0.3]},​
     {"age": 30, "price": 149.50, "pk": 2, "embedding": [0.4, 0.5, 0.6]},​
@@ -387,7 +387,7 @@ client.insert(​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 ​
@@ -407,7 +407,7 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const data = [​
   { age: 25, price: 99.99, pk: 1, embedding: [0.1, 0.2, 0.3] },​
   { age: 30, price: 149.5, pk: 2, embedding: [0.4, 0.5, 0.6] },​
@@ -422,7 +422,7 @@ client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -457,7 +457,7 @@ After adding number fields, you can use them for filtering in queries. For examp
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 filter = "30 <= age <= 40"​
 ​
 res = client.query(​
@@ -473,7 +473,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq;​
 import io.milvus.v2.service.vector.response.QueryResp;​
 ​
@@ -492,7 +492,7 @@ System.out.println(resp.getQueryResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.query({​
     collection_name: 'my_scalar_collection',​
     filter: '30 <= age <= 40',​
@@ -501,7 +501,7 @@ client.query({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/query" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -529,7 +529,7 @@ In addition to basic number field filtering, you can combine vector similarity s
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 filter = "25 <= age <= 35"​
 ​
 res = client.search(​
@@ -548,7 +548,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq;​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
 import io.milvus.v2.service.vector.response.SearchResp;​
@@ -572,7 +572,7 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.search({​
     collection_name: 'my_scalar_collection',​
     data: [0.3, -0.6, 0.1],​
@@ -583,7 +583,7 @@ client.search({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
 --header "Authorization: Bearer ${TOKEN}" \​

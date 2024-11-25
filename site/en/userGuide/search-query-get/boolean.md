@@ -223,7 +223,7 @@ The following example demonstrates how to filter products with prices ranging fr
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -245,7 +245,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.service.vector.request.QueryReq​
@@ -272,7 +272,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -287,7 +287,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -326,7 +326,7 @@ The following example demonstrates how to filter products with an inventory quan
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='inventory["quantity"] >= 250',​
@@ -342,7 +342,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -363,7 +363,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -374,7 +374,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -483,7 +483,7 @@ The following example demonstrates how to filter products whose sales volume in 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter="sales_volume[0] >= 150",​
@@ -499,7 +499,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -520,7 +520,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -531,7 +531,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -628,7 +628,7 @@ The following example demonstrates how to filter products whose color is not red
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='color not in ["red_7025","red_4794","red_9392"]',​
@@ -646,7 +646,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -669,7 +669,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -680,7 +680,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -722,7 +722,7 @@ The following example demonstrates how to filter products whose brand is Apple.�
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='inventory["brand"] in ["Apple"]',​
@@ -737,7 +737,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -757,7 +757,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -768,7 +768,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -852,7 +852,7 @@ The following example demonstrates how to filter products whose color is red. In
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='color like "red%"',​
@@ -866,7 +866,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -885,7 +885,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -896,7 +896,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -927,7 +927,7 @@ The filtered results are as follows:​
 
 The following example demonstrates how to filter products whose brand name starts with the letter 'S'.​
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='inventory["brand"] like "S%"',​
@@ -941,7 +941,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -960,7 +960,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -971,7 +971,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1024,7 +1024,7 @@ The filtered results are as follows:​
 
 #### Example 3: Keyword match on VARCHAR fields​
 
-The `TEXT_MATCH` expression is used for keyword match on `VARCHAR` fields. By default, it applies an **OR** logic, but you can combine it with other logical operators to create more complex query conditions. For details, refer to [​Keyword Match](https://zilliverse.feishu.cn/wiki/RQQKwqhZUiubFzkHo4WcR62Gnvh).​
+The `TEXT_MATCH` expression is used for keyword match on `VARCHAR` fields. By default, it applies an **OR** logic, but you can combine it with other logical operators to create more complex query conditions. For details, refer to [​Keyword Match](keyword-match.md).​
 
 The following example demonstrates how to use the `TEXT_MATCH` expression to filter products where the `description` field contains either the keyword `"Apple"` or `"iPhone"`:​
 
@@ -1035,7 +1035,7 @@ The following example demonstrates how to use the `TEXT_MATCH` expression to fil
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='TEXT_MATCH(description, "Apple iPhone")',​
@@ -1044,7 +1044,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 QueryReq queryReq = QueryReq.builder()​
         .collectionName("my_collection")​
         .filter("TEXT_MATCH(description, \"Apple iPhone\")")​
@@ -1055,7 +1055,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const results = client.query({​
@@ -1080,7 +1080,7 @@ The filtered results are as follows:​
 
 To filter for descriptions containing multiple keywords simultaneously, you can use the `and` operator. The following example demonstrates how to filter products where the `description` field contains both `"chip"` and `"iPhone"`:​
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='TEXT_MATCH(description, "chip") and TEXT_MATCH(description, "iPhone")',​
@@ -1089,7 +1089,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 QueryReq queryReq = QueryReq.builder()​
         .collectionName("my_collection")​
         .filter("TEXT_MATCH(description, \"chip\") and TEXT_MATCH(description, \"iPhone\")")​
@@ -1100,7 +1100,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const results = client.query({​
@@ -1113,7 +1113,7 @@ const results = client.query({​
 
 The filtered results are as follows:​
 
-```Python
+```python
 [​
     {'id': 5, 'description': "iPhone 15 Pro, A new chip designed for better gaming and other 'pro' features."}​
 ]​
@@ -1147,7 +1147,7 @@ The following example demonstrates how to filter products whose price, after a 5
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter="200 <= price*0.5 and price*0.5 <= 300",​
@@ -1161,7 +1161,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -1180,7 +1180,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -1191,7 +1191,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1229,7 +1229,7 @@ The following example demonstrates how to filter products whose inventory, when 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='inventory["quantity"] * 2 > 600',​
@@ -1243,7 +1243,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -1262,7 +1262,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -1273,7 +1273,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1335,7 +1335,7 @@ The following example demonstrates how to filter products whose combined sales i
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter="sales_volume[0]*2 > 300",​
@@ -1350,7 +1350,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -1370,7 +1370,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -1381,7 +1381,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1470,7 +1470,7 @@ The following example demonstrates how to filter products that previously had sa
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='JSON_CONTAINS(inventory[\"previous_sales\"], 232)',​
@@ -1483,7 +1483,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -1501,7 +1501,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -1512,7 +1512,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1563,7 +1563,7 @@ The following example demonstrates how to filter products that had previous sale
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='JSON_CONTAINS_ALL(inventory["previous_sales"], [232, 254, 275])',​
@@ -1576,7 +1576,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -1594,7 +1594,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 var res = client.query({​
@@ -1605,7 +1605,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1670,7 +1670,7 @@ The following example demonstrates how to filter products that had previous sale
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='JSON_CONTAINS_ANY(inventory["previous_sales"], [232, 254, 275])',​
@@ -1684,7 +1684,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -1703,7 +1703,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 var res = client.query({​
@@ -1714,7 +1714,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1805,7 +1805,7 @@ The following example demonstrates how to filter products with current sales of 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='ARRAY_CONTAINS(sales_volume, 161)',​
@@ -1818,7 +1818,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -1836,7 +1836,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -1847,7 +1847,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1906,7 +1906,7 @@ The following example demonstrates how to filter products with current sales of 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='ARRAY_CONTAINS_ALL(sales_volume, [150, 150])',​
@@ -1918,7 +1918,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -1935,7 +1935,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -1946,7 +1946,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -1993,7 +1993,7 @@ The following example demonstrates how to filter products with current sales of 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='ARRAY_CONTAINS_ANY(sales_volume, [150, 190, 90])',​
@@ -2007,7 +2007,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -2026,7 +2026,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -2037,7 +2037,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -2105,7 +2105,7 @@ The following example demonstrates how to filter products that are sold in only 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='ARRAY_LENGTH(sales_volume) == 3',​
@@ -2119,7 +2119,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -2138,7 +2138,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -2149,7 +2149,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -2228,7 +2228,7 @@ The following example demonstrates how to filter products that are red in color,
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 results = client.query(​
     collection_name="my_collection",​
     filter='color like "red%" and price < 500 and inventory["brand"] in ["Apple"] and sales_volume[0] > 100',​
@@ -2240,7 +2240,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq​
 import io.milvus.v2.service.vector.request.QueryResp​
 ​
@@ -2257,7 +2257,7 @@ QueryResp getResp = client.query(queryReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 var res = client.query({​
@@ -2268,7 +2268,7 @@ var res = client.query({​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

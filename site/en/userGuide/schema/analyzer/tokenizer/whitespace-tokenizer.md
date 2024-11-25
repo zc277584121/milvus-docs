@@ -12,7 +12,7 @@ The `whitespace` tokenizer divides text into terms whenever there is a space bet
 
 To configure an analyzer using the `whitespace` tokenizer, set `tokenizer` to `whitespace` in `analyzer_params`.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "whitespace",​
 }​
@@ -20,7 +20,7 @@ analyzer_params = {​
 
 The whitespace tokenizer can work in conjunction with one or more filters. For example, the following code defines an analyzer that uses the `whitespace` tokenizer and [`lowercase filter`](lowercase-filter.md):​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "whitespace",​
     "filter": ["lowercase"]​
@@ -35,12 +35,12 @@ Here’s an example of how the `whitespace` tokenizer processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "The Milvus vector database is built for scale!"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["The", "Milvus", "vector", "database", "is", "built", "for", "scale!"]​
 ```

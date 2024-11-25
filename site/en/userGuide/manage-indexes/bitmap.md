@@ -37,7 +37,7 @@ The resulting bitmap [1, 0, 0, 0, 0] indicates that only the first document (**I
 
 To create a bitmap index in Milvus, use the `create_index()` method and set the `index_type` parameter to `"BITMAP"`.​
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 index_params = client.create_index_params() # Prepare an empty IndexParams object, without having to specify any index parameters​

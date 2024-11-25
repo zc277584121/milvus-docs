@@ -33,28 +33,28 @@ The following code snippet demonstrates how to create a schema.​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 schema = MilvusClient.create_schema()​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.CreateCollectionReq;​
 ​
 CreateCollectionReq.CollectionSchema schema = client.createSchema();​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const schema = []​
 
 ```
 
-```Bash
+```curl
 export schema='{​
     "fields": []​
 }'​
@@ -72,7 +72,7 @@ The primary field in a collection uniquely identifies an entity. It only accepts
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema.add_field(​
     field_name="my_id",​
     datatype=DataType.INT64,​
@@ -84,7 +84,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.DataType;​
 import io.milvus.v2.service.collection.request.AddFieldReq; ​
 ​
@@ -99,7 +99,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 schema.push({​
     name: "my_id",​
     data_type: DataType.Int64,​
@@ -111,7 +111,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export primaryField='{​
     "fieldName": "my_id",​
     "dataType": "Int64",​
@@ -144,7 +144,7 @@ Vector fields accept various sparse and dense vector embeddings. On Zilliz Cloud
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema.add_field(​
     field_name="my_vector",​
     datatype=DataType.FLOAT_VECTOR,​
@@ -154,7 +154,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_vector")​
         .dataType(DataType.FloatVector)​
@@ -164,7 +164,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 schema.push({​
     name: "my_vector",​
     data_type: DataType.FloatVector,​
@@ -174,7 +174,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export vectorField='{​
     "fieldName": "my_vector",​
     "dataType": "FloatVector",​
@@ -226,7 +226,7 @@ In Milvus, you can use VarChar fields to store strings. For more on the VarChar 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema.add_field(​
     field_name="my_varchar",​
     datatype=DataType.VARCHAR,​
@@ -236,7 +236,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_varchar")​
         .dataType(DataType.VarChar)​
@@ -246,7 +246,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 schema.push({​
     name: "my_varchar",​
     data_type: DataType.VarChar,​
@@ -256,7 +256,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export varCharField='{​
     "fieldName": "my_varchar",​
     "dataType": "VarChar",​
@@ -287,7 +287,7 @@ The types of numbers that Milvus supports are `Int8`, `Int16`, `Int32`, `Int64`,
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema.add_field(​
     field_name="my_int64",​
     datatype=DataType.INT64,​
@@ -295,7 +295,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_int64")​
         .dataType(DataType.Int64)​
@@ -303,7 +303,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 schema.push({​
     name: "my_int64",​
     data_type: DataType.Int64,​
@@ -311,7 +311,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export int64Field='{​
     "fieldName": "my_int64",​
     "dataType": "Int64"​
@@ -340,7 +340,7 @@ Milvus supports boolean fields. The following code snippets demonstrate how to a
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema.add_field(​
     field_name="my_bool",​
     datatype=DataType.BOOL,​
@@ -348,7 +348,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_bool")​
         .dataType(DataType.Bool)​
@@ -356,7 +356,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 schema.push({​
     name: "my_bool",​
     data_type: DataType.Boolean,​
@@ -364,7 +364,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export boolField='{​
     "fieldName": "my_bool",​
     "dataType": "Boolean"​
@@ -394,7 +394,7 @@ A JSON field usually stores half-structured JSON data. For more on the JSON fiel
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema.add_field(​
     field_name="my_json",​
     datatype=DataType.JSON,​
@@ -402,7 +402,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_json")​
         .dataType(DataType.JSON)​
@@ -410,7 +410,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 schema.push({​
     name: "my_json",​
     data_type: DataType.JSON,​
@@ -418,7 +418,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export jsonField='{​
     "fieldName": "my_json",​
     "dataType": "JSON"​
@@ -449,7 +449,7 @@ An array field stores a list of elements. The data types of all elements in an a
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema.add_field(​
     field_name="my_array",​
     datatype=DataType.ARRAY,​
@@ -460,7 +460,7 @@ schema.add_field(​
 
 ```
 
-```Java
+```java
 schema.addField(AddFieldReq.builder()​
         .fieldName("my_array")​
         .dataType(DataType.Array)​
@@ -471,7 +471,7 @@ schema.addField(AddFieldReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 schema.push({​
     name: "my_array",​
     data_type: DataType.Array,​
@@ -482,7 +482,7 @@ schema.push({​
 
 ```
 
-```Bash
+```curl
 export arrayField='{​
     "fieldName": "my_array",​
     "dataType": "Array",​

@@ -1,6 +1,6 @@
 ---
 id: keyword-match.md
-summary: Keyword match in Milvus enables precise document retrieval based on specific terms. This feature is primarily used for filtered search to satisfy specific conditions and can incorporate scalar filtering to refine query results, allowing similarity searches within vectors that meet scalar criteria.​
+summary: "Keyword match in Milvus enables precise document retrieval based on specific terms. This feature is primarily used for filtered search to satisfy specific conditions and can incorporate scalar filtering to refine query results, allowing similarity searches within vectors that meet scalar criteria.​"
 title: Keyword Match​
 ---
 
@@ -34,7 +34,7 @@ Keyword match works on the `VARCHAR` field type, which is essentially the string
 
 To enable keyword match for a specific `VARCHAR` field, set both the `enable_analyzer` and `enable_match` parameters to `True` when defining the field schema. This instructs Milvus to tokenize text and create an inverted index for the specified field, allowing fast and efficient keyword matches.​
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 schema = MilvusClient.create_schema(auto_id=True, enable_dynamic_field=False)​
@@ -57,7 +57,7 @@ By default, Milvus uses the `standard` analyzer, which tokenizes text based on w
 
 In cases where a different analyzer is required, you can configure one using the `analyzer_params` parameter. For example, to apply the `english` analyzer for processing English text:​
 
-```Python
+```python
 analyzer_params={​
     "type": "english"​
 }​
@@ -83,7 +83,7 @@ Once you have enabled keyword match for a VARCHAR field in your collection schem
 
 The `TEXT_MATCH` expression is used to specify the field and the keywords to search for. Its syntax is as follows:​
 
-```Python
+```python
 TEXT_MATCH(field_name, text)​
 
 ```
@@ -94,14 +94,14 @@ TEXT_MATCH(field_name, text)​
 
 By default, `TEXT_MATCH` uses the **OR** matching logic, meaning it will return documents that contain any of the specified keywords. For example, to search for documents containing the keywords `machine` or `deep` in the `text` field, use the following expression:​
 
-```Python
+```python
 filter = "TEXT_MATCH(text, 'machine deep')"​
 
 ```
 
 You can also combine multiple `TEXT_MATCH` expressions using logical operators to perform **AND** matching. For example, to search for documents containing both `machine` and `deep` in the `text` field, use the following expression:​
 
-```Python
+```python
 filter = "TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')"​
 
 ```
@@ -112,7 +112,7 @@ Keyword match can be used in combination with vector similarity search to narrow
 
 In this example, the `filter` expression filters the search results to only include documents that match the specified keywords `keyword1` or `keyword2`. The vector similarity search is then performed on this filtered subset of documents.​
 
-```Python
+```python
 # Match entities with `keyword1` or `keyword2`​
 filter = "TEXT_MATCH(text, 'keyword1 keyword2')"​
 ​
@@ -135,7 +135,7 @@ Keyword match can also be used for scalar filtering in query operations. By spec
 
 The example below retrieves documents where the `text` field contains both keywords `keyword1` and `keyword2`.​
 
-```Python
+```python
 # Match entities with both `keyword1` and `keyword2`​
 filter = "TEXT_MATCH(text, 'keyword1') and TEXT_MATCH(text, 'keyword2')"​
 ​

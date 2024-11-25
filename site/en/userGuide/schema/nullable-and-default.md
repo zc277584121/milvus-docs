@@ -19,9 +19,9 @@ The default value and nullable attributes streamline data migration from other d
 
 - Default values or the nullable attribute can only be configured during collection creation and cannot be modified afterward.​
 
-- Scalar fields with the nullable attribute enabled cannot be used as `group_by_field` in Grouping Search. For more information about grouping search, refer to [​Grouping Search](https://zilliverse.feishu.cn/wiki/JWZGw89MBiUDBNkhtGfcyyUcnsd).​
+- Scalar fields with the nullable attribute enabled cannot be used as `group_by_field` in Grouping Search. For more information about grouping search, refer to [​Grouping Search](grouping-search.md).​
 
-- Fields marked as nullable cannot be used as partition keys. For more information about partition keys, refer to [​Use Partition Key](https://zilliverse.feishu.cn/wiki/QWqiwrgJViA5AJkv64VcgQX2nKd).​
+- Fields marked as nullable cannot be used as partition keys. For more information about partition keys, refer to [​Use Partition Key](use-partition-key.md).​
 
 - When creating an index on a scalar field with the nullable attribute enabled, null values will be excluded from the index.​
 
@@ -40,7 +40,7 @@ When creating a collection, use `nullable=True` to define nullable fields (defau
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 client = MilvusClient(uri='http://localhost:19530')​
@@ -64,7 +64,7 @@ client.create_collection(collection_name="user_profiles_null", schema=schema, in
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.v2.common.DataType;​
@@ -118,7 +118,7 @@ client.createCollection(requestCreate);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const client = new MilvusClient({​
@@ -152,7 +152,7 @@ await client.createCollection({​
 
 ```
 
-```Bash
+```curl
 export pkField='{​
     "fieldName": "id",​
     "dataType": "Int64",​
@@ -214,7 +214,7 @@ When you insert data into a nullable field, insert null or directly omit this fi
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 data = [​
     {"id": 1, "vector": [0.1, 0.2, 0.3, 0.4, 0.5], "age": 30},​
     {"id": 2, "vector": [0.2, 0.3, 0.4, 0.5, 0.6], "age": None},​
@@ -225,7 +225,7 @@ client.insert(collection_name="user_profiles_null", data=data)​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 ​
@@ -245,7 +245,7 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const data = [​
   { id: 1, vector: [0.1, 0.2, 0.3, 0.4, 0.5], age: 30 },​
   { id: 2, vector: [0.2, 0.3, 0.4, 0.5, 0.6], age: null },​
@@ -260,7 +260,7 @@ client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -287,7 +287,7 @@ When using the `search` method, if a field contains `null` values, the search re
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 res = client.search(​
     collection_name="user_profiles_null",​
     data=[[0.1, 0.2, 0.4, 0.3, 0.128]],​
@@ -303,7 +303,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq;​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
 import io.milvus.v2.service.vector.response.SearchResp;​
@@ -327,7 +327,7 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.search({​
     collection_name: 'user_profiles_null',​
     data: [0.3, -0.6, 0.1, 0.3, 0.5],​
@@ -341,7 +341,7 @@ client.search({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -369,7 +369,7 @@ When you use the `query` method for scalar filtering, the filtering results for 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Reviewing previously inserted data:​
 # {"id": 1, "vector": [0.1, 0.2, ..., 0.128], "age": 30}​
 # {"id": 2, "vector": [0.2, 0.3, ..., 0.129], "age": None}​
@@ -389,7 +389,7 @@ results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq;​
 import io.milvus.v2.service.vector.response.QueryResp;​
 ​
@@ -407,7 +407,7 @@ System.out.println(resp.getQueryResults());​
 
 ```
 
-```JavaScript
+```javascript
 const results = await client.query(​
     collection_name: "user_profiles_null",​
     filter: "age >= 0",​
@@ -416,7 +416,7 @@ const results = await client.query(​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/query" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -440,7 +440,7 @@ To query entities with `null` values, use an empty expression `""`:​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 null_results = client.query(​
     collection_name="user_profiles_null",​
     filter="",​
@@ -452,7 +452,7 @@ null_results = client.query(​
 
 ```
 
-```Java
+```java
 QueryResp resp = client.query(QueryReq.builder()​
         .collectionName("user_profiles_null")​
         .filter("")​
@@ -464,7 +464,7 @@ System.out.println(resp.getQueryResults());​
 
 ```
 
-```JavaScript
+```javascript
 const results = await client.query(​
     collection_name: "user_profiles_null",​
     filter: "",​
@@ -473,7 +473,7 @@ const results = await client.query(​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/query" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -503,7 +503,7 @@ When creating a collection, use the `default_value` parameter to define the defa
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 schema = client.create_schema(​
     auto_id=False,​
     enable_dynamic_schema=True,​
@@ -521,7 +521,7 @@ client.create_collection(collection_name="user_profiles_default", schema=schema,
 
 ```
 
-```Java
+```java
 import io.milvus.v2.common.DataType;​
 import io.milvus.v2.common.IndexParam;​
 import io.milvus.v2.service.collection.request.AddFieldReq;​
@@ -576,7 +576,7 @@ client.createCollection(requestCreate);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const client = new MilvusClient({​
@@ -610,7 +610,7 @@ await client.createCollection({​
 
 ```
 
-```Bash
+```curl
 export pkField='{​
     "fieldName": "id",​
     "dataType": "Int64",​
@@ -682,7 +682,7 @@ When inserting data, if you omit fields with a default value or set their value 
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 data = [​
     {"id": 1, "vector": [0.1, 0.2, ..., 0.128], "age": 30, "status": "premium"},​
     {"id": 2, "vector": [0.2, 0.3, ..., 0.129]},  # `age` and `status` use default values​
@@ -694,7 +694,7 @@ client.insert(collection_name="user_profiles_default", data=data)​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 ​
@@ -715,7 +715,7 @@ InsertResp insertR = client.insert(InsertReq.builder()​
 
 ```
 
-```JavaScript
+```javascript
 const data = [​
     {"id": 1, "vector": [0.1, 0.2, 0.3, 0.4, 0.5], "age": 30, "status": "premium"},​
     {"id": 2, "vector": [0.2, 0.3, 0.4, 0.5, 0.6]}, ​
@@ -730,7 +730,7 @@ client.insert({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/insert" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -766,7 +766,7 @@ For example, in a `search` operation, entities with `age` set to the default val
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 res = client.search(​
     collection_name="user_profiles_default",​
     data=[[0.1, 0.2, 0.4, 0.3, 0.128]],​
@@ -784,7 +784,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.SearchReq;​
 import io.milvus.v2.service.vector.request.data.FloatVec;​
 import io.milvus.v2.service.vector.response.SearchResp;​
@@ -809,7 +809,7 @@ System.out.println(resp.getSearchResults());​
 
 ```
 
-```JavaScript
+```javascript
 client.search({​
     collection_name: 'user_profiles_default',​
     data: [0.3, -0.6, 0.1, 0.3, 0.5],​
@@ -823,7 +823,7 @@ client.search({​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/search" \​
 --header "Authorization: Bearer ${TOKEN}" \​
@@ -852,7 +852,7 @@ In a `query` operation, you can match or filter by default values directly:​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Query all entities where `age` equals the default value (18)​
 default_age_results = client.query(​
     collection_name="user_profiles_default",​
@@ -869,7 +869,7 @@ default_status_results = client.query(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.QueryReq;​
 import io.milvus.v2.service.vector.response.QueryResp;​
 ​
@@ -899,7 +899,7 @@ System.out.println(statusResp.getQueryResults());​
 
 ```
 
-```JavaScript
+```javascript
 // Query all entities where `age` equals the default value (18)​
 const default_age_results = await client.query(​
     collection_name: "user_profiles_default",​
@@ -915,7 +915,7 @@ const default_status_results = await client.query(​
 
 ```
 
-```Bash
+```curl
 curl --request POST \​
 --url "${CLUSTER_ENDPOINT}/v2/vectordb/entities/query" \​
 --header "Authorization: Bearer ${TOKEN}" \​

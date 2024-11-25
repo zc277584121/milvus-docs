@@ -34,7 +34,7 @@ In this section, you will upsert Entities into a Collection created [in the quic
 </div>
 
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -67,7 +67,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import com.google.gson.Gson;​
 import com.google.gson.JsonObject;​
 import io.milvus.v2.client.ConnectConfig;​
@@ -110,7 +110,7 @@ System.out.println(upsertResp);​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 const address = "http://localhost:19530";​
@@ -144,7 +144,7 @@ console.log(res.upsert_cnt)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -203,7 +203,7 @@ You can also insert entities into a specified partition. The following code snip
 </div>
 
 
-```Python
+```python
 data=[​
     {"id": 10, "vector": [0.06998888224297328, 0.8582816610326578, -0.9657938677934292, 0.6527905683627726, -0.8668460657158576], "color": "black_3651"},​
     {"id": 11, "vector": [0.6060703043917468, -0.3765080534566074, -0.7710758854987239, 0.36993888322346136, 0.5507513364206531], "color": "grey_2049"},​
@@ -230,7 +230,7 @@ print(res)​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.vector.request.UpsertReq;​
 import io.milvus.v2.service.vector.response.UpsertResp;​
 ​
@@ -264,7 +264,7 @@ System.out.println(upsertResp);​
 
 ```
 
-```JavaScript
+```javascript
 const { MilvusClient, DataType } = require("@zilliz/milvus2-sdk-node")​
 ​
 // 6. Upsert data in partitions​
@@ -296,7 +296,7 @@ console.log(res.upsert_cnt)​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

@@ -12,7 +12,7 @@ The `cnalphanumonly` filter removes tokens that contain any characters other tha
 
 The `cnalphanumonly` filter is built into Milvus. To use it, simply specify its name in the `filter` section within `analyzer_params`.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter": ["cnalphanumonly"],​
@@ -30,12 +30,12 @@ Here’s an example of how the `cnalphanumonly` filter processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "Milvus 是 LF AI & Data Foundation 下的一个开源项目，以 Apache 2.0 许可发布。"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["Milvus", "是", "LF", "AI", "Data", "Foundation", "下", "的", "一个", "开源", "项目", "以", "Apache", "2.0", "许可", "发布"]​
 ```

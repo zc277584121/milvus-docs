@@ -67,33 +67,33 @@ You can also include metadata filtering within searches and queries to improve t
 
 For details on applicable metric types, refer to [​Metric Types](metric.md).​
 
-For more information about searches and queries, refer to the articles in the [​Search & Rerank](https://zilliverse.feishu.cn/wiki/CSYrwhK4Gigk07kd6ufcNTGMnZf) chapter, among which, basic features are:​
+For more information about searches and queries, refer to the articles in the [​Search & Rerank](single-vector-search.md) chapter, among which, basic features are:​
 
-- [​Basic ANN Search](https://zilliverse.feishu.cn/wiki/BaGlwzDmyiyVvVk6NurcFclInCd)​
+- [​Basic ANN Search](single-vector-search.md)​
 
-- [​Filtered Search](https://zilliverse.feishu.cn/wiki/CpBbwcJ87irHp0k9oCSc2RNIn3d)​
+- [​Filtered Search](filtered-search.md)​
 
-- [​Range Search](https://zilliverse.feishu.cn/wiki/GnvtwMeQWi8iRCk7dGccCBQZnOh)​
+- [​Range Search](range-search.md)​
 
-- [​Grouping Search](https://zilliverse.feishu.cn/wiki/JWZGw89MBiUDBNkhtGfcyyUcnsd)​
+- [​Grouping Search](grouping-search.md)​
 
-- [​Hybrid Search](https://zilliverse.feishu.cn/wiki/WTsmwWdgOiKnwpkdZdScp093njh)​
+- [​Hybrid Search](multi-vector-search.md)​
 
-- [​Search Iterator](https://zilliverse.feishu.cn/wiki/QVTnwVz2aifvSAkgomAc9KWRnHb)​
+- [​Search Iterator](with-iterators.md)​
 
-- [​Query](https://zilliverse.feishu.cn/wiki/R7F7wY8pCiJ5Q4kbntxcMsE6nLf)​
+- [​Query](get-and-scalar-query.md)​
 
-- [​Full-Text Search](https://zilliverse.feishu.cn/wiki/Zmzpw8Xt2iTY2gkFOvncsTkXnef)​
+- [​Full-Text Search](full-text-search.md)​
 
-- [​Text Match](https://zilliverse.feishu.cn/wiki/EAB8w8Pc5ibffRki013c0oNNnFc)​
+- [Keyword Match](keyword-match.md)​
 
 In addition, Zilliz Cloud also provides enhancements to improve search performance and efficiency. They are disabled by default, and you can enable and use them according to your service requirements. They are​
 
 - [​Use Partition Key](use-partition-key.md)​
 
-- [​Use mmap](https://zilliverse.feishu.cn/wiki/AxWmwp8TFiR8tMkUWcZcEJlrnab)​
+- [​Use mmap](mmap.md)​
 
-- [​Clustering Compaction](https://zilliverse.feishu.cn/wiki/Vc5TwGAoziR4GRkhUmwc1SqCnCg)​
+- [​Clustering Compaction](clustering-compaction.md)​
 
 ## Partition​
 
@@ -123,7 +123,7 @@ You can set functions for Zilliz Cloud to derive fields upon collection creation
 
 Distributed database systems usually use the consistency level to define the data sameness across data nodes and replicas. You can set separate consistency levels when you create a collection or conduct similarity searches within the collection. The applicable consistency levels are **Strong**, **Bounded Staleness**, **Session**, and **Eventually**.​
 
- For details on these consistency levels, refer to [​Consistency Level](https://zilliverse.feishu.cn/wiki/Xx9EwWtekinLZfkWKqic37dDnFb).​
+ For details on these consistency levels, refer to [​Consistency Level](tune-consistency.md).​
 
 ## Limits​
 

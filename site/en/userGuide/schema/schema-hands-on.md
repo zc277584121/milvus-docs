@@ -102,7 +102,7 @@ First, we create a Milvus client instance, which can be used to connect to the M
 
 To set up a schema, we use [`create_schema()`](https://milvus.io/api-reference/pymilvus/v2.4.x/MilvusClient/Collections/create_schema.md) to create a schema object and [`add_field()`](https://milvus.io/api-reference/pymilvus/v2.4.x/MilvusClient/CollectionSchema/add_field.md) to add fields to the schema.​
 
-```Python
+```python
 from pymilvus import MilvusClient, DataType​
 ​
 collection_name = "my_collection"​
@@ -142,7 +142,7 @@ After adding all the fields to the schema object, our schema object agrees with 
 
 After defining the schema with various fields, including metadata and vector fields for image and summary data, the next step involves preparing the index parameters. Indexing is crucial for optimizing the search and retrieval of vectors, ensuring efficient query performance. In the following section, we will define the index parameters for the specified vector and scalar fields in the collection.​
 
-```Python
+```python
 index_params = client.prepare_index_params()​
 ​
 index_params.add_index(​
@@ -175,7 +175,7 @@ There are many types of indices and metrics. For more information about them, yo
 
 With the schema and indexes defined, we create a "collection" with these parameters. Collection to Milvus is like a table to a relational DB.​
 
-```Python
+```python
 client.create_collection(​
     collection_name=collection_name,​
     schema=schema,​
@@ -186,7 +186,7 @@ client.create_collection(​
 
 We can verify that the collection has been successfully created by describing the collection.​
 
-```Python
+```python
 collection_desc = client.describe_collection(​
     collection_name=collection_name​
 )​

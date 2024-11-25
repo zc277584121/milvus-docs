@@ -19,7 +19,7 @@ The following code snippets assume that you have a collection named **customized
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -33,7 +33,7 @@ client.drop_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.DropCollectionReq;​
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
@@ -57,7 +57,7 @@ client.dropCollection(dropQuickSetupParam);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -78,7 +78,7 @@ console.log(res.error_code)​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -110,7 +110,7 @@ if err != nil {​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​

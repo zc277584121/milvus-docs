@@ -30,7 +30,7 @@ The following code snippet demonstrates how to create a SearchIterator.​
   <a href="#Java">Java</a>
 </div>
 
-```Python
+```python
 from pymilvus import connections, Collection​
 ​
 connections.connect(​
@@ -57,7 +57,7 @@ iterator = collection.search_iterator(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
 import io.milvus.orm.iterator.SearchIterator;​
@@ -95,7 +95,7 @@ Once the SearchIterator is ready, you can call its next() method to get the sear
   <a href="#Java">Java</a>
 </div>
 
-```Python
+```python
 results = []​
 ​
 while True:​
@@ -111,7 +111,7 @@ while True:​
 
 ```
 
-```Java
+```java
 import io.milvus.response.QueryResultsWrapper;​
 ​
 while (true) {​

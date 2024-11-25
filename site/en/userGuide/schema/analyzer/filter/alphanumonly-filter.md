@@ -12,7 +12,7 @@ The `alphanumonly` filter removes tokens that contain non-ASCII characters, keep
 
 The `alphanumonly` filter is built into Milvus. To use it, simply specify its name in the `filter` section within `analyzer_params`.​
 
-```Python
+```python
 analyzer_params = {​
     "tokenizer": "standard",​
     "filter": ["alphanumonly"],​
@@ -29,12 +29,12 @@ Here’s an example of how the `alphanumonly` filter processes text:​
 
 **Original text**:​
 
-```Python
+```python
 "Milvus 2.0 @ Scale! #AI #Vector_Databasé"​
 ```
 
 **Expected output**:​
 
-```Python
+```python
 ["Milvus", "2", "0", "Scale", "AI", "Vector"]​
 ```

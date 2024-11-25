@@ -19,7 +19,7 @@ You can rename a collection as follows.​
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 from pymilvus import MilvusClient​
 ​
 client = MilvusClient(​
@@ -34,7 +34,7 @@ client.rename_collection(​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.RenameCollectionReq;​
 import io.milvus.v2.client.ConnectConfig;​
 import io.milvus.v2.client.MilvusClientV2;​
@@ -59,7 +59,7 @@ client.renameCollection(renameCollectionReq);​
 
 ```
 
-```JavaScript
+```javascript
 import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
 ​
 const address = "http://localhost:19530";​
@@ -73,7 +73,7 @@ const res = await client.renameCollection({​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -105,7 +105,7 @@ if err != nil {​
 
 ```
 
-```Bash
+```curl
 export CLUSTER_ENDPOINT="http://localhost:19530"​
 export TOKEN="root:Milvus"​
 ​
@@ -134,12 +134,12 @@ The following code snippet demonstrates how to change the TTL of a collection.�
   <a href="#Bash">cURL</a>
 </div>
 
-```Python
+```python
 # Python 暂无此功能​
 
 ```
 
-```Java
+```java
 import io.milvus.v2.service.collection.request.AlterCollectionReq;​
 import java.util.HashMap;​
 import java.util.Map;​
@@ -156,7 +156,7 @@ client.alterCollection(alterCollectionReq);​
 
 ```
 
-```JavaScript
+```javascript
 res = await client.alterCollection({​
     collection_name: "my_collection",​
     properties: {​
@@ -166,7 +166,7 @@ res = await client.alterCollection({​
 
 ```
 
-```Go
+```go
 import (​
     "context"​
     "fmt"​
@@ -200,7 +200,7 @@ if err != nil {​
 
 ```
 
-```Bash
+```curl
 # REST 暂无此功能​
 
 ```
