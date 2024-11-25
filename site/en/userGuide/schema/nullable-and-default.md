@@ -950,6 +950,6 @@ The following table summarizes the behavior of nullable columns and default valu
 |----------|---------------|--------------------|------------|--------|---------|
 | ✅        | ✅             | Non-null           | None/null  | Uses the default value | <ul><li>Field: `age`</li><li>Default value: `18`</li><li>User input: null</li><li>Result: stored as `18`</li></ul> |
 | ✅        | ❌             | -                  | None/null  | Stored as null         | <ul><li>Field: `middle_name`</li><li>Default value: -</li><li>User input: null</li><li>Result: stored as null |
-| ❌        | ✅             | Non-null           | None/null  | Uses the default value | <ul><li>Field: status</li><li>Default value: `"active"`</li><li>User input: null</li><li>Result: stored as `"active"` |
-| ❌        | ❌             | -                  | None/null  | Throws an error        | <ul><li>Field: email</li><li>Default value: -</li><li>User input: null</li><li>Result: Operation rejected, system throws an error |
+| ❌        | ✅             | Non-null           | None/null  | Uses the default value | <ul><li>Field: `status`</li><li>Default value: `"active"`</li><li>User input: null</li><li>Result: stored as `"active"` |
+| ❌        | ❌             | -                  | None/null  | Throws an error        | <ul><li>Field: `email`</li><li>Default value: -</li><li>User input: null</li><li>Result: Operation rejected, system throws an error |
 | ❌        | ✅             | Null               | None/null  | Throws an error        | <ul><li>Field: `username`</li><li>Default value: null</li><li>User input: null</li><li>Result: Operation rejected, system throws an error |
