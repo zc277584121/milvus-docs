@@ -161,21 +161,14 @@ export schema="{​
 
 **Supported data types for dense vector fields**:​
 
-</th><th data-block-token="TGq6d0VpNoRoW2xg8Kac7nLZnab" colspan="1" rowspan="1"><p data-block-token="ON8LdxqpPoPktOxcEZ2cvC9Unkg">Description​</p>
+**Supported data types for dense vector fields**:
 
-</th></tr></thead><tbody><tr><td data-block-token="RiuCd0ekQoV004xdoOMcxYXfnvg" colspan="1" rowspan="1"><p data-block-token="D0ivdW1gVoSFLRxo1q9cmNK2nrb"><code>FLOAT_VECTOR</code>​</p>
+| **Type**                | **Description**                                                                                                                                                     |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `FLOAT_VECTOR`          | Stores 32-bit floating-point numbers, commonly used for representing real numbers in scientific computations and machine learning. Ideal for scenarios requiring high precision, such as distinguishing similar vectors. |
+| `FLOAT16_VECTOR`        | Stores 16-bit half-precision floating-point numbers, used for deep learning and GPU computations. It saves storage space in scenarios where precision is less critical, such as in the low-precision recall phase of recommendation systems. |
+| `BFLOAT16_VECTOR`       | Stores 16-bit Brain Floating Point (bfloat16) numbers, offering the same range of exponents as Float32 but with reduced precision. Suitable for scenarios that need to process large volumes of vectors quickly, such as large-scale image retrieval. |
 
-</td><td data-block-token="E3pTdyOLUoxAehx1Tt1cTfaUn6f" colspan="1" rowspan="1"><p data-block-token="O6OAdU97DoBnEsxkIMzcZe71nPc">Stores 32-bit floating-point numbers, commonly used for representing real numbers in scientific computations and machine learning. Ideal for scenarios requiring high precision, such as distinguishing similar vectors.​</p>
-
-</td></tr><tr><td data-block-token="JmvQdldr7oBr0cxhObWcvoH9nRe" colspan="1" rowspan="1"><p data-block-token="RqhOdkiICop2sGxmEplciH9HnAb"><code>FLOAT16_VECTOR</code>​</p>
-
-</td><td data-block-token="P7Q1dhgCSo9ONKxS7Uucy3Wcn0f" colspan="1" rowspan="1"><p data-block-token="AKGld9vXtobxivx4LNgcszcmnMc">Stores 16-bit half-precision floating-point numbers, used for deep learning and GPU computations. It saves storage space in scenarios where precision is less critical, such as in the low-precision recall phase of recommendation systems.​</p>
-
-</td></tr><tr><td data-block-token="SuMwdk8fLohKcVxGPrpcHe08npd" colspan="1" rowspan="1"><p data-block-token="RMrjd1l4yoxYpkxI599cPc5Qn7X"><code>BFLOAT16_VECTOR</code>​</p>
-
-</td><td data-block-token="VMfrdtFHToAHFaxS8gfcdSwunSb" colspan="1" rowspan="1"><p data-block-token="FrLVdqlrtoau2axEYevc5kDBnVr">Stores 16-bit Brain Floating Point (bfloat16) numbers, offering the same range of exponents as Float32 but with reduced precision. Suitable for scenarios that need to process large volumes of vectors quickly, such as large-scale image retrieval.​</p>
-
-</td></tr></tbody>
 ### Set index params for vector field​
 
 To accelerate semantic searches, an index must be created for the vector field. Indexing can significantly improve the retrieval efficiency of large-scale vector data.​

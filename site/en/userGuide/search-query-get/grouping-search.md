@@ -231,11 +231,11 @@ By default, Grouping Search returns only one entity per group. If you want multi
 ​
 res = client.search(​
     collection_name="group_search_collection", ​
-    data=query_vectors, # 查询向量​
-    limit=5, # 返回的分组数量​
-    group_by_field="docId", # 分组字段​
-    group_size=2, # 每个分组中最多返回 2 条 Entity​
-    strict_group_size=True, # 确保每个分组包含 2 条 Entity，除非数据不足​
+    data=query_vectors, # Query vector
+    limit=5, # Top K results​ to return​
+    group_by_field="docId", # Group by docId​
+    group_size=2, # Return 2 entities per group​
+    strict_group_size=True, # Ensure each group has 2 entities​
     output_fields=["docId"]​
 )​
 

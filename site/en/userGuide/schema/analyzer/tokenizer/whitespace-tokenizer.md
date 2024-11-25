@@ -1,7 +1,7 @@
 ---
 id: whitespace-tokenizer.md
 title: Whitespace​ Tokenizer
-summary: The `whitespace` tokenizer divides text into terms whenever there is a space between words.​
+summary: "The `whitespace` tokenizer divides text into terms whenever there is a space between words.​"
 ---
 
 # Whitespace​

@@ -685,9 +685,9 @@ When inserting data, if you omit fields with a default value or set their value 
 ```python
 data = [​
     {"id": 1, "vector": [0.1, 0.2, ..., 0.128], "age": 30, "status": "premium"},​
-    {"id": 2, "vector": [0.2, 0.3, ..., 0.129]},  # `age` and `status` use default values​
-    {"id": 3, "vector": [0.3, 0.4, ..., 0.130], "age": 25, "status": None},  # `status` uses default value​
-    {"id": 4, "vector": [0.4, 0.5, ..., 0.131], "age": None, "status": "inactive"}  # `age` uses default value​
+    {"id": 2, "vector": [0.2, 0.3, ..., 0.129]},
+    {"id": 3, "vector": [0.3, 0.4, ..., 0.130], "age": 25, "status": None}, 
+    {"id": 4, "vector": [0.4, 0.5, ..., 0.131], "age": None, "status": "inactive"} 
 ]​
 ​
 client.insert(collection_name="user_profiles_default", data=data)​
@@ -948,8 +948,8 @@ The following table summarizes the behavior of nullable columns and default valu
 ​
 | Nullable | Default Value | Default Value Type | User Input | Result | Example |
 |----------|---------------|--------------------|------------|--------|---------|
-| ✅        | ✅             | Non-null           | None/null  | Uses the default value | Field: age</br>Default value: `18`</br>User input: null</br>Result: stored as `18` |
-| ✅        | ❌             | -                  | None/null  | Stored as null         | Field: `middle_name`</br>Default value: -</br>User input: null</br>Result: stored as null |
-| ❌        | ✅             | Non-null           | None/null  | Uses the default value | Field: status</br>Default value: `"active"`</br>User input: null</br>Result: stored as `"active"` |
-| ❌        | ❌             | -                  | None/null  | Throws an error        | Field: email</br>Default value: -</br>User input: null</br>Result: Operation rejected, system throws an error |
-| ❌        | ✅             | Null               | None/null  | Throws an error        | Field: `username`</br>Default value: null</br>User input: null</br>Result: Operation rejected, system throws an error |
+| ✅        | ✅             | Non-null           | None/null  | Uses the default value | <ul><li>Field: `age`</li><li>Default value: `18`</li><li>User input: null</li><li>Result: stored as `18`</li></ul> |
+| ✅        | ❌             | -                  | None/null  | Stored as null         | <ul><li>Field: `middle_name`</li><li>Default value: -</li><li>User input: null</li><li>Result: stored as null |
+| ❌        | ✅             | Non-null           | None/null  | Uses the default value | <ul><li>Field: status</li><li>Default value: `"active"`</li><li>User input: null</li><li>Result: stored as `"active"` |
+| ❌        | ❌             | -                  | None/null  | Throws an error        | <ul><li>Field: email</li><li>Default value: -</li><li>User input: null</li><li>Result: Operation rejected, system throws an error |
+| ❌        | ✅             | Null               | None/null  | Throws an error        | <ul><li>Field: `username`</li><li>Default value: null</li><li>User input: null</li><li>Result: Operation rejected, system throws an error |

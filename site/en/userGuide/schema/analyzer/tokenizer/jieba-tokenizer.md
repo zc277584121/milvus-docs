@@ -1,7 +1,7 @@
 ---
 id: jieba-tokenizer.md
 title: Jieba​ Tokenizer
-summary: The `jieba` tokenizer processes Chinese text by breaking it down into its component words.​
+summary: "The `jieba` tokenizer processes Chinese text by breaking it down into its component words.​"
 ---
 
 # Jieba​

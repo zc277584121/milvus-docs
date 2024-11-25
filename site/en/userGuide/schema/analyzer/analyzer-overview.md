@@ -26,11 +26,11 @@ An analyzer in Milvus consists of exactly one **tokenizer** and **zero or more**
 
 - **Tokenizer**: The tokenizer breaks input text into discrete units called tokens. These tokens could be words or phrases, depending on the tokenizer type.​
 
-- Filters: Filters can be applied to tokens to further refine them, for example, by making them lowercase or removing common words.​
+- **Filters**: Filters can be applied to tokens to further refine them, for example, by making them lowercase or removing common words.​
 
 The workflow below shows how an analyzer processes text.​
 
-![Analyzer workflow](../../../../../assets/analyzer-overview.png)
+<img src="../../../../../assets/analyzer-overview.png" alt="analyzer-overview" width="400"/>
 
 ## Analyzer types​
 

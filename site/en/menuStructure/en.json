@@ -446,7 +446,7 @@
           },
           {
             "label": "Array Field",
-            "id": "array_data_type.md",
+            "id": "array.md",
             "order": 8,
             "children": []
           },
@@ -505,7 +505,7 @@
                 "children": [
                   {
                     "label": "Standard",
-                    "id": "standard-tokenizers.md",
+                    "id": "standard-tokenizer.md",
                     "order": 0,
                     "children": []
                   },

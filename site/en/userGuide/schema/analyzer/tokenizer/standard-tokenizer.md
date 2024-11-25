@@ -1,7 +1,7 @@
 ---
 id: standard-tokenizer.md
 title: Standard​ Tokenizer
-summary: The `standard` tokenizer in Milvus splits text based on spaces and punctuation marks, making it suitable for most languages.​
+summary: "The `standard` tokenizer in Milvus splits text based on spaces and punctuation marks, making it suitable for most languages.​"
 ---
 
 # Standard​

@@ -629,8 +629,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     ​
     rerank= WeightedRanker(0.8, 0.3) ​
 
-    ```    
-
+    ```
     
     ```java
     import io.milvus.v2.service.vector.request.ranker.BaseRanker;​
@@ -638,8 +637,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     ​
     BaseRanker reranker = new WeightedRanker(Arrays.asList(0.8f, 0.3f));​
 
-    ```    
-
+    ```
     
     ```javascript
     import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
@@ -647,8 +645,7 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     const rerank = WeightedRanker(0.8, 0.3);​
 
     ```    
-
-    
+   
     ```curl
     export rerank='{​
             "strategy": "ws",​
@@ -668,14 +665,12 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
         <a href="#curl">cURL</a>
     </div>
 
-    
     ```python
     from pymilvus import RRFRanker​
     ​
     ranker = RRFRanker(100)​
 
     ```    
-
     
     ```java
     import io.milvus.v2.service.vector.request.ranker.BaseRanker;​
@@ -684,7 +679,6 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
     BaseRanker reranker = new RRFRanker(100);​
 
     ```    
-
     
     ```javascript
     import { MilvusClient, DataType } from "@zilliz/milvus2-sdk-node";​
@@ -693,7 +687,6 @@ The following  two examples demonstrate how to use the WeightedRanker and RRFRan
 
     ```    
 
-    
     ```curl
     export rerank='{​
             "strategy": "rrf",​

@@ -22,7 +22,7 @@ As shown in the diagram below, dense vectors are typically represented as contin
 
 ![Spare vector representation](../../../../assets/sparse-vector.png)
 
-Sparse vectors can be generated using various methods, such as [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) (Term Frequency-Inverse Document Frequency) and [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) in text processing. Additionally, Milvus offers convenient methods to help generate and process sparse vectors. For details, refer to <ins>Embeddings</ins>.​
+Sparse vectors can be generated using various methods, such as [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) (Term Frequency-Inverse Document Frequency) and [BM25](https://en.wikipedia.org/wiki/Okapi_BM25) in text processing. Additionally, Milvus offers convenient methods to help generate and process sparse vectors. For details, refer to <a href="embeddings.md">Embeddings</a>.​
 
 For text data, Milvus also provides full-text search capabilities, allowing you to perform vector searches directly on raw text data without using external embedding models to generate sparse vectors. For more information, refer to [​Full Text Search](full-text-search.md).​
 
@@ -40,7 +40,7 @@ In addition to sparse vectors, Milvus also supports dense vectors and binary vec
 
 Milvus supports representing sparse vectors in any of the following formats:​
 
-- **Sparse Matrix (using the **`**scipy.sparse**`** class)**​
+- Sparse Matrix (using the `**scipy.sparse**` class)*
 
     <div class="multipleCode">
         <a href="#python">Python </a>
@@ -63,7 +63,7 @@ Milvus supports representing sparse vectors in any of the following formats:​
 
     ```
 
-- **List of Dictionaries (formatted as **`**{dimension_index: value, ...}**`**)**​
+- List of Dictionaries (formatted as `{dimension_index: value, ...}`)
 
     <div class="multipleCode">
         <a href="#python">Python </a>
@@ -88,7 +88,7 @@ Milvus supports representing sparse vectors in any of the following formats:​
 
     ```    
 
-- **List of **Tuple** Iterators (formatted as **`**[(dimension_index, value)]**`**)**​
+- List of Tuple Iterators (formatted as `[(dimension_index, value)]`)
 
     <div class="multipleCode">
         <a href="#python">Python </a>
