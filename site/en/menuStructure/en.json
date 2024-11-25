@@ -325,13 +325,13 @@
     "order": 3,
     "children": [
       {
-        "label": "Manage Databases",
+        "label": "Database",
         "id": "manage_databases.md",
         "order": 0,
         "children": []
       },
       {
-        "label": "Manage Collections",
+        "label": "Collections",
         "id": "collections",
         "order": 1,
         "children": [
@@ -725,7 +725,7 @@
           },
           {
             "label": "Consistency Level",
-            "id": "tune-consistency.md",
+            "id": "consistency.md",
             "order": 12,
             "children": []
           },
