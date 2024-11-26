@@ -3,7 +3,7 @@ name: dev
 on:
   push:
     branches:
-      - v2.4.x
+      - v2.5.x-preview
   release:
     types: [released]
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v1
         with:
-          ref: v2.4.x
+          ref: v2.5.x-preview
 
       - name: Extract branch name
         shell: bash
@@ -52,4 +52,4 @@ jobs:
           cp -avr ../milvus-docs/** ./`cat version.json | jq -r .version`
           git add .
           git commit -m "Release new docs "
-          git push -f origin master
+          git push -f origin preview
