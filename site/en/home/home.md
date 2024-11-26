@@ -98,11 +98,12 @@ id: home.md
 
 ## What's new in docs
 
-_Mar 2024 - Milvus 2.4.0 release_
+_Nov 2024 - Milvus 2.5.0 release_
 
-- Added guidance on how to [conduct hybrid search](multi-vector-search.md).
-- Added description of [GPU index](gpu_index.md).
-- Added guidance on how to [embed your data using PyMilvus](embeddings.md).
-- Added descriptions of [Milvus CDC](milvus-cdc-overview.md).
+- Added guidance on how to [conduct full text search](full-text-search.md).
+- Added guidance on how to [conduct keyword match](keyword-match.md).
+- Added guidance on how to [enable nullable and default values](nullable-and-default.md).
+- Added descriptions of [analyzers](analyzer-overview.md).
+- Added descriptions of [bitmap indexes](bitmap.md).
 
 </div>
