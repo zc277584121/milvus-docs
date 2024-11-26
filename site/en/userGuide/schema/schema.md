@@ -385,7 +385,7 @@ export schema="{​
 
 ### Add JSON fields​
 
-A JSON field usually stores half-structured JSON data. For more on the JSON fields, refer to [​JSON Field](use-json-field.md).​
+A JSON field usually stores half-structured JSON data. For more on the JSON fields, refer to [​JSON Field](use-json-fields.md).​
 
 <div class="multipleCode">
   <a href="#python">Python </a>
