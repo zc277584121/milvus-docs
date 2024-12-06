@@ -2332,7 +2332,6 @@ The following table lists the precedence of operators. Operators are listed top 
 | 15         | and (&&)                |
 | 16         | or (\|\|)               |
 
-
 Expressions are normally evaluated from left to right. Complex expressions are evaluated one at a time. The order in which the expressions are evaluated is determined by the precedence of the operators used.​
 
 If an expression contains two or more operators with the same precedence, the operator to the left is evaluated first. When a lower precedence operation should be processed first, it should be enclosed within parentheses.​
