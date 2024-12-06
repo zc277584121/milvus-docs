@@ -19,7 +19,7 @@ By integrating full text search with semantic-based dense vector search, you can
 
 <div class="alert note">
 
-Full-text search is currently available in Milvus Standalone and Milvus Distributed but not Milvus Lite, although adding it to Milvus Lite is on the roadmap.
+Full text search is available in Milvus Standalone and Milvus Distributed but not Milvus Lite, although adding it to Milvus Lite is on the roadmap.
 
 </div>
 
