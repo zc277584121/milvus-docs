@@ -60,7 +60,7 @@ Milvus Web UI provides the following features:
 
 ## Home
 
-On the form page, you can find the following information:
+On the Home page, you can find the following information:
 
 ![Milvus Web UI Home](../../../../assets/webui-home.png)
 
