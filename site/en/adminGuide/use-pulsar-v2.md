@@ -51,15 +51,15 @@ You need to change the `values.yaml` file to specify the Pulsar version as v2 be
 2. Edit the `values.yaml` file to specify the Pulsar version as v2.
 
     ```yaml
-    ...
+    # ... omit existing values
     pulsar:
-        enabled: true
+      enabled: true
     pulsarv3:
-        enabled: false
+      enabled: false
     image:
-        all:
-            repository: milvusdb/milvus
-            tag: v2.5.0-beta   
+      all:
+        repository: milvusdb/milvus
+        tag: v2.5.0-beta 
     ``` 
 
     For `image`, change the `tag` to the desired Milvus version (e.g. `v2.5.0-beta`).
@@ -97,16 +97,16 @@ Before you deploy Milvus v2.5.x, you need to download and edit the Milvus Custom
     apiVersion: milvus.io/v1beta1
     kind: Milvus
     metadata:
-        name: my-release
-        namespace: default
-        labels:
-            app: milvus
+      name: my-release
+      namespace: default
+      labels:
+        app: milvus
     spec:
-        mode: cluster
-        dependencies:
-            pulsar:
-                inCluster:
-                    chartVersion: pulsar-v2
+      mode: cluster
+      dependencies:
+        pulsar:
+          inCluster:
+            chartVersion: pulsar-v2
     ```
 
     For `dependencies`, change the `pulsar.inCluster.chartVersion` to `pulsar-v2`.
