@@ -27,7 +27,7 @@ GPU_CAGRA is a graph-based index optimized for GPUs, Using inference-grade GPUs 
   | `graph_degree`              | Affects search performance and recall by setting the graph's degree after pruning. A larger difference between these two degrees results in a longer build time. Its value must be smaller than the value of __intermediate_graph_degree__. | <code>64</code>      |
   | `build_algo`                | Selects the graph generation algorithm before pruning. Possible values:</br><code>IVF_PQ</code>: Offers higher quality but slower build time.</br> <code>NN_DESCENT</code>: Provides a quicker build with potentially lower recall. | <code>IVF_PQ</code>  |
   | `cache_dataset_on_device`   | Decides whether to cache the original dataset in GPU memory. Possible values:</br><code>"true"</code>: Caches the original dataset to enhance recall by refining search results.</br> <code>"false"</code>: Does not cache the original dataset to save gpu memory. | <code>"false"</code> |
-  | `adapt_for_cpu`             | Decides whether to conduct searches solely on CPU and reserves GPU resources for other operations. <br/>Setting this parameter to `true` requires the presence of the `ef` parameter carried in the search requests.         | <code>"false"</code> |
+  | `adapt_for_cpu`             | Decides whether to conduct searches solely on CPU and reserves GPU resources for other operations. <br/>Setting this parameter to `true` requires the presence of the `ef` parameter in the search requests.         | <code>"false"</code> |
 
 - Search parameters
 
