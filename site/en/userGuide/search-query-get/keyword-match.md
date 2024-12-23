@@ -473,3 +473,7 @@ curl --request POST \
 - Enabling text matching for a field triggers the creation of an inverted index, which consumes storage resources. Consider storage impact when deciding to enable this feature, as it varies based on text size, unique tokens, and the analyzer used.​
 
 - Once you've defined an analyzer in your schema, its settings become permanent for that collection. If you decide that a different analyzer would better suit your needs, you may consider dropping the existing collection and creating a new one with the desired analyzer configuration.​
+- **Escape Rules in Expressions**: When using string constants in `filter` expressions, special escape rules ensure proper parsing:
+  - A backslash (`\`) is escaped as `\\`, a tab as `\\t`, and a newline as `\\n`. **Example**: `"C:\\\\Users\\\\Example"` matches `C:\Users\Example`.
+  - For single-quoted strings, escape single quotes as `\\'` and optionally escape double quotes as `\\"`. **Example**: `'It\\'s fine'` represents `It's fine`.
+  - For double-quoted strings, escape double quotes as `\\"` and optionally escape single quotes as `\\'`. **Example**: `"She said \\"Yes\\""` represents `She said "Yes"`.
