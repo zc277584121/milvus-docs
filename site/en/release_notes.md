@@ -14,7 +14,7 @@ Release date: December 26, 2024
 
 | Milvus version | Python SDK version | Node.js SDK version | Java SDK version |
 |----------------|--------------------|---------------------|------------------|
-| 2.5.1          | 2.5.1              | 2.5.2               | 2.5.2            |
+| 2.5.1          | 2.5.2              | 2.5.2               | 2.5.2            |
 
 Milvus 2.5.1 focuses on a series of bug fixes addressing memory loading, RBAC listings, query node balancing, and sealed segment indexing, while also improving the Web UI and interceptors. We highly recommend upgrading to 2.5.1 for enhanced stability and reliability.
 
