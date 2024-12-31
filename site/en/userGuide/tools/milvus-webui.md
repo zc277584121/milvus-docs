@@ -29,6 +29,7 @@ As of v2.5.0, you can access Milvus Web UI using the following URL on a running 
 http://${MILVUS_PROXY_IP}:9091/webui
 ```
 
+
 ## Features
 
 Milvus Web UI provides the following features:

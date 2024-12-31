@@ -260,8 +260,6 @@ Having installed Milvus in Docker, you can:
 
 - Check [Quickstart](quickstart.md) to see what Milvus can do.
 
-- Check [Milvus WebUI](milvus-webui.md) to learn more about the Milvus instance.
-
 - Learn the basic operations of Milvus:
   - [Manage Databases](manage_databases.md)
   - [Manage Collections](manage-collections.md)
@@ -276,6 +274,7 @@ Having installed Milvus in Docker, you can:
   - [Amazon EKS](eks.md)
   - [Google Cloud](gcp.md)
   - [Microsoft Azure](azure.md)
+- Explore [Milvus WebUI](milvus-webui.md), an intuitive web interface for Milvus observability and management.
 - Explore [Milvus Backup](milvus_backup_overview.md), an open-source tool for Milvus data backups.
 - Explore [Birdwatcher](birdwatcher_overview.md), an open-source tool for debugging Milvus and dynamic configuration updates.
 - Explore [Attu](https://milvus.io/docs/attu.md), an open-source GUI tool for intuitive Milvus management.
