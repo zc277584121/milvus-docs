@@ -42,6 +42,10 @@ After running the installation script:
 - To change the default Milvus configuration, add your settings to the **user.yaml** file in the current folder and then restart the service.
 - The Milvus data volume is mapped to **volumes/milvus** in the current folder.
 
+You can access Milvus WebUI at `http://127.0.0.1:9091/webui/` to learn more about the your Milvus instance. For details, refer to [Milvus WebUI](./milvus-webui.md).
+
+## Stop and delete Milvus
+
 You can stop and delete this container as follows
 
 ```shell
@@ -63,6 +67,8 @@ $ bash standalone_embed.sh upgrade
 Having installed Milvus in Docker, you can:
 
 - Check [Quickstart](quickstart.md) to see what Milvus can do.
+
+- Check [Milvus WebUI](milvus-webui.md) to learn more about the Milvus instance.
 
 - Learn the basic operations of Milvus:
   - [Manage Databases](manage_databases.md)

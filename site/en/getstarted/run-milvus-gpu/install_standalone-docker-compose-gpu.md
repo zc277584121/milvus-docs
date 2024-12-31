@@ -186,6 +186,8 @@ Having installed Milvus in Docker, you can:
 
 - Check [Quickstart](quickstart.md) to see what Milvus can do.
 
+- Check [Milvus WebUI](milvus-webui.md) to learn more about the Milvus instance.
+
 - Learn the basic operations of Milvus:
   - [Manage Databases](manage_databases.md)
   - [Manage Collections](manage-collections.md)
