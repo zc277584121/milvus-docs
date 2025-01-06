@@ -1,8 +1,6 @@
 ---
 id: shared-bucket-backup-and-restore.md
-summary: "This topic details the process of backing up a collection from one
-Milvus instance and restoring it to another while using a shared bucket
-for object storage."
+summary: This topic details the process of backing up a collection from one Milvus instance and restoring it to another while using a shared bucket for object storage
 title: Migrate Between Instances in One Bucket (Different Root Paths)
 ---
 

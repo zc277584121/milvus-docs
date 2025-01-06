@@ -1,7 +1,6 @@
 ---
 id: single-instance-backup-and-restore.md
-summary: "This topic details the process of backing up a collection and restoring
-it from the backup within the same Milvus instance."
+summary: This topic details the process of backing up a collection and restoring it from the backup within the same Milvus instance
 title: Backup and Restore in One Instance
 ---
 

@@ -1,7 +1,6 @@
 ---
 id: multi-storage-backup-and-restore.md
-summary: "This topic details the process of backing up a collection from one
-Milvus instance and restoring it to another."
+summary: This topic details the process of backing up a collection from one Milvus instance and restoring it to another
 title: Migrate Between Instances Across S3 Environments
 ---
 
