@@ -269,30 +269,57 @@ const filter = "TEXT_MATCH(text, 'machine deep')";
 export filter="\"TEXT_MATCH(text, 'machine deep')\""
 ```
 
-You can also combine multiple `TEXT_MATCH` expressions using logical operators to perform **AND** matching. For example, to search for documents containing both `machine` and `deep` in the `text` field, use the following expression:​
+You can also combine multiple `TEXT_MATCH` expressions using logical operators to perform **AND** matching.
 
-<div class="multipleCode">
-    <a href="#python">Python </a>
-    <a href="#java">Java</a>
-    <a href="#javascript">Node.js</a>
-    <a href="#curl">cURL</a>
-</div>
+- To search for documents containing both `machine` and `deep` in the `text` field, use the following expression:​
 
-```python
-filter = "TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')"​
-```
+    <div class="multipleCode">
+        <a href="#python">Python </a>
+        <a href="#java">Java</a>
+        <a href="#javascript">Node.js</a>
+        <a href="#curl">cURL</a>
+    </div>
 
-```java
-String filter = "TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')";
-```
+    ```python
+    filter = "TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')"​
+    ```
 
-```javascript
-const filter = "TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')"
-```
+    ```java
+    String filter = "TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')";
+    ```
 
-```curl
-export filter="\"TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')\""
-```
+    ```javascript
+    const filter = "TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')"
+    ```
+
+    ```curl
+    export filter="\"TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'deep')\""
+    ```
+
+- To search for documents containing both `machine` and `learning` but without `deep` in the `text` field, use the following expressions:
+
+    <div class="multipleCode">
+        <a href="#python">Python </a>
+        <a href="#java">Java</a>
+        <a href="#javascript">Node.js</a>
+        <a href="#curl">cURL</a>
+    </div>
+
+    ```python
+    filter = "not TEXT_MATCH(text, 'deep') and TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'learning')"
+    ```
+
+    ```java
+    String filter = "not TEXT_MATCH(text, 'deep') and TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'learning')";
+    ```
+
+    ```javascript
+    const filter = "not TEXT_MATCH(text, 'deep') and TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'learning')";
+    ```
+
+    ```curl
+    export filter="\"not TEXT_MATCH(text, 'deep') and TEXT_MATCH(text, 'machine') and TEXT_MATCH(text, 'learning')\""
+    ```
 
 ### Search with text match​
 
@@ -446,3 +473,7 @@ curl --request POST \
 - Enabling text matching for a field triggers the creation of an inverted index, which consumes storage resources. Consider storage impact when deciding to enable this feature, as it varies based on text size, unique tokens, and the analyzer used.​
 
 - Once you've defined an analyzer in your schema, its settings become permanent for that collection. If you decide that a different analyzer would better suit your needs, you may consider dropping the existing collection and creating a new one with the desired analyzer configuration.​
+- Escape rules in `filter` expressions:
+  - Characters enclosed in double quotes or single quotes within expressions are interpreted as string constants. If the string constant includes escape characters, the escape characters must be represented with escape sequence. For example, use `\\` to represent `\`, `\\t` to represent a tab `\t`, and `\\n` to represent a newline.
+  - If a string constant is enclosed by single quotes, a single quote within the constant should be represented as `\\'` while a double quote can be represented as either `"` or `\\"`. Example: `'It\\'s milvus'`.
+  - If a string constant is enclosed by double quotes, a double quote within the constant should be represented as `\\"` while a single quote can be represented as either `'` or `\\'`. Example: `"He said \\"Hi\\""`.

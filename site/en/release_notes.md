@@ -8,15 +8,68 @@ title: Release Notes
 
 Find out what’s new in Milvus! This page summarizes new features, improvements, known issues, and bug fixes in each release. You can find the release notes for each released version after v2.5.0 in this section. We suggest that you regularly visit this page to learn about updates.
 
-## v2.5.0-beta
+## v2.5.2
 
-Release date: November 26, 2024
+Release date: January 3, 2025
 
 | Milvus version | Python SDK version | Node.js SDK version | Java SDK version |
 |----------------|--------------------|---------------------|------------------|
-| 2.5.0-beta     | 2.5.0              | 2.5.0               | 2.5.0            |
+| 2.5.2          | 2.5.3              | 2.5.3               | 2.5.3            |
 
-Milvus 2.5.0-beta brings significant advancements to enhance usability, scalability, and performance for users dealing with vector search and large-scale data management. With this release, Milvus integrates powerful new features like term-based search, clustering compaction for optimized queries, and versatile support for sparse and dense vector search methods. Enhancements in cluster management, indexing, and data handling introduce new levels of flexibility and ease of use, making Milvus an even more robust and user-friendly vector database.
+Milvus 2.5.2 supports modifying the maximum length for VARCHAR columns and resolves several critical issues related to concurrency, partition drops, and BM25 stats handling during import. We highly recommend upgrading to this version for improved stability and performance.
+
+### Improvements
+
+- Generated disk usage logs only when the specified path does not exist. ([#38822](https://github.com/milvus-io/milvus/pull/38822))
+- Added a parameter for tuning the maximum VARCHAR length and restored the limit to 65,535. ([#38883](https://github.com/milvus-io/milvus/pull/38883))
+- Supported parameter type conversion for expressions. ([#38782](https://github.com/milvus-io/milvus/pull/38782))
+
+### Bug fixes
+
+- Fixed potential deadlocks in concurrency scenarios. ([#38863](https://github.com/milvus-io/milvus/pull/38863))
+- Generated the index_null_offset file only for fields that support null values. ([#38834](https://github.com/milvus-io/milvus/pull/38834))
+- Fixed the retrieve plan usage after free in the reduce phase. ([#38841](https://github.com/milvus-io/milvus/pull/38841))
+- Recognized expressions with capitalized AND and OR. ([#38928](https://github.com/milvus-io/milvus/pull/38928))
+- Allowed successful partition drops even if loading failed. ([#38874](https://github.com/milvus-io/milvus/pull/38874))
+- Fixed BM25 stats file registration issues during import. ([#38881](https://github.com/milvus-io/milvus/pull/38881))
+
+## v2.5.1
+
+Release date: December 26, 2024
+
+| Milvus version | Python SDK version | Node.js SDK version | Java SDK version |
+|----------------|--------------------|---------------------|------------------|
+| 2.5.1          | 2.5.2              | 2.5.2               | 2.5.2            |
+
+Milvus 2.5.1 focuses on a series of bug fixes addressing memory loading, RBAC listings, query node balancing, and sealed segment indexing, while also improving the Web UI and interceptors. We highly recommend upgrading to 2.5.1 for enhanced stability and reliability.
+
+### Improvement
+
+- Update web UI collection and query pages. ([#38701](https://github.com/milvus-io/milvus/pull/38701))
+
+### Bug fixes
+
+- Fixed OOM issues by adding a memory factor to loading estimations. ([#38722](https://github.com/milvus-io/milvus/pull/38722))
+- Fixed privilege group expansion when listing policies in RootCoord. ([#38760](https://github.com/milvus-io/milvus/pull/38760))
+- Fixed issues with listing privilege groups and collections. ([#38738](https://github.com/milvus-io/milvus/pull/38738))
+- Fixed the balancer to avoid repeatedly overloading the same query node. ([#38724](https://github.com/milvus-io/milvus/pull/38724))
+- Fixed unexpected balance tasks triggered after QueryCoord restarts. ([#38725](https://github.com/milvus-io/milvus/pull/38725))
+- Fixed load config updates not applying to loading collections. ([#38737](https://github.com/milvus-io/milvus/pull/38737))
+- Fixed zero read count during data import. ([#38695](https://github.com/milvus-io/milvus/pull/38695))
+- Fixed Unicode decoding for JSON keys in expressions. ([#38653](https://github.com/milvus-io/milvus/pull/38653))
+- Fixed interceptor DB name for alterCollectionField in 2.5.  ([#38663](https://github.com/milvus-io/milvus/pull/38663))
+- Fixed empty index parameters for sealed segments when using BM25 brute force search. ([#38752](https://github.com/milvus-io/milvus/pull/38752))
+
+
+## v2.5.0
+
+Release date: December 23, 2024
+
+| Milvus version | Python SDK version | Node.js SDK version | Java SDK version |
+|----------------|--------------------|---------------------|------------------|
+| 2.5.0          | 2.5.1              | 2.5.2               | 2.5.2            |
+
+Milvus 2.5.0 brings significant advancements to enhance usability, scalability, and performance for users dealing with vector search and large-scale data management. With this release, Milvus integrates powerful new features like term-based search, clustering compaction for optimized queries, and versatile support for sparse and dense vector search methods. Enhancements in cluster management, indexing, and data handling introduce new levels of flexibility and ease of use, making Milvus an even more robust and user-friendly vector database.
 
 ### Key Features
 
@@ -24,9 +77,9 @@ Milvus 2.5.0-beta brings significant advancements to enhance usability, scalabil
 
 Milvus 2.5 supports full text search implemented with Sparse-BM25! This feature is an important complement to Milvus's strong semantic search capabilities, especially in scenarios involving rare words or technical terms. In previous versions, Milvus supported sparse vectors to assist with keyword search scenarios. These sparse vectors were generated outside of Milvus by neural models like SPLADEv2/BGE-M3 or statistical models such as the BM25 algorithm.
 
-Milvus 2.5 has built-in tokenization and sparse vector extraction, extending the API from only receiving vectors as input to directly accepting text. BM25 statistical information is updated in real time as data is inserted, enhancing usability and accuracy. Additionally, sparse vectors based on approximate nearest neighbor (ANN) algorithms offer more powerful performance than standard keyword search systems.
+Powered by [Tantivy](https://github.com/quickwit-oss/tantivy), Milvus 2.5 has built-in analyzers and sparse vector extraction, extending the API from only receiving vectors as input to directly accepting text. BM25 statistical information is updated in real time as data is inserted, enhancing usability and accuracy. Additionally, sparse vectors based on approximate nearest neighbor (ANN) algorithms offer more powerful performance than standard keyword search systems.
 
-For details, refer to [Full Text Search](full-text-search.md).
+For details, refer to [Analyzer Overview](analyzer-overview.md) and [Full Text Search](full-text-search.md).
 
 #### Cluster Management WebUI (Beta)
 
@@ -34,11 +87,13 @@ To better support massive data and rich features, Milvus's sophisticated design 
 
 Milvus 2.5 introduces a built-in Cluster Management WebUI, reducing system maintenance difficulty by visualizing Milvus's complex runtime environment information. This includes details of databases and collections, segments, channels, dependencies, node health status, task information, slow queries, and more.
 
+For details, refer to [Milvus WebUI](milvus-webui.md).
+
 #### Text Match
 
-Milvus 2.5 leverages analyzers and indexing from Tantivy for text preprocessing and index building, supporting precise natural language matching of text data based on specific terms. This feature is primarily used for filtered search to satisfy specific conditions and can incorporate scalar filtering to refine query results, allowing similarity searches within vectors that meet scalar criteria.
+Milvus 2.5 leverages analyzers and indexing from [Tantivy](https://github.com/quickwit-oss/tantivy) for text preprocessing and index building, supporting precise natural language matching of text data based on specific terms. This feature is primarily used for filtered search to satisfy specific conditions and can incorporate scalar filtering to refine query results, allowing similarity searches within vectors that meet scalar criteria.
 
-For details, refer to [Text Match](keyword-match.md).
+For details, refer to [Analyzer Overview](analyzer-overview.md) and [Text Match](keyword-match.md).
 
 #### Bitmap Index
 
@@ -88,6 +143,8 @@ In addition to JSON and Parquet formats, Milvus now supports direct bulk import 
 
 Milvus now supports expression templates, improving expression parsing efficiency, particularly in scenarios with complex expressions.
 
+For details, refer to [Filter Templating](filtering-templating.md).
+
 #### GroupBy Enhancements
 
 - **Customizable Group Size**: Added support for specifying the number of entries returned for each group.
@@ -125,3 +182,15 @@ Optimized the concurrency performance of Data Definition Language (DDL) operatio
 #### RESTful API Feature Alignment
 
 Aligned the functionalities of the RESTful API with other SDKs for consistency.
+
+#### Security & Configuration Updates
+
+Supported TLS to secure inter-node communication in more complex or enterprise environments. For details, refer to [Security Configuration](tls.md).
+
+#### Compaction Performance Enhancements
+
+Removed maximum segment limitations in mixed compaction and now prioritizes smaller segments first, improving efficiency and speeding up queries on large or fragmented datasets.
+
+#### Score-Based Channel Balancing
+
+Introduced a policy that dynamically balances loads across channels, enhancing resource utilization and overall stability in large-scale deployments.

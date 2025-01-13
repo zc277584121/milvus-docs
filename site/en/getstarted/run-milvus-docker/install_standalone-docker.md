@@ -3,10 +3,10 @@ id: install_standalone-docker.md
 label: Docker
 related_key: Docker
 summary: Learn how to install Milvus standalone with Docker.
-title: Run Milvus in Docker
+title: Run Milvus in Docker (Linux)
 ---
 
-# Run Milvus in Docker
+# Run Milvus in Docker (Linux)
 
 This page illustrates how to launch a Milvus instance in Docker.
 
@@ -41,6 +41,10 @@ After running the installation script:
 - An embed etcd is installed along with Milvus in the same container and serves at port **2379**. Its configuration file is mapped to **embedEtcd.yaml** in the current folder.
 - To change the default Milvus configuration, add your settings to the **user.yaml** file in the current folder and then restart the service.
 - The Milvus data volume is mapped to **volumes/milvus** in the current folder.
+
+You can access Milvus WebUI at `http://127.0.0.1:9091/webui/` to learn more about the your Milvus instance. For details, refer to [Milvus WebUI](milvus-webui.md).
+
+## Stop and delete Milvus
 
 You can stop and delete this container as follows
 
@@ -78,6 +82,7 @@ Having installed Milvus in Docker, you can:
   - [Amazon EKS](eks.md)
   - [Google Cloud](gcp.md)
   - [Microsoft Azure](azure.md)
+- Explore [Milvus WebUI](milvus-webui.md), an intuitive web interface for Milvus observability and management.
 - Explore [Milvus Backup](milvus_backup_overview.md), an open-source tool for Milvus data backups.
 - Explore [Birdwatcher](birdwatcher_overview.md), an open-source tool for debugging Milvus and dynamic configuration updates.
 - Explore [Attu](https://milvus.io/docs/attu.md), an open-source GUI tool for intuitive Milvus management.

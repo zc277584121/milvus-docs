@@ -3,10 +3,10 @@ id: install_standalone-docker-compose.md
 label: Docker Compose
 related_key: Docker Compose
 summary: Learn how to install Milvus standalone with Docker Compose.
-title: Run Milvus with Docker Compose
+title: Run Milvus with Docker Compose (Linux)
 ---
 
-# Run Milvus with Docker Compose
+# Run Milvus with Docker Compose (Linux)
 
 This page illustrates how to launch a Milvus instance in Docker using Docker Compose.
 
@@ -24,7 +24,7 @@ Milvus provides a Docker Compose configuration file in the Milvus repository. To
 $ wget https://github.com/milvus-io/milvus/releases/download/v{{var.milvus_release_version}}/milvus-standalone-docker-compose.yml -O docker-compose.yml
 
 # Start Milvus
-$ sudo docker-compose up -d
+$ sudo docker compose up -d
 
 Creating milvus-etcd  ... done
 Creating milvus-minio ... done
@@ -58,11 +58,15 @@ milvus-minio        /usr/bin/docker-entrypoint ...   Up (healthy)   9000/tcp
 milvus-standalone   /tini -- milvus run standalone   Up             0.0.0.0:19530->19530/tcp, 0.0.0.0:9091->9091/tcp
 ```
 
+You can also access Milvus WebUI at `http://127.0.0.1:9091/webui/` to learn more about the your Milvus instance. For details, refer to [Milvus WebUI](milvus-webui.md).
+
+## Stop and delete Milvus
+
 You can stop and delete this container as follows
 
 ```shell
 # Stop Milvus
-$ sudo docker-compose down
+$ sudo docker compose down
 
 # Delete service data
 $ sudo rm -rf volumes
@@ -88,6 +92,7 @@ Having installed Milvus in Docker, you can:
   - [Amazon EKS](eks.md)
   - [Google Cloud](gcp.md)
   - [Microsoft Azure](azure.md)
+- Explore [Milvus WebUI](milvus-webui.md), an intuitive web interface for Milvus observability and management.
 - Explore [Milvus Backup](milvus_backup_overview.md), an open-source tool for Milvus data backups.
 - Explore [Birdwatcher](birdwatcher_overview.md), an open-source tool for debugging Milvus and dynamic configuration updates.
 - Explore [Attu](https://github.com/zilliztech/attu), an open-source GUI tool for intuitive Milvus management.

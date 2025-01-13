@@ -13,7 +13,8 @@ Using the BM25 algorithm for relevance scoring, this feature is particularly val
 
 <div class="alert note">
 
-By integrating full text search with semantic-based dense vector search, you can enhance the accuracy and relevance of search results. For more information, refer to [​Hybrid Search](multi-vector-search.md).​
+- By integrating full text search with semantic-based dense vector search, you can enhance the accuracy and relevance of search results. For more information, refer to [​Hybrid Search](multi-vector-search.md).​
+- Full text search is available in Milvus Standalone and Milvus Distributed but not Milvus Lite, although adding it to Milvus Lite is on the roadmap.
 
 </div>
 
@@ -23,7 +24,7 @@ Full text search simplifies the process of text-based searching by eliminating t
 
 1. **Text input**: You insert raw text documents or provide query text without needing to manually embed them.​
 
-2. **Text analysis**: Milvus uses an analyzer to tokenize the input text into individual, searchable terms.​
+2. **Text analysis**: Milvus uses an analyzer to tokenize the input text into individual, searchable terms.​ For more information on analyzers, refer to [Analyzer Overview](analyzer-overview.md).
 
 3. **Function processing**: The built-in function receives tokenized terms and converts them into sparse vector representations.​
 
@@ -64,8 +65,10 @@ First, create the schema and add the necessary fields:​
 
 ```python
 from pymilvus import MilvusClient, DataType, Function, FunctionType​
+
+client = MilvusClient(uri="http://localhost:19530")
 ​
-schema = MilvusClient.create_schema()​
+schema = client.create_schema()​
 ​
 schema.add_field(field_name="id", datatype=DataType.INT64, is_primary=True, auto_id=True)​
 schema.add_field(field_name="text", datatype=DataType.VARCHAR, max_length=1000, enable_analyzer=True)​
@@ -286,7 +289,7 @@ After defining the schema with necessary fields and the built-in function, set u
 </div>
 
 ```python
-index_params = MilvusClient.prepare_index_params()​
+index_params = client.prepare_index_params()​
 ​
 index_params.add_index(​
     field_name="sparse",​
@@ -310,9 +313,9 @@ indexes.add(IndexParam.builder()
 ```javascript
 const index_params = [
   {
-    fieldName: "sparse",
-    metricType: "BM25",
-    indexType: "AUTOINDEX",
+    field_name: "sparse",
+    metric_type: "BM25",
+    index_type: "AUTOINDEX",
   },
 ];
 ```
@@ -357,7 +360,7 @@ Now create the collection using the schema and index parameters defined.​
 </div>
 
 ```python
-MilvusClient.create_collection(​
+client.create_collection(​
     collection_name='demo', ​
     schema=schema, ​
     index_params=index_params​
@@ -380,7 +383,8 @@ client.createCollection(requestCreate);
 await client.create_collection(
     collection_name: 'demo', 
     schema: schema, 
-    index_params: index_params
+    index_params: index_params,
+    functions: functions
 );
 ```
 
@@ -476,10 +480,10 @@ Once you've inserted data into your collection, you can perform full text search
 
 ```python
 search_params = {​
-    'params': {'drop_ratio_search': 0.6},​
+    'params': {'drop_ratio_search': 0.2},​
 }​
 ​
-MilvusClient.search(​
+client.search(​
     collection_name='demo', ​
     data=['whats the focus of information retrieval?'],​
     anns_field='sparse',​
@@ -495,7 +499,7 @@ import io.milvus.v2.service.vector.request.data.EmbeddedText;
 import io.milvus.v2.service.vector.response.SearchResp;
 
 Map<String,Object> searchParams = new HashMap<>();
-searchParams.put("drop_ratio_search", 0.6);
+searchParams.put("drop_ratio_search", 0.2);
 SearchResp searchResp = client.search(SearchReq.builder()
         .collectionName("demo")
         .data(Collections.singletonList(new EmbeddedText("whats the focus of information retrieval?")))
@@ -512,7 +516,7 @@ await client.search(
     data: ['whats the focus of information retrieval?'],
     anns_field: 'sparse',
     limit: 3,
-    params: {'drop_ratio_search': 0.6},
+    params: {'drop_ratio_search': 0.2},
 )
 ```
 
@@ -533,7 +537,7 @@ curl --request POST \
     ],
     "searchParams":{
         "params":{
-            "drop_ratio_search":0.6
+            "drop_ratio_search":0.2
         }
     }
 }'
