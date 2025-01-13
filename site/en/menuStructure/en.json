@@ -2007,96 +2007,96 @@
         "id": "tutorials-overview.md",
         "order": 0,
         "children": []
-      },
-      {
-        "label": "Quickstart with Attu",
-        "id": "quickstart_with_attu.md",
-        "order": 1,
-        "children": []        
-      },
-      {
-        "label": "Hybrid Search with Milvus",
-        "id": "hybrid_search_with_milvus.md",
-        "order": 2,
-        "children": []
-      },
-      {
-        "label": "Image Search with Milvus",
-        "id": "image_similarity_search.md",
-        "order": 3,
-        "children": []
-      },      
-      {
-        "label": "Full-Text Search with Milvus",
-        "id": "full_text_search_with_milvus.md",
-        "order": 4,
-        "children": []
-      },
-      {
-        "label": "Use AsyncMilvusClient with asyncio",
-        "id": "use-async-milvus-client-with-asyncio.md",
-        "order": 5,
-        "children": []            
-      },      
+      },           
       {
         "label": "Build RAG with Milvus",
         "id": "build-rag-with-milvus.md",
-        "order": 6,
+        "order": 1,
         "children": []
       },
       {
         "label": "Advanced RAG",
         "id": "how_to_enhance_your_rag.md",
-        "order": 7,
+        "order": 2,
         "children": []        
+      }, 
+      {
+        "label": "Full-Text Search with Milvus",
+        "id": "full_text_search_with_milvus.md",
+        "order": 3,
+        "children": []
+      },
+      {
+        "label": "Hybrid Search with Milvus",
+        "id": "hybrid_search_with_milvus.md",
+        "order": 4,
+        "children": []
+      },
+      {
+        "label": "Image Search with Milvus",
+        "id": "image_similarity_search.md",
+        "order": 5,
+        "children": []
       },      
       {
         "label": "Multimodal RAG",
         "id": "multimodal_rag_with_milvus.md",
-        "order": 8,
+        "order": 6,
         "children": []
       },
       {
         "label": "Graph RAG with Milvus",
         "id": "graph_rag_with_milvus.md",
-        "order": 9,
+        "order": 7,
         "children": []
       },
       {
         "label": "Contextual Retrieval",
         "id": "contextual_retrieval_with_milvus.md",
-        "order": 10,
+        "order": 8,
         "children": []
       },
       {
         "label": "HDBSCAN Clustering",
         "id": "hdbscan_clustering_with_milvus.md",
-        "order": 11,
+        "order": 9,
         "children": []
       },
       {
         "label": "Use ColPali for Multi-Modal Retrieval",
         "id": "use_ColPali_with_milvus.md",
-        "order": 12,
+        "order": 10,
         "children": []
       },
       {
         "label": "Vector Visualization",
         "id": "vector_visualization.md",
-        "order": 13,
+        "order": 11,
         "children": []
       },
       {
         "label": "Movie Recommendation",
         "id": "movie_recommendation_with_milvus.md",
-        "order": 14,
+        "order": 12,
         "children": []
       },
       {
         "label": "Funnel Search with Matryoshka Embeddings",
         "id": "funnel_search_with_matryoshka.md",
-        "order": 15,
+        "order": 13,
         "children": []
+      },
+      {
+        "label": "Quickstart with Attu",
+        "id": "quickstart_with_attu.md",
+        "order": 14,
+        "children": []        
+      },
+      {
+        "label": "Use AsyncMilvusClient with asyncio",
+        "id": "use-async-milvus-client-with-asyncio.md",
+        "order": 15,
+        "children": []            
       },
       {
         "label": "Explore More",
